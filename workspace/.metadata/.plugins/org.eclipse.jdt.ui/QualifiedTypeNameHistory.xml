@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="lombok.Getter"/>
+<fullyQualifiedTypeName name="lombok.Setter"/>
+<fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMapping"/>
+<fullyQualifiedTypeName name="org.springframework.web.bind.annotation.ResponseBody"/>
+<fullyQualifiedTypeName name="autowired.AutoMain"/>
+<fullyQualifiedTypeName name="autowired.AutoMethod"/>
+<fullyQualifiedTypeName name="com.study01.spring.ver1.MainFamily"/>
+<fullyQualifiedTypeName name="com.study01.spring.ver2.Console"/>
+<fullyQualifiedTypeName name="org.springframework.context.ApplicationContext"/>
+<fullyQualifiedTypeName name="org.springframework.context.support.ClassPathXmlApplicationContext"/>
+<fullyQualifiedTypeName name="com.study01.spring.ver3_Spring.FirstBaby"/>
+<fullyQualifiedTypeName name="com.study01.spring.ver3_Spring.SecondBaby"/>
+<fullyQualifiedTypeName name="com.study01.spring.ver3_Spring.Children"/>
+<fullyQualifiedTypeName name="com.study01.spring.ver3_Spring.Console"/>
+<fullyQualifiedTypeName name="javax.annotation.Resource"/>
+<fullyQualifiedTypeName name="com.study01.spring.ver4_Bean.FirstBaby"/>
+<fullyQualifiedTypeName name="com.study01.spring.ver4_Bean.Console"/>
+<fullyQualifiedTypeName name="com.study01.spring.ver4_Autowired.Console"/>
+<fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+<fullyQualifiedTypeName name="com.study01.spring.ver4_Bean.Children"/>
+</qualifiedTypeNameHistroy>

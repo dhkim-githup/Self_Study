@@ -1,0 +1,12 @@
+Ver1 (main, new)
+ - 내 새끼들은 내 품에서...
+ 
+Ver2 (interface)
+ - 자녀들의 공통 속성이 있다.
+ 
+Ver3 (spring DI , xml)
+ - Xml 을 통한 관리
+ 
+Ver4 (spring DI)
+ - @Autowired 를 통한 객체 얻어오기 
+ 
