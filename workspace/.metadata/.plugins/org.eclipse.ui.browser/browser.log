@@ -63,3 +63,11 @@
 9월 02, 2020 11:34:36.344 [0x7FFB881DEDE0] ANOMALY: use of REX.w is meaningless (default operand size is 64)
 9월 02, 2020 11:34:36.344 [0x7FFB881DEA20] ANOMALY: use of REX.w is meaningless (default operand size is 64)
 9월 02, 2020 11:34:36.345 [0x7FFB878DB980] ANOMALY: use of REX.w is meaningless (default operand size is 64)
+
+9월 02, 2020 17:59:20.359 NEW SESSION
+9월 02, 2020 17:59:20.359 [0x7FFEC33BEDE0] ANOMALY: use of REX.w is meaningless (default operand size is 64)
+9월 02, 2020 17:59:20.359 [0x7FFEC33BEA20] ANOMALY: use of REX.w is meaningless (default operand size is 64)
+9월 02, 2020 17:59:20.359 [0x7FFEC347B980] ANOMALY: use of REX.w is meaningless (default operand size is 64)
+9월 02, 2020 18:01:22.706 [0x7FFEC33BEDE0] ANOMALY: use of REX.w is meaningless (default operand size is 64)
+9월 02, 2020 18:01:22.707 [0x7FFEC33BEA20] ANOMALY: use of REX.w is meaningless (default operand size is 64)
+9월 02, 2020 18:01:22.707 [0x7FFEC347B980] ANOMALY: use of REX.w is meaningless (default operand size is 64)

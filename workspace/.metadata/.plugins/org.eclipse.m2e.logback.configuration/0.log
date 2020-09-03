@@ -4301,3 +4301,24 @@ org.eclipse.core.runtime.CoreException: Launch configuration MainFamily (4) refe
 	at org.eclipse.m2e.core.internal.embedder.MavenImpl.execute(MavenImpl.java:1373)
 	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryRefreshJob.run(ProjectRegistryRefreshJob.java:84)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+2020-09-02 17:56:36,734 [Worker-0: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
+2020-09-02 17:57:00,489 [Worker-2: Importing Maven projects] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.happynarae:2019-happynaraeApp:0.0.1-SNAPSHOT @ D:\Programming\temp\happynarae-app-server\pom.xml.
+2020-09-02 17:57:01,061 [Worker-2: Importing Maven projects] WARN  o.e.m.c.i.embedder.EclipseLogger - The POM for com.oracle.jdbc:com.springsource.oracle.jdbc:jar:10.2.0.2 is missing, no dependency information available
+2020-09-02 17:57:03,077 [Worker-2: Importing Maven projects] WARN  o.e.m.c.i.embedder.EclipseLogger - The POM for com.oracle.jdbc:com.springsource.oracle.jdbc:jar:10.2.0.2 is missing, no dependency information available
+2020-09-02 17:57:07,227 [Worker-2: Importing Maven projects] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /2019-happynaraeApp/src/main/java
+2020-09-02 17:57:07,227 [Worker-2: Importing Maven projects] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /2019-happynaraeApp/src/main/resources
+2020-09-02 17:57:07,228 [Worker-2: Importing Maven projects] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /2019-happynaraeApp/src/test/java
+2020-09-02 17:57:10,808 [Worker-2: Importing Maven projects] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Imported and configured 1 project(s) in 12 sec
+2020-09-02 17:57:14,576 [Worker-1: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - The POM for com.oracle.jdbc:com.springsource.oracle.jdbc:jar:10.2.0.2 is missing, no dependency information available
+2020-09-02 17:57:14,900 [Worker-1: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-09-02 17:57:14,913 [Worker-1: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 25 resources
+2020-09-02 17:57:15,054 [Worker-1: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-09-02 17:57:15,055 [Worker-1: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Programming\temp\happynarae-app-server\src\test\resources
+2020-09-02 17:58:27,973 [Worker-4: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-09-02 17:58:27,986 [Worker-4: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 25 resources
+2020-09-02 17:58:28,040 [Worker-4: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-09-02 17:58:28,041 [Worker-4: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Programming\temp\happynarae-app-server\src\test\resources
+2020-09-02 17:58:58,114 [Worker-8: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-09-02 17:58:58,117 [Worker-8: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 25 resources
+2020-09-02 17:58:58,175 [Worker-8: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-09-02 17:58:58,176 [Worker-8: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Programming\temp\happynarae-app-server\src\test\resources
