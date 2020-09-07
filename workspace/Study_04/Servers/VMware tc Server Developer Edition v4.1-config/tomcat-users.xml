@@ -1,2 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD:workspace/Study_04/Servers/VMware tc Server Developer Edition v4.1-config/tomcat-users.xml
 <tomcat-users/>
+=======
+<aop-reference-model>
+<aop-project name="2019-happynaraeApp"/>
+</aop-reference-model>
+>>>>>>> 9821f6f624991b80d100279e2b0050aa89685437:workspace/.metadata/.plugins/org.springframework.ide.eclipse.aop.core/.state
