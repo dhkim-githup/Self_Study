@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper">
+
+	<resultMap type="map" id="mapList">
+		<result column="cust_id" property="cust_id" />
+		<result column="alias_id" property="alias_id" />
+		<result column="cust_nm" property="cust_nm" />
+		<result column="mcom_num" property="mcom_num" />
+		<result column="tel_num" property="tel_num" />
+		<result column="reg_dati" property="reg_dati" />		
+	</resultMap>
+	
+  
+   <select id="list" parameterType="map" resultMap="mapList">
+   		SELECT cust_id, alias_id, cust_nm, mcom_num, tel_num, to_char(reg_dati,'yyyy.mm.dd') as reg_dati
+   		FROM cust_dtl 
+   		WHERE enpri_cd='000001' and stat_flag='001'
+   </select>
+</mapper>
