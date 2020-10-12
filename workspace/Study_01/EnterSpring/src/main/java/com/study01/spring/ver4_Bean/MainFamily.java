@@ -1,10 +1,10 @@
 package com.study01.spring.ver4_Bean;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import com.study01.spring.ver4_Autowired.Console;
+
+
+
 
 
 /*  @Autowired 를 통한 객체 얻어오기  */
@@ -16,15 +16,16 @@ public class MainFamily {
 		/* 몇째가 집에 올지, XML 을 통해 받아와 
 		 * Test 1 . 첫째가 올지 둘째가 올지... 누가 올지.. xml 에서 정의 . 
 		 * */
-		System.out.println("gogo Main");	
+		//ApplicationContext ctx = new ClassPathXmlApplicationContext("Ioc_config_ver4.xml");
 		
+		// Xml -> Java 로 변환 
+		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(BeanConfiguration.class);
 		
-		Children children;
-		
-		Console console = new Console(Children children);		
+		Console console = ctx.getBean("console",Console.class);	
 		console.consoleOut();
 		
+		
+		ctx.close();
 
-	}
-	
+	}		
 }

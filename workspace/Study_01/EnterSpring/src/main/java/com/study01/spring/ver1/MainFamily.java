@@ -6,10 +6,13 @@ public class MainFamily {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
+		// 부모님. 집 
 		MainFamily mf = new MainFamily();
 		
-		mf.firstBaby();		
+		// 큰아들
+		mf.firstBaby();
 		
+		// 둘째아들 
 		mf.secondBaby();
 
 	}

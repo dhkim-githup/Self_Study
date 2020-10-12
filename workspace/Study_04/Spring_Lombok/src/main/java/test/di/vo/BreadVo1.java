@@ -11,7 +11,6 @@ public class BreadVo1 {
 	
 		public String name;
 		public int age;
-		
 				
 		
 		/*

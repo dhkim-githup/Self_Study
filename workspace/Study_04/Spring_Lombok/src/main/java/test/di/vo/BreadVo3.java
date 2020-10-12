@@ -17,7 +17,4 @@ public class BreadVo3 {
 		this.age = age;
 	}
 	
-	
-	
-	
 }

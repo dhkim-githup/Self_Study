@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+<!--  ver3 --> 
+<bean id="firstBaby" class="com.study.ver3_auto.FirstBaby"></bean>
+<bean id="secondBaby" class="com.study.ver3_auto.SecondBaby"></bean>
+
+<bean id="console" class="com.study.ver3_auto.Console">
+		<constructor-arg ref="firstBaby"></constructor-arg>
+		<!--  setChidren 을 통한 주입 시 property 사용  -->
+		<!--  <property name="childrn" ref="secondBaby"></property> -->
+</bean>
+
+
+</beans>
