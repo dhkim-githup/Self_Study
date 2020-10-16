@@ -7,8 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	Hello Jsp
-	
-	<h1>Hi ${data }</h1>
+ Test Jsp
 </body>
 </html>
