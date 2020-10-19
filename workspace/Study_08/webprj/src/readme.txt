@@ -1,8 +1,15 @@
 유튜브 - 뉴렉쳐 : Spring MVC (스프링 웹 MVC) 강의
 
-URL : https://www.youtube.com/watch?v=9Tmzt6Q9WI8&t=273s
-
-8강 : https://www.youtube.com/watch?v=J0ZPjJ6-HC4
-9강 : https://www.youtube.com/watch?v=fGDNzUQzsng
-10강 : https://www.youtube.com/watch?v=-YHVKPbkSoM&t=14s
-11강 : https://www.youtube.com/watch?v=IIXpqOKpYV8
+1강 : https://www.youtube.com/watch?v=9Tmzt6Q9WI8&t=279s (Spring MVC란)
+2강 : https://www.youtube.com/watch?v=Tay7ad2rmAc (실습환경 준비하기)
+3강 : https://www.youtube.com/watch?v=Y7zBLC28DGM (메이븐을 이용한 기본 웹 프로젝트 생성하기)
+4강 : https://www.youtube.com/watch?v=hjC9EQGNC0c (Dispatcher Servlet 라이브러리 설정하기)
+5강 : https://www.youtube.com/watch?v=5IZyNtkOisI (dispatcher-servlet.xml 파일)
+6강 : https://www.youtube.com/watch?v=z4vDEn6mf2M (스프링 컨트롤러 IndexController 작성하기)
+7강 : https://www.youtube.com/watch?v=KB0Let0jHTQ (View 페이지를 위한 위치)
+8강 : https://www.youtube.com/watch?v=J0ZPjJ6-HC4 (ViewResolver 사용하기)
+9강 : https://www.youtube.com/watch?v=fGDNzUQzsng (HTML 파일 설정하기)
+10강 : https://www.youtube.com/watch?v=-YHVKPbkSoM&t=14s (정적파일 서비스하기)
+11강 : https://www.youtube.com/watch?v=IIXpqOKpYV8 (공지사항 컨트롤러 추가하기)
+12강 : https://www.youtube.com/watch?v=hZMOjxgv2B8 (Detail 컨트롤러 추가와 View 페이지 집중화의 필요성)
+13강 : https://www.youtube.com/watch?v=F8-elAVTSzE (페이지 공통분모 집중화)
