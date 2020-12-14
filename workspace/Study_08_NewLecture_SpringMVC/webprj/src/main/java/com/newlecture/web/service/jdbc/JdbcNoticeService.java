@@ -32,6 +32,8 @@ public class JdbcNoticeService implements IfNoticeService {
 	@Autowired
 	private DataSource dataSource;	 
 	
+	public String strTest="Here";
+	
 	
 	public List<Notice> getList(int page, String field, String query) throws ClassNotFoundException, SQLException{
 		

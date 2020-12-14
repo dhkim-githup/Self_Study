@@ -34,3 +34,8 @@
 
 # 컨트롤서 정리 
 30강 (2020.12.11) : https://www.youtube.com/watch?v=jyLjTKVbwvY&list=PLq8wAnVUcTFWhDFFmpJ5fUeoJI53Z83g6&index=31 (컨트롤러를 위한 Annotation 개념정리)
+
+# 출력관련 강의 ResponseBody, RestController
+31강 (2020.12.14) : https://www.youtube.com/watch?v=Zdf6LGtkjD4&list=PLq8wAnVUcTFWhDFFmpJ5fUeoJI53Z83g6&index=32 (문서 출력방법 4가지 @ResponseBody)
+32강 (2020.12.14) : https://www.youtube.com/watch?v=aDjJXbv14LU&list=PLq8wAnVUcTFWhDFFmpJ5fUeoJI53Z83g6&index=33 (@RestController와 한글출력 설정)
+33강 (2020.12.14) : https://www.youtube.com/watch?v=aDjJXbv14LU&list=PLq8wAnVUcTFWhDFFmpJ5fUeoJI53Z83g6&index=33 (@JSON 출력하기)

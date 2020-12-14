@@ -9,13 +9,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.newlecture.web.entity.Notice;
 import com.newlecture.web.service.IfNoticeService;
+import com.newlecture.web.service.jdbc.JdbcNoticeService;
 
 @Controller
 @RequestMapping("/customer/notice/")
 public class NoticeControler {
 	
 	@Autowired
-	private IfNoticeService noticeService;
+	private IfNoticeService noticeService;	
 	
 	@RequestMapping("list")
 	public String list() throws ClassNotFoundException, SQLException {
