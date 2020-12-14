@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.newlecture.web.entity.Notice;
 import com.newlecture.web.service.IfNoticeService;
-import com.newlecture.web.service.jdbc.JdbcNoticeService;
 
 @RestController("apiNoticeController")
 @RequestMapping("/api/notice/")
@@ -23,6 +22,7 @@ public class NoticeController {
 		@RequestMapping("list") 
 		public List<Notice> list() throws ClassNotFoundException, SQLException {
 			
+	
 			List<Notice> list = service.getList(1, "title", "");
 			
 			
