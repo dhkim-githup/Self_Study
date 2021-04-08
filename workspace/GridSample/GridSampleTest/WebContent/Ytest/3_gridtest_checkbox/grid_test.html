@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>jqGrid Test with jQuery 1.4.4, jQuery UI 1.8.6 and jqGrid 3.8.1</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <!--<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/themes/redmond/jquery-ui.css" />-->
+    <link rel="stylesheet" type="text/css" href="jquery-ui-1.8.6.css" />
+	<link rel="stylesheet" type="text/css" href="ui.jqgrid.css" />
+    <link rel="stylesheet" type="text/css" href="http://www.ok-soft-gmbh.com/jqGrid/jquery.jqGrid-3.8.1/css/ui.jqgrid.css" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+    <script type="text/javascript" src="http://www.ok-soft-gmbh.com/jqGrid/jquery.jqGrid-3.8.1/js/i18n/grid.locale-en.js"></script>
+    <script type="text/javascript" src="http://www.ok-soft-gmbh.com/jqGrid/jquery.jqGrid-3.8.1/js/jquery.jqGrid.min.js"></script>
+    <script type="text/javascript" src="getGridData1.js"></script>
+
+    <script type="text/javascript">
+    //<![CDATA[
+        $(function() {
+            var gridData = getGridData(1000);
+            $("#testGrid").jqGrid({
+                data: gridData,
+                height: 'auto',
+                datatype: 'local',
+                gridview: true,
+                colNames: ['id','aa','bb','cc','dd','ee','ff','gg','hh','ii','jj','kk','ll','mm','nn'],
+                colModel: [
+					{ name: 'id', width: 65, sorttype:'int' },
+					{ name: 'aa', width: 65 },
+					{ name: 'bb', width: 65 },
+					{ name: 'cc', width: 65 },
+					{ name: 'dd', width: 65 },
+					{ name: 'ee', width: 65 },
+					{ name: 'ff', width: 65 },
+					{ name: 'gg', width: 65 },
+					{ name: 'hh', width: 65 },
+					{ name: 'ii', width: 165 },
+					{ name: 'jj', width: 65 },
+					{ name: 'kk', width: 65 },
+					{ name: 'll', width: 65 },
+					{ name: 'mm', width: 265 },
+					{ name: 'nn', width: 265 }
+                ],
+                rowNum: 1000,
+                rowList: [10, 100, 1000, 10000],
+                gridview: true,
+                sortname: 'id',
+                viewrecords: true,
+                sortorder: "asc",
+                hoverrows: false,
+				
+				height: 550,						// 그리드 높이 설정
+				autowidth: true,					// 그리드 넓이 자동
+				multiselect: true,					// 체크박스 생성
+				multiselectWidth: 30,
+				cellEdit:true,						// cell edit 여부 설정
+				rownumbers: true,					// 각 row의 맨 앞줄에 각 행의 번호가 자동으로 부여 되도록 설정
+				rownumWidth: 40,
+		
+                //height: "auto",
+                width:"auto",
+                //rownumbers: true,
+                //pager: '#pager',
+                caption: ""
+             });
+        });
+	//]]>
+	</script>
+</head>
+<body>
+    <p></p>
+    <table id="testGrid"><tr><td/></tr></table>
+    <div id="pager"></div>
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>jqGrid Test with jQuery 1.4.4, jQuery UI 1.8.6 and jqGrid 3.8.1</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <!--<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/themes/redmond/jquery-ui.css" />-->
+    <link rel="stylesheet" type="text/css" href="jquery-ui-1.8.6.css" />
+	<link rel="stylesheet" type="text/css" href="ui.jqgrid.css" />
+    <link rel="stylesheet" type="text/css" href="http://www.ok-soft-gmbh.com/jqGrid/jquery.jqGrid-3.8.1/css/ui.jqgrid.css" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+    <script type="text/javascript" src="http://www.ok-soft-gmbh.com/jqGrid/jquery.jqGrid-3.8.1/js/i18n/grid.locale-en.js"></script>
+    <script type="text/javascript" src="http://www.ok-soft-gmbh.com/jqGrid/jquery.jqGrid-3.8.1/js/jquery.jqGrid.min.js"></script>
+    <script type="text/javascript" src="getGridData1.js"></script>
+
+    <script type="text/javascript">
+	
+	// cell 그룹핑
+function setGroupCell(cellvalue, options, rowObject){
+
+	var str = "";
+
+	if(options.colModel.name=="aa"){
+		if(rowObject.aa == "002"){
+			str += '<span class="red">' + rowObject.aa + '</span>';
+		}else if(rowObject.aa == "003"){
+			str += '<span class="blue">' + rowObject.aa + '</span>';
+		}else {
+			str += rowObject.aa;
+		}
+		str += "<br/>";
+		str += "(" + rowObject.aa + ")";
+		
+	}else if(options.colModel.name=="bb"){
+		if(rowObject.bb == "반품"){
+			str += '<span class="red">' + rowObject.bb + '</span>';
+		}else {
+			str += rowObject.bb;
+		}
+		str += "<br/>";
+		str += "(" + rowObject.bb + ")";
+		
+	} else if(options.colModel.name=="cc") { // 5. 행복나래주문번호 + 고객발주번호
+		
+		str += rowObject.cc;
+		str += "<br/>";
+		str += "(" + rowObject.cc + ")";
+
+		str = rowObject.cc;		
+		//str = rowObject.ordsListNumGroup.split("|").join("<br/>");		
+
+	}else if(options.colModel.name=="dd"){
+		str += rowObject.dd;
+		str += "<br/>";
+		str += '<span class="gridLink" onClick="callsvrManPopup(\''+rowObject.dd+'\')">(' + rowObject.cc + ')</span>';
+	}
+	else if(options.colModel.name=="ee"){
+
+		if(rowObject.ee == null){
+			str += rowObject.cc;
+		}else if(rowObject.ee == "B") {
+			str += '<span class="red">' + rowObject.ee + '</span>';
+			str += "<br/>";
+			str += '<span class="blue">(' + rowObject.ee + ')</span>';
+			str += "<br/>";
+			str += '<span class="red">' + rowObject.ee + '</span>' + '<span class="gridLink" style="color:#034bc2" onClick="callProcCancel(' + rowObject.ordsNum + ', ' + rowObject.listNum + ')">' + "[변경요청취소]" + '</span>'
+		}else {
+			str += rowObject.ee;
+			str += "<br/>";
+			str += '<span class="blue">(' + rowObject.ee + ')</span>';
+			str += "<br/>";
+			str += '<span class="blue">' + rowObject.ee + '</span>';
+		}
+
+	}else if(options.colModel.name=="ff"){
+		str += rowObject.ff;
+		str += "<br/>";
+		str += "(" + rowObject.ff + ")";
+	}else if(options.colModel.name=="gg"){
+		str += rowObject.gg;
+		str += "<br/>";
+		str += "(" + rowObject.makeCoNm + ")";
+	}else if(options.colModel.name=="hh"){
+		str += rowObject.hh;
+		str += "<br/>";
+		str += '<span class="gridLink" onClick="callAcepPopup(\''+rowObject.hh+'\')">' + '(' + rowObject.hh + ')' + '</span>';
+	}else if(options.colModel.name=="ii"){
+		if(rowObject.hh == "002"){
+			str += '<span class="red">' + rowObject.ii + '</span>';
+		}else{
+			str += rowObject.ii;
+		}
+
+	}
+
+	return str;
+}
+
+
+    //<![CDATA[
+        $(function() {
+            var gridData = getGridData(1000);
+            $("#testGrid").jqGrid({
+                data: gridData,
+                height: 'auto',
+                datatype: 'local',
+                gridview: true,
+                colNames: ['id','aa','bb','cc','dd','ee', 't0','t1',  'ff','gg','hh','ii','jj','kk',  't3','t4',  'll','mm','nn'
+				           , 'a0', 'a1', 'a2', 'a3', 'a4', 'a5', 'a6', 'a7', 'a8' , 'a9'
+						   , 'b0', 'b1', 'b2', 'b3', 'b4', 'b5', 'b6', 'b7', 'b8' , 'b9'
+				],
+                colModel: [
+					{ name: 'id', width: 65, sorttype:'int' },
+					{ name: 'aa', width: 65, index:"aa", align:"center" , formatter:setGroupCell},
+					{ name: 'bb', width: 65, index:"bb", align:"center" , formatter:setGroupCell},
+					{ name: 'cc', width: 65, index:"cc", align:"center" , formatter:setGroupCell},
+					{ name: 'dd', width: 65, index:"dd", align:"center" , formatter:setGroupCell},
+					{ name: 'ee', width: 65, index:"ee", align:"center" , formatter:setGroupCell},
+					
+					{ name: 't0', width: 65, index:"t0", align:"center" , formatter:setGroupCell},
+					{ name: 't1', width: 65, index:"t1", align:"center" , formatter:setGroupCell},
+					
+					{ name: 'ff', width: 65, index:"ff", align:"center" , formatter:setGroupCell},
+					{ name: 'gg', width: 65, index:"gg", align:"center" , formatter:setGroupCell},
+					{ name: 'hh', width: 65, index:"hh", align:"center" , formatter:setGroupCell},
+					{ name: 'ii', width: 165, index:"ii", align:"center" , formatter:setGroupCell},
+					{ name: 'jj', width: 65, index:"jj", align:"center" , formatter:setGroupCell},
+					{ name: 'kk', width: 65, index:"kk", align:"center" },
+					
+					{ name: 't2', width: 65, index:"t2", align:"center" },
+					{ name: 't3', width: 65, index:"t3", align:"center" },
+					
+					{ name: 'll', width: 65, index:"ll", align:"center" },
+					{ name: 'mm', width: 265, index:"mm", align:"center" },
+					{ name: 'nn', width: 265, index:"nn", align:"center" },
+					
+					{ name:"a0", index:"a0", align:"center", hidden:true }, //HIDDEN
+					{ name:"a1", index:"a1", align:"center", hidden:true }, //HIDDEN
+					{ name:"a2", index:"a2", align:"center", hidden:true }, //HIDDEN
+					{ name:"a3", index:"a3", align:"center", hidden:true }, //HIDDEN
+					{ name:"a4", index:"a4", align:"center", hidden:true }, //HIDDEN
+					{ name:"a5", index:"a5", align:"center", hidden:true }, //HIDDEN
+					{ name:"a6", index:"a6", align:"center", hidden:true }, //HIDDEN
+					{ name:"a7", index:"a7", align:"center", hidden:true }, //HIDDEN
+					{ name:"a8", index:"a8", align:"center", hidden:true }, //HIDDEN
+					{ name:"a9", index:"a9", align:"center", hidden:true }, //HIDDEN
+					
+					{ name:"b0", index:"a0", align:"center", hidden:true }, //HIDDEN
+					{ name:"b1", index:"b1", align:"center", hidden:true }, //HIDDEN
+					{ name:"b2", index:"b2", align:"center", hidden:true }, //HIDDEN
+					{ name:"b3", index:"b3", align:"center", hidden:true }, //HIDDEN
+					{ name:"b4", index:"b4", align:"center", hidden:true }, //HIDDEN
+					{ name:"b5", index:"b5", align:"center", hidden:true }, //HIDDEN
+					{ name:"b6", index:"b6", align:"center", hidden:true }, //HIDDEN
+					{ name:"b7", index:"b7", align:"center", hidden:true }, //HIDDEN
+					{ name:"b8", index:"b8", align:"center", hidden:true }, //HIDDEN
+					{ name:"b9", index:"b9", align:"center", hidden:true } //HIDDEN
+					
+					
+                ],
+                rowNum: 1000,
+                //rowList: [10, 100, 1000, 10000],
+                gridview: true,
+                sortname: 'id',
+                viewrecords: true,
+                sortorder: "asc",
+                hoverrows: false,
+				
+				height: 550,						// 그리드 높이 설정
+				autowidth: true,					// 그리드 넓이 자동
+				multiselect: true,					// 체크박스 생성
+				multiselectWidth: 30,
+				cellEdit:true,						// cell edit 여부 설정
+				rownumbers: true,					// 각 row의 맨 앞줄에 각 행의 번호가 자동으로 부여 되도록 설정
+				rownumWidth: 40,
+		
+                //height: "auto",
+                width:"auto",
+                rownumbers: true,
+                //pager: '#pager',
+                caption: ""
+             });
+        });
+	//]]>
+	</script>
+</head>
+<body>
+    <p></p>
+    <table id="testGrid"><tr><td/></tr></table>
+    <div id="pager"></div>
+</body>
+</html>
