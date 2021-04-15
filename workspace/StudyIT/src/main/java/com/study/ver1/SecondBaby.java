@@ -4,11 +4,11 @@ public class SecondBaby {
 
 	public void secondBaby() {
 		// TODO Auto-generated method stub
-		String strName = "김둘째 ";
+		String strName = "Second Son ";
 		int iAge = 40;
 		
-		System.out.println("둘째아들 =>"+strName);
-		System.out.println("둘째나이 =>"+iAge);
+		System.out.println("Second Son=>"+strName);
+		System.out.println("Second Age =>"+iAge);
 		
 		
 	}

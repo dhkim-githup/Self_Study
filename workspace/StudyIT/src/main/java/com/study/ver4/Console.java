@@ -18,11 +18,13 @@ public class Console {
 	/* 생성자에서 자식을 받음 
 	 * 객체를 주입 받음. Insection
 	 * */
+	
 	/*
 	public Console(Children children) {		
 		this.children = children;
 	}
 	*/
+	
 	
 	
 

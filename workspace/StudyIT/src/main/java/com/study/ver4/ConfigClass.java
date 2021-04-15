@@ -6,13 +6,13 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class ConfigClass {
 	
-	@Bean
+	@Bean(name="baby")	
 	public FirstBaby fb() {
 		FirstBaby fb = new FirstBaby();
 		return fb;
 	}
 	
-	@Bean(name="baby")	
+	@Bean	
 	public SecondBaby children() {
 		SecondBaby sb = new SecondBaby();
 		return sb;
@@ -25,11 +25,15 @@ public class ConfigClass {
 		return con;
 	}
 	*/
+	
+	
+	
 	@Bean
 	public Console con() {
 		Console con = new Console();
 		return con;
 	}
+	
 	
 	
 	
