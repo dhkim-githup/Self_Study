@@ -24,6 +24,31 @@ public class arraylist {
 		    System.out.println("변환된 값 : "+al.get(i));
 		  }
 		  
-		  List list1 = new ArrayList();
+		  
+		  /* ================================================== */
+		  List<String> list1;
+		  list1 = new ArrayList<String>();
+		  list1.add("One");
+		  list1.add("Two");
+		  list1.add("Three");
+		  list1.add("Four");
+
+		  for(int i=0; i<list1.size(); i++) {
+		  System.out.println("Value : "+list1.get(i));
+		  }
+		  
+		  // Iterator 함수를 통한 조회
+		  Iterator<String> iterator = list1.iterator();
+		  while (iterator.hasNext()) {
+		      String str = (String) iterator.next();
+		      System.out.println("Value : "+str);
+		  }
+		  
+		  // For
+		  for(String str : list1) {   
+		      System.out.println("Value2 : "+str);
+		  }
+		  
+		  
 	}
 }
