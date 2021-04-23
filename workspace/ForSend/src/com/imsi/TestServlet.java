@@ -1,6 +1,8 @@
-package model1.servlet;
+package com.imsi;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,16 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class ServletJoin
+ * Servlet implementation class TestServlet
  */
-@WebServlet(name="servletJoin", urlPatterns="/model1/servlet/new_member")
-public class ServletJoin extends HttpServlet {
+@WebServlet("/TestServlet")
+public class TestServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ServletJoin() {
+    public TestServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,10 +31,37 @@ public class ServletJoin extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		
-		/* get Request value */
-		String username = request.getParameter("input_name"); 
-		int    usernage = Integer.parseInt(request.getParameter("input_age")); 
-				
+		System.out.println("Test Servlet");
+		
+		String strName = request.getParameter("name");
+		
+		request.setAttribute("name2", "Lee");
+		
+		System.out.println("strName ="+strName);
+		
+		String strPath = "/WEB-INF/views/test.jsp";
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher(strPath);     
+		dispatcher.forward(request, response);
+		
+		//dispatcher.include(request, response);
+		
+		System.out.println("Here Forward, Servlet");
+
+		response.sendRedirect(strPath);
+		//response.sendRedirect("/jsp/test.jsp");
+		
+		// 데이타 출력 해주세요.  - controller - > service
+		
+		// 데이타 연결 - dao
+		
+		// select - myba
+		
+		// 값 저장 - repository , vo(members)
+		
+		// 값 전달 .   setA
+		
+		
 	}
 
 	/**
