@@ -1,4 +1,4 @@
-package abstrtact;
+package abstrtact.lifecoding;
 
 public class AbsMain {
 
