@@ -5,6 +5,8 @@ public class MainNaclass {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
+		System.out.println("\n ================ No Single ==========================");
+
 		// No Single
 		NaSingleClassNo na = new NaSingleClassNo();
 		NaSingleClassNo na2 = new NaSingleClassNo();
@@ -13,8 +15,9 @@ public class MainNaclass {
 		na.setStrName("Kim");
 		System.out.printf("na ,  %s , %s \n", na, na.getStrName());
 		System.out.printf("na2 , %s , %s \n", na2, na2.getStrName());
-		System.out.printf("na3 , %s , %s \n", na2, na3.getStrName());
+		System.out.printf("na3 , %s , %s \n", na3, na3.getStrName());
 		
+		System.out.println("\n ================ No Single ==========================");
 		// Single
 		NaSingleClass naS = NaSingleClass.getSingleInstance();
 		NaSingleClass naS2 = NaSingleClass.getSingleInstance();

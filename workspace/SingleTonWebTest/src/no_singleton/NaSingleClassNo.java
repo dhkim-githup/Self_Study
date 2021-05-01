@@ -1,9 +1,9 @@
-package singleton.ver1;
+package no_singleton;
 
 public class NaSingleClassNo {
 	
 	private static String strName;
-		
+	
 	public NaSingleClassNo() {	
 	}	
 	
@@ -14,6 +14,5 @@ public class NaSingleClassNo {
 	public void setStrName(String strName) {
 		this.strName = strName;
 	}
-	
 
 }
