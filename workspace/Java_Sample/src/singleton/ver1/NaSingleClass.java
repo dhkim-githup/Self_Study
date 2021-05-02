@@ -15,7 +15,7 @@ public class NaSingleClass {
 	// 해당 함수를 통해서만, 객체화가능,,,
 	//public static NaSingleClass getSingleInstance() {
 	//public static synchronized NaSingleClass getSingleInstance() {
-	public static synchronized NaSingleClass getSingleInstance() {
+	public static synchronized NaSingleClass getSingleInstance() {		
 		if(singleInstance ==null) {
 			synchronized (NaSingleClass.class) {
 				if(singleInstance ==null) {

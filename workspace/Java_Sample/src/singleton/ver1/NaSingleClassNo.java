@@ -2,7 +2,7 @@ package singleton.ver1;
 
 public class NaSingleClassNo {
 	
-	private static String strName;
+	private static String strName="kkkkk";
 		
 	public NaSingleClassNo() {	
 	}	
