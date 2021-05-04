@@ -19,11 +19,14 @@ String userMobile = request.getParameter("input_mobile");
 <title>새로운 회원을 맞이하세</title>
 </head>
 <body>
-
+<a href="/index.html">[Go Home]</a>
+<p>
+package com.study.mvc.ver1;<br>
+/WEB-INF/views/mvc/servletJoin_ver1_result.jsp<br>
 환영합니다. <p>
 
 이름 : <%=userName %><br>
-나이 : <%=userName %><br>
+나이 : <%=userAge %><br>
 모바일 : <%=userMobile %>
 
 </body>

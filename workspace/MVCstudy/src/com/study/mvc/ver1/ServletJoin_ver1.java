@@ -55,7 +55,8 @@ public class ServletJoin_ver1 extends HttpServlet {
 		 * 1. forward (MVC 가 사용하는건 forward 이다. ) 
 		 * 2. sendredirect
 		 * */
-		
+		response.setContentType("text/html");
+		response.setCharacterEncoding("utf-8");
 		/* forward 방식 
 		 * 고인물이라  왜 jsp를  WEB-INF 에 넣는지 몰랐는데.. 여기에 넣으면 외부에서 접근이 안되어, 소스보안이 됩니다. 
 		 * 한번 해보세요. 외부에서 url 로 http://localhost:8080/WEB-INF/views/mvc/servletJoin_ver1_result.jsp 로 하면 안보임.. 

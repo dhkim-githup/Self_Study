@@ -2,7 +2,7 @@ package singleton.ver1;
 
 public class NaSingleClass {
 	
-	private String strName;
+	private static String strName;
 	
 	// 클래스 참조 변수 선언 
 	// 해당 값을 static 으로 선언하여, 메모리에 올려, 모두가 참조하게 함(포인터)

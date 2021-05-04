@@ -1,0 +1,16 @@
+# 2021. 내가 재미있어서 하는 허접한 프로젝트..
+
+# 해당 내용 정리는 - https://old-developer.tistory.com/
+
+# DB 사용 <오라클> , 회사 개발 서버 몰래 사용.. 
+
+DB 테이블 
+
+create table zzz_develop 
+(
+    name varchar2(200),
+    age number(10),
+    mobile varchar2(100),
+    reg_dati date
+)
+;
