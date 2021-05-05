@@ -3,8 +3,11 @@ package extend;
 public class ExtendsSample {
 	
 	public static void main (String[] args){
-	    Car A = new Car();
-	    System.out.println(A.getSpeed());
+	    //Car A = new Car();
+		
+	    Vehicle A = new Car();
+		
+	    System.out.println("Main =>"+A.getSpeed());
 	    A.printspd();
 	  }
 

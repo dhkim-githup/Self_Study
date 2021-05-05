@@ -10,4 +10,8 @@ public class Vehicle {
 	  public void setSpeed(int speed){
 	    this.speed = speed;
 	  }
+	  
+	  public void printspd() {
+			System.out.println("Vehicle.java =>"+speed);
+		}
 }
