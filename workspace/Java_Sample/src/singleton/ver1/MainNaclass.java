@@ -3,7 +3,7 @@ package singleton.ver1;
 public class MainNaclass {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		 System.out.println("Main Start \n");
 
 		int age=10;
 		String aaa="KIM";

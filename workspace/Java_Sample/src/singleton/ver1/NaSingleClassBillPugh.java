@@ -12,6 +12,7 @@ public class NaSingleClassBillPugh {
 	}
 	
 	public static NaSingleClassBillPugh getInstance() {
+		System.out.println("NaSingleClassBillPugh - getInstance");
 		return NaSingleClassBillPughHolder.instance;
 	}
 	
