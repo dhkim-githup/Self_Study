@@ -18,7 +18,8 @@ class Cat_Child extends Cat_Super {
 	}
 	
 	//Cannot override the final method from Cat_Super
-	public void doNO() {
-		System.out.println("I can override of doOK method...");
-	}
+	/*
+	 * public void doNO() { System.out.println("I can override of doOK method...");
+	 * }
+	 */
 }
