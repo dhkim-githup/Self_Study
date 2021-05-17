@@ -1,5 +1,9 @@
-package singleton.ver1;
+package team.study._singleton.ver1;
 
+/*
+ * This is javadoc  by dhkim - NormalMain
+ * @author KimDongHyun
+ */
 public class NaSingleClass {
 	
 	private static String strName;

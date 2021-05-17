@@ -1,4 +1,10 @@
-package singleton.ver1;
+package team.study._singleton.ver1;
+
+/**
+ * This is javadoc  by dhkim - MainNaclass
+ * @author KimDongHyun
+ * @since  2021.05.17
+ */
 
 public class MainNaclass {
 

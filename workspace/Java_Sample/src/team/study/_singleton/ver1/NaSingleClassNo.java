@@ -1,4 +1,4 @@
-package singleton.ver1;
+package team.study._singleton.ver1;
 
 public class NaSingleClassNo {
 	
