@@ -2,8 +2,8 @@ package team.study._singleton.ver1;
 
 /**
  * This is javadoc  by dhkim - NormalMain
- * @author KimDongHyun
- * @since  2021.05.17
+ * @author KimDongHyun - Iteam
+ * @since  2021.05.18
  */
 
 public class NormalMain {

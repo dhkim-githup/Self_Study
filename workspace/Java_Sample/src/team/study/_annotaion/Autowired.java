@@ -12,5 +12,5 @@ import java.lang.annotation.Target;
 @Target(TYPE)
 public @interface Autowired {
 		String value();
-		String name() default "";
+		String name() default "name";
 }
