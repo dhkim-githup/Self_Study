@@ -11,11 +11,14 @@ package self._enum.lifecoding;
 	    public static final Company ORACLE = new Company();
 	}
 	 
-	public class ConstantDemo6 {
+	public class ConstantDemoVer6 {
 	     
 	    public static void main(String[] args) {
+	    	/* 오류가 발생함 */
+	    	/*
 	        if(Fruit.APPLE == Company.APPLE){
 	            System.out.println("과일 애플과 회사 애플이 같다.");
 	        }
+	        */
 	    }
 	}

@@ -3,15 +3,15 @@ package self._enum.lifecoding;
 	public class ConstantDemoVer5 {
 	     
 	    public static void main(String[] args) {
-	        int type = FRUIT.APPLE;
+	        int type = IF_FRUIT.APPLE;
 	        switch(type){
-	            case FRUIT.APPLE:
+	            case IF_FRUIT.APPLE:
 	                System.out.println(57+" kcal");
 	                break;
-	            case FRUIT.PEACH:
+	            case IF_FRUIT.PEACH:
 	                System.out.println(34+" kcal");
 	                break;
-	            case FRUIT.BANANA:
+	            case IF_FRUIT.BANANA:
 	                System.out.println(93+" kcal");
 	                break;
 	        }
@@ -19,10 +19,10 @@ package self._enum.lifecoding;
 
 }
 	
-	interface FRUIT{
+	interface IF_FRUIT{
 	    int APPLE=1, PEACH=2, BANANA=3;
 	}
-	interface COMPANY{
+	interface IF_COMPANY{
 	    int GOOGLE=1, APPLE=2, ORACLE=3;
 	}
 
