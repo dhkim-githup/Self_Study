@@ -18,7 +18,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	Person List Jsp
+	Person List Jsp - PersonService2
 	
 <table>
 		 <tr>		
