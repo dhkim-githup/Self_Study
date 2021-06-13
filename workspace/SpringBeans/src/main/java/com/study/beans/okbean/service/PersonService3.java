@@ -17,18 +17,14 @@ import com.study.beans.okbean.vo.PersonVo2;
  * vo. PersonVo 에 데이타를 넣고 가져오는 기능을 한다.
  * -- 이런 작업을 삽질이라고 한다. 테스트를 위한 삽질
  */
-@Lazy //지연로딩을 위한 빈 정의 와 @Autowired가 사용되는 두 곳 모두 @Lazy 가 사용되어야 합니다.
-@Service
-@Qualifier("PersonService2")
-@Scope("singleton") // default-singleton,  prototype  
-public class PersonService2 {
+public class PersonService3 {
 	
 	/* PersonVo 값을 계속 저장하귀 위해서는 static 사용 하면 됨 */
 	private static List<PersonVo2> list2 = new ArrayList<>();
 	
 	/* 생성자 위치 */
-	public PersonService2() {
-		System.out.println("PersonService2 Constructor ~");
+	public PersonService3() {
+		System.out.println("PersonService3 Constructor ~");
 	}
 	
 	/* 스프링 시작시  빈이 생성된 후 실행시킨다. 의존성 주입이 완료된 후 실행되는 초기화 메서드
@@ -36,7 +32,7 @@ public class PersonService2 {
 	 *  */
 	@PostConstruct
     public void init() {
-      System.out.println("PersonService2 @PostConstruct ~");
+      System.out.println("PersonService3 @PostConstruct ~");
     }
 	
 	/* 컨트롤러에서 호출하는 메서드 */
@@ -45,9 +41,9 @@ public class PersonService2 {
 		//List<PersonVo> list = new ArrayList<>();
 		
 		/* 데이타 세팅 , list 에 personVo 변수로 입력 */
-		setAdd("홍길동2",20);		
-		setAdd("홍길순2",30);		
-		setAdd("홍길남2",40);
+		setAdd("홍길동3",20);		
+		setAdd("홍길순3",30);		
+		setAdd("홍길남3",40);
 		
 		/* 잘 입력되었는지 체크 
 		for(int i=0; i<list.size(); i++) {
@@ -76,7 +72,7 @@ public class PersonService2 {
 	 * */
 	@PreDestroy
 	public void destroy(){
-	    System.out.println("PersonService2 @PreDestroy!!");       
+	    System.out.println("PersonService3 @PreDestroy!!");       
 	}
 
 }

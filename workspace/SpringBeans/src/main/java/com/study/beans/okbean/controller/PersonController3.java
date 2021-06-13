@@ -16,42 +16,39 @@ import com.study.beans.okbean.service.PersonService3;
 import com.study.beans.okbean.vo.PersonVo2;
 
 @Controller
-public class PersonController2 {
+public class PersonController3 {
 
-	@Lazy // 지연로딩을 위한 빈 정의 와 @Autowired가 사용되는 두 곳 모두 @Lazy 가 사용되어야 한다 
-	@Autowired
-	@Qualifier("PersonService2")
-	PersonService2 personService2; // 객체 참조변수를 빈에서 할당 받음 
 	
+	//@Lazy // 지연로딩을 위한 빈 정의 와 @Autowired가 사용되는 두 곳 모두 @Lazy 가 사용되어야 한다
+	@Autowired
+	@Qualifier("PersonService3")	
+	PersonService3 personService3; // 객체 참조변수를 빈에서 할당 받음
 	
 	/* scope Test 를 위한 ApplicationContext 선언 */
 	@Autowired
 	ApplicationContext ctx;
 	
 	/* 생성자 위치 */
-	public PersonController2() {
+	public PersonController3() {
 		System.out.println("PersonController2 Constructor ");
 	}
+		
 	
-	@RequestMapping("person2")
-	public String personList(Model model) {
+	@RequestMapping("person3")
+	public String personList3(Model model) {
 		model.addAttribute("test", "modelString");
 		
+		/* prototype 일 경우 객체의 주소 체크 */
+		PersonService3 p3_1 = ctx.getBean(PersonService3.class);
+		PersonService3 p3_2 = ctx.getBean(PersonService3.class);
 		
+		System.out.println("personService3 : Address p3_1 => "+p3_1);
+		System.out.println("personService3 : Address p3_2 => "+p3_2);
 		
-		/* singleton 일 경우 객체의 주소 체크 */
-		PersonService2 p2_1 = ctx.getBean(PersonService2.class);
-		PersonService2 p2_2 = ctx.getBean(PersonService2.class);
-		
-		System.out.println("personService2 : Address p2_1 => "+p2_1);
-		System.out.println("personService2 : Address p2_2 => "+p2_2);
-		
-		System.out.println("personService3 : Address personService3 => "+personService2);
-		
-		
+		System.out.println("personService3 : Address personService3 => "+personService3);
 		// 1. 서비스 호출 
 		//PersonService2 personService2 = new PersonService2();
-		List<PersonVo2> list = personService2.getPersonList();
+		List<PersonVo2> list = personService3.getPersonList();
 		
 		/* 값이 잘 나왔는지 체크 
 		for(PersonVo person : list) {
@@ -60,12 +57,10 @@ public class PersonController2 {
 		*/
 		
 		// 2. 리턴값으로  model 에 List 전달 
-		model.addAttribute("personList2",list);
+		model.addAttribute("personList3",list);
 				
 		//return "/WEB-INF/view/personlist.jsp";
-		return "personlist2";
+		return "personlist3";
 	}
-	
-	
 	
 }
