@@ -19,12 +19,19 @@ public class Main {
 			 *  생성된 Animal 객체는 human 에 있는 값중 자기에게 속한 값만을 가져온다.
 			 *  Animal 객체는  추상적인 클래스이기 때문에 new Animal() 의 의미가 없다.
 			 */
+			
+		IdoS idos = new Human();
+		
 
 	}
 
 }
 
-class Animal{
+interface IdoS{
+	void doSing();
+}
+
+class Animal implements IdoS{
 	
 	String strClass;
 	
@@ -32,6 +39,7 @@ class Animal{
 		this.strClass="Animal";
 	}
 	
+	@Override
 	public void doSing() {		
 	}
 }
