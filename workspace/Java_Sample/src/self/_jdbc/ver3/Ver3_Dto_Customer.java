@@ -12,28 +12,45 @@ public class Ver3_Dto_Customer {
 	private String gender;
 	private String reg_dati;
 	
+	public Ver3_Dto_Customer(){		
+	}
 	
+	public Ver3_Dto_Customer(String name, int age, String gender, String reg_dati) {
+		super();
+		this.name = name;
+		this.age = age;
+		this.gender = gender;
+		this.reg_dati = reg_dati;
+	}
+
 	public String getName() {
 		return name;
 	}
+	
 	public void setName(String name) {
 		this.name = name;
 	}
+	
 	public int getAge() {
 		return age;
 	}
+	
 	public void setAge(int age) {
 		this.age = age;
 	}
+	
 	public String getGender() {
 		return gender;
 	}
+	
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
+	
 	public String getReg_dati() {
 		return reg_dati;
 	}
+	
 	public void setReg_dati(String reg_dati) {
 		this.reg_dati = reg_dati;
 	}
