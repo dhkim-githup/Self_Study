@@ -24,6 +24,10 @@ public class Ccounter2 {
 	/* Call Service */
 	Smornigservice Sms;
 	
+	/* Smornigservice 객체는 어디에서 날라온것인다 
+	 * @Autowired 의 생략
+	 * DI 는 생성자를 통한 주입을 하도록 가이드되고 있다.
+	 * */
 	public Ccounter2(Smornigservice sms) {
 		super();
 		Sms = sms;
