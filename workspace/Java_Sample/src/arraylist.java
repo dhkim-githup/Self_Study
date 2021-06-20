@@ -18,7 +18,6 @@ public class arraylist {
 		// 콘솔에 찍는 값은 {,"박",,"이",,"정",};
 		  System.out.println("indexOf : "+al.indexOf("이"));
 
-
 		//이런식으로 찍힐겁니다. 직접 찍어보시면.. 나올듯 하구여..
 		  for(int i=0; i<al.size(); i++){
 		    System.out.println("변환된 값 : "+al.get(i));
