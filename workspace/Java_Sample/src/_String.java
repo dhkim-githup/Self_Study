@@ -17,6 +17,16 @@ public class _String  {
 		
 		System.out.println(s.toString());
 		
+		String str2 = new String("java");
+		String str3 = str2;
+		String str4 = new String("java");
+		
+		System.out.println(str2.hashCode()+","+System.identityHashCode(str2));
+		System.out.println(str3.hashCode()+","+System.identityHashCode(str3));
+		System.out.println(str4.hashCode()+","+System.identityHashCode(str4));
+		
+		System.out.println(str2.equals(str4));
+		
 	}
 
 	@Override
