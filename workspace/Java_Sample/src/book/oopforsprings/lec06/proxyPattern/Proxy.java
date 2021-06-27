@@ -1,7 +1,11 @@
 package book.oopforsprings.lec06.proxyPattern;
 
+/*
+ * Proxy 패턴에 사용할 구현체 
+ */
 public class Proxy implements IService {
 	
+	/* Proxy 패턴을 이용한, 대리객체 이용 */
 	IService service2;
 
 	@Override
@@ -13,7 +17,4 @@ public class Proxy implements IService {
 		return service2.runSomething();
 		
 	}
-	
-	
-
 }

@@ -1,5 +1,8 @@
 package book.oopforsprings.lec06.adapter;
 
+/*
+ * 어댑터 패턴을 사용하지 않음.
+ */
 public class ClientWithNoAdapter {
 
 	public static void main(String[] args) {
