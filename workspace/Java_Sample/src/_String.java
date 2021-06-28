@@ -3,43 +3,47 @@ public class _String  {
 
 	public static void main(String[] args) {
 		
-		_String s = new _String();
-		
-		String str1="aa";
-		System.out.println("str1 =>"+str1.toString()+","+str1.hashCode());
-		
-		
+	/* 리터럴 표현 , Heap 메모리 - string constant pool 를 이용한다. */
+	String str1 = "홍길";
+	System.out.printf("str1.hashcode %s \n", System.identityHashCode(str1));
 	
-		int i1=0;
-		int i2=2;
+	String str2 = "홍길";
+	System.out.printf("str2.hashcode %s \n", System.identityHashCode(str2));
+	
+	String str3 = "홍길동";
+	System.out.printf("str3.hashcode %s \n", System.identityHashCode(str3));
+	
+	       str2 = "홍길동";
+	System.out.printf("str2.hashcode %s \n", System.identityHashCode(str2));
+	
+	System.out.println("---------------------------------------------------");
+	
+	/* new 객체 생성 , Heap 메모리 - 공간 할당 . */
+	String nstr1 = new String("홍길");
+	System.out.printf("nstr1.hashcode %s \n", System.identityHashCode(nstr1));
+	
+	String nstr2 = new String("홍길");
+	System.out.printf("nstr2.hashcode %s \n", System.identityHashCode(nstr2));
+	
+	String nstr3 = new String("홍길동");
+	System.out.printf("nstr3.hashcode %s \n", System.identityHashCode(nstr3));
+	
+	       nstr2 = "홍길동";
+	System.out.printf("nstr2.hashcode %s \n", System.identityHashCode(nstr2));
+	
+	System.out.println("---------------------------------------------------");
+	
+	/* new 객체 생성 , Heap 메모리 - 공간 할당 . */
+	StringBuffer sb1 = new StringBuffer("홍길");
+	System.out.printf("sb1.hashcode %s \n", System.identityHashCode(sb1));
+	
+	StringBuffer sb2 = new StringBuffer("홍길");
+	System.out.printf("sb2.hashcode %s \n", System.identityHashCode(sb2));
 		
-		Integer intg = 2;
-		
-		
-		
-		System.out.println(intg.equals(i2));
-		System.out.println(i1 == intg);
-		
-		System.out.println("int"+ (i1+i2));	
-		
-		System.out.println(s.toString());
-		
-		String str2 = new String("java");
-		String str3 = str2;
-		String str4 = new String("java");
-		
-		System.out.println(str2.hashCode()+","+System.identityHashCode(str2));
-		System.out.println(str3.hashCode()+","+System.identityHashCode(str3));
-		System.out.println(str4.hashCode()+","+System.identityHashCode(str4));
-		
-		System.out.println(str2.equals(str4));
-		
-	}
-
-	@Override
-	public String toString() {
-		return "_String [getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
-				+ "]";
+	       sb2.append("홍길동");
+	System.out.printf("sb2.hashcode %s \n", System.identityHashCode(sb2));
+	
+	
 	}	
 	  
 }
