@@ -1,5 +1,3 @@
-package self._jdbc.ver1;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -15,7 +13,7 @@ import java.sql.Statement;
  *
  */
 
-public class MainVer1 {
+public class Jdbc_SKplasma {
 
 	public static void main(String[] args) throws SQLException {
 		// TODO Auto-generated method stub
@@ -23,8 +21,10 @@ public class MainVer1 {
 		String driver = "oracle.jdbc.driver.OracleDriver";
 		/* 원격지 IP 지정  ex) localhost -> 172.13.13.13 , SID 입력 */
 		String dbURL="jdbc:oracle:thin:@localhost:1521:xe";
-        String user_id="scott";        
+        
+		String user_id="scott";        
         String user_pw="tiger";
+        
         String qry="";
         int result =0;
         
@@ -42,8 +42,9 @@ public class MainVer1 {
 		 * 여기까지만, 실행해보고, 실제 오라클 접속이 되었는지 체크 
 		 * */
         conn = DriverManager.getConnection(dbURL, user_id, user_pw);
+        
         /* jdbc 는 기본적으로 자동커밋을 한다. 자동커밋 해제 */
-        // conn.setAutoCommit(false);  // 자동 커밋 해제
+        conn.setAutoCommit(false);  // 자동 커밋 해제
         
         stmt = conn.createStatement(); 
 		
@@ -102,13 +103,17 @@ public class MainVer1 {
 			System.out.println("Delete Fail");
 		}	
 		*/	
-		// conn.commit(); 자동커밋 사용 
+		
+		/* 트랙잭션 처리(insert, update, delete) 처리 후 반드시 commit() 실행 
+		 * 오류 발생시 rollback() 처리 
+		 * */
+		conn.commit();  
 		
      }catch (Exception e) {
 		System.out.println("Error =>"+e);
 		conn.rollback();
 	 }finally {
-		 /* Close */ 
+		 /* Close, 사용이 끝나면 반드시 자원 close() 실행  */ 
 		try {
 			if(rs != null) rs.close();
 			if(stmt != null) stmt.close();
