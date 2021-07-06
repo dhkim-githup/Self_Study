@@ -8,7 +8,7 @@ import com.study.demo._team.di_ioc.beans.Cappuccino;
 import com.study.demo._team.di_ioc.beans.Latte;
 
 @Service
-public class Smornigservice {
+public class Smornigservice implements ImoringService  {
 	
 	Americano ame;
 	Latte latte;
@@ -22,7 +22,7 @@ public class Smornigservice {
 		this.cappu = cappu;
 	}
 
-
+	@Override
 	public String getMorning(int menu) {
 		
 		 String strCoffee = "";
