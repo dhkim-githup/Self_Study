@@ -13,6 +13,7 @@
   <aop:config>
   <aop:aspect ref="myAspect">   
    <aop:before method="before" pointcut="execution(* runSomething())" />
+   <aop:after  method="after" pointcut="execution(* runSomething())" />
   </aop:aspect>
  </aop:config>
   

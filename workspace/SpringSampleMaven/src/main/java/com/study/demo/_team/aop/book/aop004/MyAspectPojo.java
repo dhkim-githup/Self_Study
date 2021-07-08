@@ -12,7 +12,7 @@ public class MyAspectPojo {
 	 }
 	
 	public void lockDoor(JoinPoint joinPoint){
-		  System.out.println("aop004pojo.주인님 나갔다: 어이 문 잠가!!!");
+		  System.out.println("aop004pojo.소등하고 잔다!!!");
 		  //System.out.println("열쇠로 문을 열고 집에 들어간다.");
 		 }
 		

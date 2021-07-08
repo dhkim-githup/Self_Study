@@ -21,8 +21,6 @@ public class Boy {
 			  // 횡단 관심사
 			  System.out.println("소등하고 잔다.");
 		  }
-		  
-		  // 횡단 관심사
-		  System.out.println("자물쇠를 잠그고 집을 나선다.");
+
 		 }
 }
