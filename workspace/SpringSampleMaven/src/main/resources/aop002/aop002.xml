@@ -6,7 +6,7 @@
   http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
  
  <aop:aspectj-autoproxy /> 
-  <bean id="myAspect" class="com.study.demo._team.aop.book.aop002.MyAspect" />
-  <bean id="boy"      class="com.study.demo._team.aop.book.aop002.Boy" />
-  <bean id="girl"      class="com.study.demo._team.aop.book.aop002.Girl" />
+  <bean id="myAspect" class="com.study.demo._springoop.chap07aop.aop002.MyAspect" />
+  <bean id="boy"      class="com.study.demo._springoop.chap07aop.aop002.Boy" />
+  <bean id="girl"     class="com.study.demo._springoop.chap07aop.aop002.Girl" />
 </beans>
