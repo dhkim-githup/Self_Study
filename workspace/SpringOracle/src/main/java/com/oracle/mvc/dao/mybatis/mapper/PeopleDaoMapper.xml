@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oracle.mvc.dao.PeopleDaoXml">
+
+	<insert id="doInsert" parameterType="com.oracle.mvc.vo.People">
+		insert into zzz_people(name, age)
+		values(#{name},#{age})
+	</insert>
+	
+	
+  	<select id="getPeople" resultType="com.oracle.mvc.vo.People">
+  		SELECT name, age , to_char(reg_date,'yyyy.mm.dd') as reg_dati   
+		From zzz_people
+  	</select>
+	
+	<update id="update" parameterType="com.oracle.mvc.vo.People">
+		update zzz_people
+		set name = #{title},
+		    age  = #{age}			
+		where name = #{title} 
+	</update>
+	
+	<delete id="delete">
+		delete from zzz_people
+		where name = #{name}
+	</delete>
+	
+
+</mapper>
