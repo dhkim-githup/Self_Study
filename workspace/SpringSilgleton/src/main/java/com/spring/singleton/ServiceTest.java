@@ -28,14 +28,16 @@ public class ServiceTest {
 		
 	}
 	
+	/*
 	@PostConstruct
     public void postConstruct() {
-        System.out.println("postConstruct");
+        System.out.println("ServiceTest - postConstruct");
     }
 	
 	@PreDestroy
     public void preDestroy() {
 		System.out.println("preDestroy");
     }
+    */
 
 }
