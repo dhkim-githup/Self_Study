@@ -46,7 +46,7 @@ public class Main {
 		System.out.println("Main");
 		
 		System.out.println("ServiceSingleton => "+serviceNormal);
-		System.out.println("serviceTest      => "+serviceTest);
+		System.out.println("serviceTest >>>>>>>>>>>>>>>>>>>>>>>> => "+serviceTest);
 		
 		String reName = request.getParameter("name");
 		String name;
