@@ -3,17 +3,20 @@ package com.spring.singleton;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@Lazy
 public class Main {
 
 	@Autowired
-	ServiceNormal serviceNormal;
+	ServiceSingleton serviceNormal;
 	
 	@Autowired
-	ServiceTest serviceTest;
+	ServicePrototype serviceTest;
 	
 	@RequestMapping("/normal")
 	public String doNormal() {
@@ -35,15 +38,15 @@ public class Main {
 		return name;
 	}
 	
-	@RequestMapping("/test")
-	public String doTest(HttpServletRequest request) {
+	@RequestMapping("/main")	
+	public @ResponseBody String doTest(HttpServletRequest request) {
 		
 		//ServiceTest serviceTest = new ServiceTest();
-		
 		System.out.println("");
+		System.out.println("Main");
 		
-		System.out.println("ServiceNormal =>"+serviceNormal);
-		System.out.println("serviceTest =>"+serviceTest);
+		System.out.println("ServiceSingleton =>"+serviceNormal);
+		System.out.println("serviceTest      =>"+serviceTest);
 		
 		String reName = request.getParameter("name");
 		String name;

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class Main3 {
 
 	@Autowired
-	ServiceNormal serviceNormal;
+	ServiceSingleton serviceNormal;
 	
 	
 	@RequestMapping("/normal3")
@@ -32,15 +32,16 @@ public class Main3 {
 		return name;
 	}
 	
-	@RequestMapping("/test3")
+	@RequestMapping("/main3")
 	public String doTest(HttpServletRequest request) {
 		
-		ServiceTest serviceTest = new ServiceTest();
+		ServicePrototype serviceTest = new ServicePrototype();
 		
 		System.out.println("");
+		System.out.println("Main3");
 		
-		System.out.println("ServiceNormal =>"+serviceNormal);
-		System.out.println("serviceTest =>"+serviceTest);
+		System.out.println("ServiceSingleton =>"+serviceNormal);
+		System.out.println("serviceTest      =>"+serviceTest);
 		
 		String reName = request.getParameter("name");
 		String name;

@@ -3,17 +3,18 @@ package com.spring.singleton;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
+import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 @Component
 @Scope("prototype")
-public class ServiceTest {
+public class ServicePrototype {
 	
 	String name="이성계";
 	
-	public ServiceTest() {
-		System.out.println("ServiceTest - Constructor");
+	public ServicePrototype() {
+		System.out.println("ServicePrototype - Constructor");
 	}
 	
 	
