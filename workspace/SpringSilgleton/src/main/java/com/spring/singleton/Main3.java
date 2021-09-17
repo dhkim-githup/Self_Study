@@ -40,8 +40,8 @@ public class Main3 {
 		System.out.println("");
 		System.out.println("Main3");
 		
-		System.out.println("ServiceSingleton =>"+serviceNormal);
-		System.out.println("serviceTest      =>"+serviceTest);
+		System.out.println("ServiceSingleton => "+serviceNormal);
+		System.out.println("serviceTest      => "+serviceTest);
 		
 		String reName = request.getParameter("name");
 		String name;
