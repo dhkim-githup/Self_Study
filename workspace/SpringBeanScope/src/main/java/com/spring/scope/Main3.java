@@ -9,10 +9,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class Main3 {
 	
+	@Autowired
+	ServiceBeanScope serviceBeanScope;
+	
 	@RequestMapping("/main3")
 	public String doTest(HttpServletRequest request) {
 		
-		ServiceBeanScope serviceBeanScope = new ServiceBeanScope();
+		//ServiceBeanScope serviceBeanScope = new ServiceBeanScope();
 		
 		//ServiceTest serviceTest = new ServiceTest();
 		System.out.println("");

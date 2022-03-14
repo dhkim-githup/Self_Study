@@ -8,10 +8,10 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 @Component
-//@Scope("prototype")
+@Scope("prototype")
 public class ServiceBeanScope {
 	
-	String name="홍길동";
+	private String name="홍길동";
 	
 	public ServiceBeanScope() {
 		System.out.println("ServiceBeanScope - Constructor");
