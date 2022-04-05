@@ -31,4 +31,19 @@ public class DemoController {
         return new ResponseCookieDTO(username, session_id);
     }
 
+    @GetMapping("/user")
+    public ResponseCookieDTO doUser(@AuthenticationPrincipal User user, HttpSession httpSession) {
+        String username = "empty";
+        String session_id = "empty";
+
+        if (user == null){
+            System.out.println("user is null");
+        } else {
+            session_id = httpSession.getId();
+            username = user.getUsername();
+        }
+
+        return new ResponseCookieDTO(username, session_id);
+    }
+
 }

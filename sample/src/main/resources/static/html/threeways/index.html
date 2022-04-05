@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+* 쿠키 vs 세션 vs 토큰 </p>
+
+<a href="/Threeways/Default">* 정보보기</a></p>
+
+* 쿠키
+<form name="Cookie" action="/Threeways/Cookie" method="post">
+  이름 <input type="text" name="name" value="쿠키이름">
+  나이 <input type="text" name="age"  value="쿠키나이">
+  <input type="submit">
+</form>
+
+</p>
+<hr>
+</p>
+* 세션
+<form name="Session" action="/Threeways/Session" method="post">
+  이름 <input type="text" name="name" value="세션이름">
+  나이 <input type="text" name="age" value="세션나이">
+  <input type="submit">
+
+  <a href="/Threeways/SessionLogout">* 세션 logout</a></p>
+</form>
+
+</p>
+<hr>
+</p>
+* 토큰
+<form name="Token" action="/Threeways/Token">
+  이름 <input type="text" name="name">
+  나이 <input type="text" name="age">
+  <input type="submit">
+</form>
+</body>
+</html>
