@@ -19,7 +19,7 @@ public class Request_get {
         String strName = request.getParameter("name");
         String strAge  = request.getParameter("age");
 
-        String strReturn = "doGetParameter > strName : "+strName+"</p>"+"strAge : "+strAge;
+        String strReturn = "request.getParameter  </p>strName : "+strName+"</p>"+"strAge : "+strAge;
 
         return strReturn;
     }
@@ -32,7 +32,7 @@ public class Request_get {
                              @RequestParam("age") String strAge,
                              @RequestParam(value = "novalue", required = true, defaultValue = "Default Value") String strNull){
 
-        String strReturn = "ModelAttribute > strName : "+strName+"</p>strAge : "+strAge+ "</p>strNull : "+strNull ;
+        String strReturn = "@RequestParam  </p>strName : "+strName+"</p>strAge : "+strAge+ "</p>strNull : "+strNull ;
 
         return strReturn;
     }
@@ -47,7 +47,7 @@ public class Request_get {
                            Model model){
 
         System.out.println("model : "+model.getAttribute("name"));
-        String strReturn = "ModelAttribute > strName : "+strName+"</p>"+"strAge : "+strAge;
+        String strReturn = "@ModelAttribute  </p>strName : "+strName+"</p>"+"strAge : "+strAge;
         return strReturn;
     }
 
@@ -58,7 +58,7 @@ public class Request_get {
     @PostMapping("/ModelVo")
     public String doModelVo(@ModelAttribute RequestVo requestVo){
 
-        String strReturn = "ModelAttribute Vo > Name : "+requestVo.getName()+"</p>"+"Age : "+requestVo.getAge();
+        String strReturn = "@ModelAttribute Vo  </p>Name : "+requestVo.getName()+"</p>"+"Age : "+requestVo.getAge();
         return strReturn;
     }
 
@@ -68,7 +68,7 @@ public class Request_get {
     @PostMapping("/RequestB")
     public String doRequestB(@RequestBody String strBody){
 
-        String strReturn = "RequestBody > strBody : "+strBody;
+        String strReturn = "@RequestBody  </p>strBody : "+strBody;
         return strReturn;
     }
 
@@ -78,7 +78,7 @@ public class Request_get {
     @PostMapping("/RequestBVo")
     public String doRequestBVo(@RequestBody RequestVo requestVo){
         System.out.println("========= doRequestBVo ===========");
-        String strReturn = "RequestBody Vo > Name : "+requestVo.getName()+"</p>"+"Age : "+requestVo.getAge();
+        String strReturn = "@RequestBody Vo  </p>Name : "+requestVo.getName()+"</p>"+"Age : "+requestVo.getAge();
         return strReturn;
     }
 }

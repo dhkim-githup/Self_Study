@@ -36,7 +36,7 @@ public class Controller_mapping {
         String strName = req.getParameter("name");
         String strAge  = req.getParameter("age");
 
-        String strReturn = "strName : "+strName+"</p>"+"strAge : "+strAge;
+        String strReturn = "[GET] strName : "+strName+"</p>"+"strAge : "+strAge;
 
         return strReturn;
     }
@@ -50,7 +50,7 @@ public class Controller_mapping {
         String strName = req.getParameter("name");
         String strAge  = req.getParameter("age");
 
-        String strReturn = "strName : "+strName+"</p>"+"strAge : "+strAge;
+        String strReturn = "[POST] strName : "+strName+"</p>"+"strAge : "+strAge;
 
         return strReturn;
     }
