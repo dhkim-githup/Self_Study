@@ -70,5 +70,54 @@ RequestGet </p>
     <input type="submit">
 </form>
 
+</p>
+<hr>
+</p>
+
+* @RequestBody Json
+<a href="javascript:onJson()">Json</a>
+
+<script>
+    function onJson(){
+
+
+        fetch("/RequestGet/RequestBVo", {
+            method: 'post',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body : JSON.stringify({
+                name : "Hong",
+                age : "50"
+            })
+        })
+    }
+
+</script>
+
+<button id="postData">
+    데이터 전송
+</button>
+<script>
+    const $postDataButton = document.querySelector("#postData")
+
+    const postData = event => {
+        console.log("데이터 전송");
+
+        fetch("/RequestGet/RequestBVo", {
+            method: 'post',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body : JSON.stringify({
+                name : "jun",
+                age : "13"
+            })
+        })
+    }
+
+    $postDataButton.addEventListener("click", postData);
+</script>
+
 </body>
 </html>
