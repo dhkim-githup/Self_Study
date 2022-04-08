@@ -1,0 +1,33 @@
+--- # 문서의 시작
+-
+# change port
+server:
+  port: 8084
+
+#--
+spring:
+  #mvc
+   mvc:
+     view:
+       prefix: /WEB-INF/views/
+       suffix: .jsp
+
+   #devtools
+   devtools:
+     livereload:
+        enabled: true
+     restart:
+        enabled: false
+
+   #oracle settings
+   datasource:
+      driver-class-name: oracle.jdbc.driver.OracleDriver
+      url: jdbc:oracle:thin:@172.16.3.24:1521/TESTDB
+      username: METS18940G
+      password: METS18940G070%
+#--
+#mybatis mapper xml
+mybatis:
+   mapper-locations: classpath:mybatis/mapper/*.xml
+
+... # 문서의 끝
