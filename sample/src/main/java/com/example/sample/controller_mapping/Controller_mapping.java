@@ -1,57 +1,40 @@
 package com.example.sample.controller_mapping;
 
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
-@RestController
+@Controller
 @RequestMapping("/RequestMapping")
 public class Controller_mapping {
 
-    /*
-        RequestMapping 의 기본 메서드는 들어오는 값에 따라 Get , Post 를 유연하게 처리함
-     */
-    @RequestMapping("/Default")
-    public String doDefault(HttpServletRequest req){
-
-        String strName = req.getParameter("name");
-        String strAge  = req.getParameter("age");
-
-        String strReturn = "strName : "+strName+"</p>"+"strAge : "+strAge;
-
-        return strReturn;
+    /* 가장 기본적인 형태 */
+    @RequestMapping("/Base")
+    public String doDefault(){
+        return "result";
     }
 
-    /*
-        GetMapping
-    */
-    @GetMapping("/Get")
-    public String doGet(HttpServletRequest req){
-
-        String strName = req.getParameter("name");
-        String strAge  = req.getParameter("age");
-
-        String strReturn = "[GET] strName : "+strName+"</p>"+"strAge : "+strAge;
-
-        return strReturn;
+    /* Return View 가 없이 여기서 Response 처리, 초기 Servlet 방식 */
+    @RequestMapping("/Self")
+    public void doSelf(HttpServletResponse response) throws IOException {
+        response.setContentType("text/html");
+        response.setCharacterEncoding("utf-8");
+        PrintWriter out = response.getWriter();
+        out.println("<html><body>");
+        out.println(" View : response Self <HR>");
+        out.println("</body></html>");
     }
 
-    /*
-        PostMapping 의 기본 메서드는 들어오는 값에 따라 Get , Post 를 유연하게 처리함
-    */
-    @PostMapping("/Post")
-    public String doPost(HttpServletRequest req){
-
-        String strName = req.getParameter("name");
-        String strAge  = req.getParameter("age");
-
-        String strReturn = "[POST] strName : "+strName+"</p>"+"strAge : "+strAge;
-
-        return strReturn;
+    /* 좀더 진보된 Response 처리 */
+    @RequestMapping("/Responsebody")
+    @ResponseBody
+    public String doResponsebody() {
+        String strContents = "View : Responsebody!! <HR>";
+        return strContents;
     }
 }
