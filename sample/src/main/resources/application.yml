@@ -21,13 +21,14 @@ spring:
 
    #oracle settings
    datasource:
-      driver-class-name: oracle.jdbc.driver.OracleDriver
-      url: jdbc:oracle:thin:@172.16.3.24:1521/TESTDB
-      username: METS18940G
-      password: METS18940G070%
+      #driver-class-name: oracle.jdbc.driver.OracleDriver
+      driver-class-name: oracle.jdbc.OracleDriver
+      url: jdbc:oracle:thin:@localhost:1521/xe
+      username: scott
+      password: tiger
 #--
 #mybatis mapper xml
 mybatis:
-   mapper-locations: classpath:mybatis/mapper/*.xml
+   mapper-locations: classpath:sqlmapper/**/**.xml
 
 ... # 문서의 끝
