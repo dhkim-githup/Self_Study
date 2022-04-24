@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.sample.model2.mybatis.dao.Dao_If_Sample">
+
+    <!-- String 반환 예제 -->
+   <select id="doString" resultType="string" parameterType="string">
+        select contents
+        from study_record
+        where key_id = to_number(#{key_id})
+    </select>
+
+    <!-- int 반환 예제 -->
+    <select id="doInt" resultType="int">
+        select count(*)
+        from study_record
+        where key_id = #{key_id}
+    </select>
+
+    
+    <select id="doCollection" resultType="map">
+        select to_char(key_id) as key_id, study_day, contents, to_char(reg_day,'yyyy.mm.dd') as reg_day
+        from study_record
+        order by study_day
+    </select>
+
+    <resultMap id="study_record" type="map">
+        <result column="key_id"     property="key_id2"       jdbcType="NVARCHAR" javaType="String"/>
+        <result column="study_day"  property="study_day2"    jdbcType="NVARCHAR" javaType="String"/>
+        <result column="contents"   property="contents2"     jdbcType="NVARCHAR" javaType="String"/>
+        <result column="reg_day"    property="reg_day2"      jdbcType="NVARCHAR" javaType="String"/>
+    </resultMap>
+    <select id="doResultMap" resultMap="study_record">
+        select to_char(key_id) as key_id, study_day, '변환작업' as contents, to_char(reg_day,'yyyy.mm.dd') as reg_day
+        from study_record
+        order by study_day
+    </select>
+
+    <resultMap id="vo_study_record" type="com.example.sample.model2.vo.Vo_study">
+        <result column="key_id"     property="key_id"       jdbcType="NVARCHAR" javaType="String"/>
+        <result column="study_day"  property="study_day"    jdbcType="NVARCHAR" javaType="String"/>
+        <result column="contents"   property="contents"     jdbcType="NVARCHAR" javaType="String"/>
+        <result column="reg_day"    property="reg_day"      jdbcType="NVARCHAR" javaType="String"/>
+    </resultMap>
+    <select id="doVo" resultMap="vo_study_record">
+        select to_char(key_id) as key_id, study_day, contents, to_char(reg_day,'yyyy.mm.dd') as reg_day
+        from study_record
+        order by study_day
+    </select>
+
+    <select id="doReadId" resultType="com.example.sample.model2.vo.Vo_People">
+        select id, name, age, to_char(reg_date,'yyyy.mm.dd') as dati 
+			from people
+			where id = #{param1}
+    </select>
+
+    <insert id="doCreate">
+        Insert into people(id, name, age)
+		 values (#{param1} , #{param2}, to_number(#{param3}))
+    </insert>
+
+    <update id="doUpdate" parameterType="com.example.sample.model2.vo.Vo_People">
+        Update people 
+		SET name = #{name} , age = to_number(#{age})
+		WHERE id = #{id}        
+    </update>
+    
+    <delete id="doDelete">
+    	Delete from people 
+		WHERE id = #{param1}
+    </delete>
+    
+</mapper>

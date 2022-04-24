@@ -1,0 +1,28 @@
+drop table study_record;
+
+create table study_record(
+    key_id number(10) default SQ_STUDY_RECORD.Nextval,
+    study_day varchar2(8),
+    contents varchar2(100),
+    reg_day date,
+    CONSTRAINT pk_study_record PRIMARY KEY(key_id)
+);
+
+select SQ_STUDY_RECORD.currval
+from dual;
+
+
+create table study_record(
+    key_id number(10) default SQ_STUDY_RECORD.Nextval,
+    study_day varchar2(8),
+    contents varchar2(100),
+    reg_day date,
+    CONSTRAINT pk_study_record PRIMARY KEY(key_id)
+);
+
+insert into study_record(study_day, contents, reg_day)
+values ('20220424','공부내용',sysdate);
+
+select * from study_record;
+
+
