@@ -29,6 +29,8 @@ spring:
 #--
 #mybatis mapper xml
 mybatis:
-   mapper-locations: classpath:sqlmapper/**/**.xml
+   mapper-locations: classpath:sqlmapper/**/*.xml
+   configuration:
+     map-underscore-to-camel-case: true
 
 ... # 문서의 끝

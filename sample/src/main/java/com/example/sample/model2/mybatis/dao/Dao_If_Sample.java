@@ -4,7 +4,6 @@ import com.example.sample.model2.vo.Vo_People;
 import com.example.sample.model2.vo.Vo_study;
 import org.apache.ibatis.annotations.Mapper;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 

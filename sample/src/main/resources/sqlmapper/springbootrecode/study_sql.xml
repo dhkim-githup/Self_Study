@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.sample.springbootrecode.dao.StudyDao">
+
+    <select id="doStudyList_bak" resultType="map">
+        SELECT to_char(key_id) as key_id, study_day, contents, to_char(reg_day,'yyyy.mm.dd hh24:mi') as reg_day
+        FROM study_record
+    </select>
+
+    <select id="doStudyList" resultType="com.example.sample.springbootrecode.vo.Vo_study">
+        SELECT to_char(key_id) as key_id, study_day, contents, to_char(reg_day,'yyyy.mm.dd hh24:mi') as reg_day
+        FROM study_record
+    </select>
+
+</mapper>

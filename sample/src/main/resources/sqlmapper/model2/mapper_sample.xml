@@ -44,7 +44,14 @@
         <result column="contents"   property="contents"     jdbcType="NVARCHAR" javaType="String"/>
         <result column="reg_day"    property="reg_day"      jdbcType="NVARCHAR" javaType="String"/>
     </resultMap>
-    <select id="doVo" resultMap="vo_study_record">
+    <select id="doVo_Bak" resultMap="vo_study_record">
+        select to_char(key_id) as key_id, study_day, contents, to_char(reg_day,'yyyy.mm.dd') as reg_day
+        from study_record
+        order by study_day
+    </select>
+
+
+    <select id="doVo" resultType="com.example.sample.model2.vo.Vo_study">
         select to_char(key_id) as key_id, study_day, contents, to_char(reg_day,'yyyy.mm.dd') as reg_day
         from study_record
         order by study_day

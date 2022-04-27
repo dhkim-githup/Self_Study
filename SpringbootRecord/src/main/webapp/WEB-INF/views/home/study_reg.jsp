@@ -1,3 +1,6 @@
+<%@ page import="java.util.Map" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.spring.boot.vo.Vo_study" %>
 <%--
   Created by IntelliJ IDEA.
   User: PC
@@ -6,6 +9,11 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<%
+    List<Vo_study> list = (List<Vo_study>) request.getAttribute("list");
+%>
+
 <html lang="en">
 <head>
     <!-- Required meta tags -->
@@ -26,18 +34,20 @@
 <main>
     <div class="container">
         <div class="row mb-2">
-            <div class="col">No</div>
+            <div class="col">Key_Id(Vo)</div>
             <div class="col">공부일자</div>
             <div class="col">공부내용</div>
             <div class="col">등록일자</div>
         </div>
 
-        <div class="row mb-2">
-            <div class="col">No</div>
-            <div class="col">공부일자</div>
-            <div class="col">공부내용</div>
-            <div class="col">등록일자</div>
-        </div>
+        <% for(Vo_study vo_study : list){ %>
+            <div class="row mb-2">
+                <div class="col"><%= vo_study.getKEY_ID() %></div>
+                <div class="col"><%= vo_study.getSTUDY_DAY() %></div>
+                <div class="col"><%= vo_study.getCONTENTS() %></div>
+                <div class="col"><%= vo_study.getREG_DAY() %></div>
+            </div>
+        <% } %>
 
         <div class="row mb-2">
             <div class="col">No</div>

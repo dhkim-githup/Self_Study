@@ -1,3 +1,6 @@
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.Map" %>
+<%@ page import="com.example.sample.springbootrecode.vo.Vo_study" %>
 <%--
   Created by IntelliJ IDEA.
   User: PC
@@ -6,6 +9,12 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<%
+   // List<Map<String, String>> list = (List<Map<String, String>>) request.getAttribute("study");
+    List<Vo_study> list = (List<Vo_study>) request.getAttribute("list");
+%>
+
 <html lang="en">
 <head>
     <!-- Required meta tags -->
@@ -26,33 +35,27 @@
 
 <main>
     <div class="container">
-        <div class="row mb-2">
-            <div class="col">No</div>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button class="btn btn-primary me-md-2" type="button">등록하기</button>
+        </div>
+        <div class="row mb-3 bg-secondary text-white">
+            <div class="col">KEY_ID(Vo)</div>
             <div class="col">공부일자</div>
             <div class="col">공부내용</div>
             <div class="col">등록일자</div>
+            <div class="col">삭제</div>
         </div>
-
-        <div class="row mb-2">
-            <div class="col">No</div>
-            <div class="col">공부일자</div>
-            <div class="col">공부내용</div>
-            <div class="col">등록일자</div>
-        </div>
-
-        <div class="row mb-2">
-            <div class="col">No</div>
-            <div class="col">공부일자</div>
-            <div class="col">공부내용</div>
-            <div class="col">등록일자</div>
-        </div>
-
-        <div class="row mb-2">
-            <div class="col">No</div>
-            <div class="col">공부일자</div>
-            <div class="col">공부내용</div>
-            <div class="col">등록일자</div>
-        </div>
+        <% // for(Map<String, String> map : list){
+           for(Vo_study vo_study : list){
+        %>
+            <div class="row mb-2">
+                <div class="col"><%= vo_study.getKeyId()  %></div>
+                <div class="col"><%= vo_study.getStudyDay()  %></div>
+                <div class="col"><%= vo_study.getContents()  %></div>
+                <div class="col"><%= vo_study.getRegDay()  %></div>
+                <div class="col"><a href="/springbootrecode/home/IdDelete?key_id=<%=vo_study.getKeyId() %>">삭제</a></div>
+            </div>
+        <% } %>
 
     </div>
 
