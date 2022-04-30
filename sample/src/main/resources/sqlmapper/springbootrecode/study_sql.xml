@@ -15,4 +15,5 @@
         FROM study_record
     </select>
 
+
 </mapper>

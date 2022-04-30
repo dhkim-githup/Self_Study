@@ -34,10 +34,10 @@ public class Home {
 
             System.out.println("vo_study");
             for(Vo_study vo_study : list){
-                System.out.println(vo_study.getKEY_ID());
-                System.out.println(vo_study.getSTUDY_DAY());
-                System.out.println(vo_study.getCONTENTS());
-                System.out.println(vo_study.getREG_DAY());
+                System.out.println(vo_study.getKeyId());
+                System.out.println(vo_study.getStudyDay());
+                System.out.println(vo_study.getContents());
+                System.out.println(vo_study.getRegDay());
             }
 
            request.setAttribute("list", list);

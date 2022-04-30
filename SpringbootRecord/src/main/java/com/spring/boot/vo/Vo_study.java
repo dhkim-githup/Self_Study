@@ -1,12 +1,16 @@
 package com.spring.boot.vo;
 
+import lombok.Data;
+
+@Data
 public class Vo_study {
 
-    private String KEY_ID;
-    private String STUDY_DAY;
-    private String CONTENTS;
-    private String REG_DAY;
+    private String keyId;
+    private String studyDay;
+    private String contents;
+    private String regDay;
 
+    /*
     public Vo_study(String KEY_ID, String STUDY_DAY, String CONTENTS, String REG_DAY) {
         this.KEY_ID = KEY_ID;
         this.STUDY_DAY = STUDY_DAY;
@@ -45,4 +49,5 @@ public class Vo_study {
     public void setREG_DAY(String REG_DAY) {
         this.REG_DAY = REG_DAY;
     }
+    */
 }

@@ -42,10 +42,10 @@
 
         <% for(Vo_study vo_study : list){ %>
             <div class="row mb-2">
-                <div class="col"><%= vo_study.getKEY_ID() %></div>
-                <div class="col"><%= vo_study.getSTUDY_DAY() %></div>
-                <div class="col"><%= vo_study.getCONTENTS() %></div>
-                <div class="col"><%= vo_study.getREG_DAY() %></div>
+                <div class="col"><%= vo_study.getKeyId() %></div>
+                <div class="col"><%= vo_study.getStudyDay() %></div>
+                <div class="col"><%= vo_study.getContents() %></div>
+                <div class="col"><%= vo_study.getRegDay() %></div>
             </div>
         <% } %>
 
