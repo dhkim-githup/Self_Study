@@ -12,4 +12,9 @@ public interface StudyDao {
     //  public List<Map<String, String>> doStudyList();
     public List<Vo_study> doStudyList();
 
+    //  public List<Map<String, String>> doStudyList();
+    public Vo_study doStudyListOne(String strKeyId);
+
+    //  public List<Map<String, String>> doStudyList();
+    public int doStudyUpdate(Vo_study vo_study);
 }

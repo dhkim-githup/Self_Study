@@ -32,4 +32,21 @@ public class StudyService {
         return  list;
 
     }
+
+    /* 키값을 받아 하나의 row 를 리턴해주는 서비스 */
+    public Vo_study doStudyListOne(String strKeyId){
+
+        Vo_study vo_study;
+        vo_study = studyDao.doStudyListOne(strKeyId);
+
+        return  vo_study;
+    }
+
+    /* 키값을 받아 하나의 row 를 리턴해주는 서비스 */
+    public int doStudyUpdate(Vo_study vo_study){
+
+        int intUp = studyDao.doStudyUpdate(vo_study);
+
+        return  intUp;
+    }
 }

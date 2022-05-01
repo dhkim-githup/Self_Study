@@ -1,18 +1,19 @@
 --- # 문서의 시작
 
-# change port
+--- # change port
 server:
   port: 8084
 
-#--
+--- # mvc view
 spring:
-  #mvc
+   #mvc
    mvc:
      view:
        prefix: /WEB-INF/views/
        suffix: .jsp
 
-   #devtools
+--- # devtools
+spring:
    devtools:
      livereload:
         enabled: true
@@ -26,8 +27,8 @@ spring:
       url: jdbc:oracle:thin:@localhost:1521/xe
       username: scott
       password: tiger
-#--
-#mybatis mapper xml
+
+--- #mybatis mapper xml
 mybatis:
    mapper-locations: classpath:sqlmapper/**/*.xml
    configuration:

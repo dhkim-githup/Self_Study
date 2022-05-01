@@ -1,3 +1,6 @@
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.Map" %>
+<%@ page import="com.example.sample.springbootrecode.vo.Vo_study" %>
 <%--
   Created by IntelliJ IDEA.
   User: PC
@@ -6,6 +9,12 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<%
+   // List<Map<String, String>> list = (List<Map<String, String>>) request.getAttribute("study");
+    Vo_study vo_study = (Vo_study) request.getAttribute("voStudy");
+%>
+
 <html lang="en">
 <head>
     <!-- Required meta tags -->
@@ -15,37 +24,34 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
+
     <title>Home!</title>
 
-    <!-- Custom styles for this template -->
-    <link href="/css/signin.css" rel="stylesheet">
+
 </head>
 <body class="text-center">
+
 
 <!-- 헤더 위치 -->
 <%@ include file="/WEB-INF/views/springbootrecode/comm/header.jsp"%>
 
-<main class="form-signin">
-    <form>
-        <img class="mb-4" src="/img/bootstrap-logo.svg" alt="" width="72" height="57">
-        <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+<main>
+    <form name="frm_study_modify" action="/springbootrecode/study_reg/modify_exec" method="post">
+        <div class="container">
+            <div class="row justify-content-md-center mb-3">
+                <div class="col col-lg-1"> Key_Id  </div>
+                <div class="col-md-auto"><input type="text" name="keyId" value="<%=vo_study.getKeyId()%>" readonly></div>
+            </div>
+            <div class="row justify-content-md-center mb-3">
+                <div class="col col-lg-1"> 공부일자  </div>
+                <div class="col-md-auto"><input type="text" name="studyDay" value="<%=vo_study.getStudyDay()%>"></div>
+            </div>
+            <div class="row justify-content-md-center mb-3">
+                <div class="col col-lg-1"> 공부내용  </div>
+                <div class="col-md-auto"><input type="text" name="contents" value="<%=vo_study.getContents()%>"></div>
+            </div>
+            <input class="btn btn-primary" type="submit" value="수정하기">
 
-        <div class="form-floating">
-            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-            <label for="floatingInput">Email address</label>
-        </div>
-        <div class="form-floating">
-            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-            <label for="floatingPassword">Password</label>
-        </div>
-
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" value="remember-me"> Remember me
-            </label>
-        </div>
-        <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-        <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
     </form>
 </main>
 

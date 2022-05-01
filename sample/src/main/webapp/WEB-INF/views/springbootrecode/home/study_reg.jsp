@@ -36,13 +36,14 @@
 <main>
     <div class="container">
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <button class="btn btn-primary me-md-2" type="button">등록하기</button>
+            <button class="btn btn-primary me-md-2" type="button" id="study_reg" onclick="location.href='/springbootrecode/study_reg/insert'">등록하기</button>
         </div>
         <div class="row mb-3 bg-secondary text-white">
             <div class="col">KEY_ID(Vo)</div>
             <div class="col">공부일자</div>
             <div class="col">공부내용</div>
             <div class="col">등록일자</div>
+            <div class="col">수정</div>
             <div class="col">삭제</div>
         </div>
         <% // for(Map<String, String> map : list){
@@ -53,6 +54,7 @@
                 <div class="col"><%= vo_study.getStudyDay()  %></div>
                 <div class="col"><%= vo_study.getContents()  %></div>
                 <div class="col"><%= vo_study.getRegDay()  %></div>
+                <div class="col"><a href="/springbootrecode/study_reg/modify?key_id=<%=vo_study.getKeyId() %>">수정</a></div>
                 <div class="col"><a href="/springbootrecode/home/IdDelete?key_id=<%=vo_study.getKeyId() %>">삭제</a></div>
             </div>
         <% } %>
@@ -75,7 +77,6 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
 -->
-
 
 </body>
 </html>
