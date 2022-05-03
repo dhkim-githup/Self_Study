@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -49,4 +50,25 @@ public class StudyService {
 
         return  intUp;
     }
+
+    /* 등록하기 */
+    /*
+    public int doStudyInsert(Vo_study vo_study){
+        int intUp = studyDao.doStudyInsert(vo_study);
+        return  intUp;
+    }
+    */
+
+    public int doStudyInsert(Map<String, String> map){
+        int intUp = studyDao.doStudyInsert(map);
+        return  intUp;
+    }
+
+
+    /* 삭제하기 */
+    public int doDelete(String keyId){
+        int intUp = studyDao.doDelete(keyId);
+        return  intUp;
+    }
+
 }

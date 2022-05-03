@@ -34,6 +34,7 @@ public class Home {
         List<Vo_study> list = new ArrayList<>();
         list = studyService.doStudyList();
 
+        /*
         System.out.println("vo_study");
         for(Vo_study vo_study : list){
             System.out.println(vo_study.getKeyId());
@@ -41,6 +42,8 @@ public class Home {
             System.out.println(vo_study.getContents());
             System.out.println(vo_study.getRegDay());
         }
+        */
+
 
         request.setAttribute("list", list);
         //   model.addAttribute("list", list);

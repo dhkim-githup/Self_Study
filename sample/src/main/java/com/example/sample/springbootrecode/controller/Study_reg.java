@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/springbootrecode/study_reg")
@@ -40,15 +42,31 @@ public class Study_reg {
      * 실제 수정하는 처리 구문
      */
     @PostMapping("/modify_exec")
-    public String doModify_Exec(HttpServletRequest request, @ModelAttribute Vo_study vo_study){
+    public String doModify_Exec(HttpServletRequest request,
+                                @ModelAttribute Vo_study vo_study,
+                                @RequestParam(value = "flag", defaultValue = "--") String strFlag
+                                ){
         String strKeyId = request.getParameter("keyId");
         System.out.println("strKeyId : "+strKeyId);
 
         String strKeyId2 = vo_study.getKeyId();
         System.out.println("strKeyId2 : "+strKeyId2);
 
-        int intUp = studyService.doStudyUpdate(vo_study);
+        System.out.println("strFlag : "+strFlag);
 
+        int intUp=0;
+        /* 수정 */
+        if("UP".equals(strFlag)) {
+            intUp = studyService.doStudyUpdate(vo_study);
+        /* 등록 */
+        }else if("IN".equals(strFlag)) {
+            //intUp = studyService.doStudyInsert(vo_study);
+            Map<String, String> map = new HashMap<>();
+            map.put("MapstudyDay", vo_study.getStudyDay());
+            map.put("Mapcontents", vo_study.getContents());
+
+            intUp = studyService.doStudyInsert(map);
+        }
         System.out.println("intUp : "+intUp);
 
         return "redirect:/springbootrecode/home/study_reg";
@@ -59,8 +77,19 @@ public class Study_reg {
      */
     @GetMapping("/insert")
     public String doInsert(){
-
         return "redirect:/springbootrecode/study_reg/modify?flag=IN";
     }
+
+
+
+    /*
+     * 실제 수정하는 처리 구문
+     */
+    @GetMapping("/IdDelete")
+    public String doDelete( @RequestParam(value = "key_id", defaultValue = "--") String keyId){
+        int    intUp = studyService.doDelete(keyId);
+        return "redirect:/springbootrecode/home/study_reg";
+    }
+
 
 }

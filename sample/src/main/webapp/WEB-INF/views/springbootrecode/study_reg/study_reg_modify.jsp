@@ -13,6 +13,7 @@
 <%
    // List<Map<String, String>> list = (List<Map<String, String>>) request.getAttribute("study");
     Vo_study vo_study = (Vo_study) request.getAttribute("voStudy");
+    String strFlag = (String) request.getAttribute("flag");
 %>
 
 <html lang="en">
@@ -50,8 +51,13 @@
                 <div class="col col-lg-1"> 공부내용  </div>
                 <div class="col-md-auto"><input type="text" name="contents" value="<%=vo_study.getContents()%>"></div>
             </div>
-            <input class="btn btn-primary" type="submit" value="수정하기">
+            <input type="hidden" name="flag" value="<%=strFlag%>">
 
+            <% if("UP".equals(strFlag)){ %>
+                <input class="btn btn-primary" type="submit" value="수정하기">
+            <% }else if("IN".equals(strFlag)){ %>
+                <input class="btn btn-primary" type="submit" value="등록하기">
+            <% } %>
     </form>
 </main>
 

@@ -13,12 +13,13 @@
     <select id="doStudyList" resultType="com.example.sample.springbootrecode.vo.Vo_study">
         SELECT to_char(key_id) as key_id, study_day, contents, to_char(reg_day,'yyyy.mm.dd hh24:mi') as reg_day
         FROM study_record
+        ORDER BY key_id
     </select>
 
     <select id="doStudyListOne" resultType="com.example.sample.springbootrecode.vo.Vo_study">
         SELECT to_char(key_id) as key_id, study_day, contents, to_char(reg_day,'yyyy.mm.dd hh24:mi') as reg_day
         FROM study_record
-        WHERE key_id = #{strKeyId}
+        WHERE key_id = to_number(#{strKeyId})
     </select>
 
     <!-- 공부목록 Update -->
@@ -28,5 +29,21 @@
         WHERE key_id = #{keyId}
     </update>
 
+    <!-- 공부목록 Insert -->
+    <update id="doStudyInsert_bak" parameterType="com.example.sample.springbootrecode.vo.Vo_study">
+        INSERT into study_record(study_day, contents, reg_day)
+        VALUES (#{studyDay}, #{contents}, sysdate)
+    </update>
 
+    <!-- 공부목록 Insert -->
+    <update id="doStudyInsert" parameterType="map">
+        INSERT into study_record(study_day, contents, reg_day)
+        VALUES (#{MapstudyDay}, #{Mapcontents}, sysdate)
+    </update>
+
+    <!-- 공부목록 Delete -->
+    <delete id="doDelete">
+        Delete from study_record
+        WHERE key_id = to_number(#{strKeyId})
+    </delete>
 </mapper>

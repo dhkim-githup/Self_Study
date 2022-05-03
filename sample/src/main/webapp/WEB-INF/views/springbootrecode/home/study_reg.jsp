@@ -55,7 +55,7 @@
                 <div class="col"><%= vo_study.getContents()  %></div>
                 <div class="col"><%= vo_study.getRegDay()  %></div>
                 <div class="col"><a href="/springbootrecode/study_reg/modify?key_id=<%=vo_study.getKeyId() %>">수정</a></div>
-                <div class="col"><a href="/springbootrecode/home/IdDelete?key_id=<%=vo_study.getKeyId() %>">삭제</a></div>
+                <div class="col"><a href="/springbootrecode/study_reg/IdDelete?key_id=<%=vo_study.getKeyId() %>">삭제</a></div>
             </div>
         <% } %>
 
