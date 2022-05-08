@@ -2,6 +2,7 @@ package com.spring.boot.controller;
 
 import com.spring.boot.service.StudyService;
 import com.spring.boot.vo.Vo_study;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +17,7 @@ import java.util.Map;
 
 @Controller
 @RequestMapping("/home")
+@Slf4j
 public class Home {
 
     @Autowired
@@ -32,14 +34,15 @@ public class Home {
             List<Vo_study> list = new ArrayList<>();
             list = studyService.doStudyList();
 
-            System.out.println("vo_study");
+            /*
+            log.info("vo_study");
             for(Vo_study vo_study : list){
-                System.out.println(vo_study.getKeyId());
-                System.out.println(vo_study.getStudyDay());
-                System.out.println(vo_study.getContents());
-                System.out.println(vo_study.getRegDay());
+                log.info(vo_study.getKeyId());
+                log.info(vo_study.getStudyDay());
+                log.info(vo_study.getContents());
+                log.info(vo_study.getRegDay());
             }
-
+            */
            request.setAttribute("list", list);
            //   model.addAttribute("list", list);
 

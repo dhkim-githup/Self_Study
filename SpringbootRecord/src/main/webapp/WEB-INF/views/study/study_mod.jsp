@@ -11,7 +11,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%
-    List<Vo_study> list = (List<Vo_study>) request.getAttribute("list");
+    Vo_study vo_study = (Vo_study) request.getAttribute("vo_study");
 %>
 
 <html lang="en">
@@ -25,38 +25,20 @@
 
     <title>Home!</title>
 </head>
-<body>
+<body class="text-center">
 
 <!-- 헤더 위치 -->
 <%@ include file="/WEB-INF/views/comm/header.jsp"%>
 
 
 <main>
-    <div class="container">
-        <button type="button" onclick="location.href='/study_reg/insert'">등록하기</button>
-        <div class="row mb-2">
-            <div class="col">Key_Id(Vo)</div>
-            <div class="col">공부일자</div>
-            <div class="col">공부내용</div>
-            <div class="col">등록일자</div>
-            <div class="col">수정</div>
-            <div class="col">삭제</div>
-        </div>
+    <form name="frm_study_mod" action="/study_reg/modify_exe" method="post">
+        <div>KeyID :  <input type="text" name="keyId" value="<%=vo_study.getKeyId()%>" readonly></div><br>
+        <div>StudyDay : <input type="text" name="studyDay" value="<%=vo_study.getStudyDay()%>"></div><br>
+        <div>Cotents : <input type="text" name="contents" value="<%=vo_study.getContents()%>" size="70"></div></p>
 
-        <% for(Vo_study vo_study : list){ %>
-            <div class="row mb-2">
-                <div class="col"><%= vo_study.getKeyId() %></div>
-                <div class="col"><%= vo_study.getStudyDay() %></div>
-                <div class="col"><%= vo_study.getContents() %></div>
-                <div class="col"><%= vo_study.getRegDay() %></div>
-                <div class="col"><a href="/study_reg/modify?key_id=<%= vo_study.getKeyId() %>">수정</a></div>
-                <div class="col"><a href="/study_reg/delete?key_id=<%= vo_study.getKeyId() %>">삭제</a></div>
-            </div>
-        <% } %>
-
-
-
-    </div>
+        <input type="submit" value="수정하기">
+    </form>
 
 </main>
 
