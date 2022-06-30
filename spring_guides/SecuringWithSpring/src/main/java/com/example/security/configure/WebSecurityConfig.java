@@ -18,14 +18,24 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/", "/home").permitAll()
-                .anyRequest().authenticated()
-                .and()
-                .formLogin()
-                .loginPage("/login")
-                .permitAll()
-                .and()
-                .logout()
+                .anyRequest().authenticated();
+
+        http.formLogin()
+                .loginPage("/loginForm")             // default : /login
+                .loginProcessingUrl("/login_security")
+                .failureUrl("/loginError")             // default : /login?error
+                .defaultSuccessUrl("/home")
+                //.usernameParameter("j_username")    // default : j_username
+                //.passwordParameter("j_password")     // default : j_password
                 .permitAll();
+
+        http.logout()
+                .logoutUrl("/logout") // default
+                .logoutSuccessUrl("/loginForm")
+                .permitAll();
+
+        // 개발중에는 꺼 놓는다.
+        //http.csrf().disable();
     }
 
     @Bean

@@ -26,6 +26,13 @@ public class Temp {
 		System.out.println("break");
 		
 		str1.equals(str2);
+		
+		String custnm="";
+		custnm=null;
+		
+		if(custnm!=null && !"".equals(custnm)){ System.out.println("Hi"); 
+		}else{ System.out.println("Hi-2");  }
+		
 
 	}
 
