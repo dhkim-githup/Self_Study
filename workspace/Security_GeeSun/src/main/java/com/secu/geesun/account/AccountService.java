@@ -25,7 +25,9 @@ public class AccountService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
+        System.out.println("Break --- 1");
         Account account = accountRepository.findByEmail(username);
+        System.out.println("Break --- 2");
 
         UserDetails userDetails = new UserDetails() {
             @Override
@@ -36,13 +38,17 @@ public class AccountService implements UserDetailsService {
             }
 
             @Override
-            public String getPassword() {
-                return account.getPassword();
+            public String getUsername() {
+
+                System.out.println("Break --- User");
+                return account.getEmail();
             }
 
             @Override
-            public String getUsername() {
-                return account.getEmail();
+            public String getPassword() {
+
+                System.out.println("Break --- Pass");
+                return account.getPassword();
             }
 
             @Override

@@ -17,8 +17,6 @@ public class Account_Controller {
         account.setEmail("test@test.com");
         account.setPassword("password");
 
-        accountService.save(account);
-
         return  accountService.save(account);
     }
 }
