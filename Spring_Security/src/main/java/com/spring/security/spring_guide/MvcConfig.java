@@ -1,4 +1,4 @@
-package com.secu.geesun.config;
+package com.spring.security.spring_guide;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
@@ -12,8 +12,6 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addViewController("/").setViewName("home");
         registry.addViewController("/hello").setViewName("hello");
         registry.addViewController("/login").setViewName("login");
-        registry.addViewController("/member").setViewName("member");
-        registry.addViewController("/admin").setViewName("admin");
     }
 
 }

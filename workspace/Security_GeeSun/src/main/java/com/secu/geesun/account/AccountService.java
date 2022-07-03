@@ -3,6 +3,7 @@ package com.secu.geesun.account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -29,6 +30,12 @@ public class AccountService implements UserDetailsService {
         Account account = accountRepository.findByEmail(username);
         System.out.println("Break --- 2");
 
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        authorities.add(new SimpleGrantedAuthority("ROLE_MEMBER"));
+
+        return new User(account.getEmail(), account.getPassword(), authorities);
+
+        /*
         UserDetails userDetails = new UserDetails() {
             @Override
             public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -71,7 +78,9 @@ public class AccountService implements UserDetailsService {
                 return true;
             }
         };
-        return userDetails;
+         return userDetails;
+         */
+
     }
 
     public Account save(Account account) {
