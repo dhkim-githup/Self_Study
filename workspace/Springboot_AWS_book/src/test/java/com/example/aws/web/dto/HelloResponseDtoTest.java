@@ -1,34 +1,34 @@
 package com.example.aws.web.dto;
 
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
-import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.test.web.servlet.MockMvc;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
+
 class HelloResponseDtoTest {
 
+    @Autowired
+    private MockMvc mockMvc; // WebApi 테스트 , Spring MVC 테스트, http get,post 등 사용 가능
+
     @Test
-    void lombokTest() {
+    public void lombok_test(){
 
-        // Given
-        String name = "test";
-        int amount  = 1000;
+        // 변수 선언
+        String name="홍길동";
+        int   amount=1000;
 
-        // When
-        HelloResponseDto dto = new HelloResponseDto(name, amount);
+        // 객체 생성
+        HelloResponseDto helloResponseDto = new HelloResponseDto(name, amount);
 
-        // then
-        assertThat(dto.getName()).isEqualTo(name);
-        assertThat(dto.getAmount()).isEqualTo(amount);
-
-        assertEquals(name , dto.getName() );
-        assertEquals(amount , dto.getAmount() );
-
+        // Testing
+        // assertEquals(expected, actual);
+        assertEquals(helloResponseDto.getName(), name);
+        assertEquals(helloResponseDto.getAmount(), amount);
     }
+
 
 
 }
