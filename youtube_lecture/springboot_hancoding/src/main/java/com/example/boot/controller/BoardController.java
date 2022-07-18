@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -29,7 +30,7 @@ public class BoardController {
 
     // 글쓰기 실행
     @PostMapping("/board/writedo")
-    public String boardWriteDo(Board board){
+    public String boardWriteDo(Board board, Model model){
         System.out.println("title"+board.getTitle());
         System.out.println("content"+board.getContent());
 
@@ -38,7 +39,11 @@ public class BoardController {
         //System.out.println("content"+content);
         boardService.write(board);
 
-        return "";
+        model.addAttribute("message","글작성이 완료되었어요.");
+        model.addAttribute("url","/board/list");
+
+
+        return "message";
     }
 
     // 글 리스트 보기
@@ -56,5 +61,30 @@ public class BoardController {
         return "boardView";
     }
 
+    // 게시글 삭제
+    @GetMapping("/board/delete")
+    public String boardDelete(int id){
+        boardService.boardDelete(id);
+        return "redirect:/board/list";
+    }
 
+    // 게시글 수정 - 화면
+    @GetMapping("/board/modify/{id}") // Id 를 pathvariable 에서 받느낟.
+    public String boardModify(@PathVariable("id") int id, Model model){
+        model.addAttribute("board", boardService.boardView(id));
+        return "board_modify";
+    }
+    // 게시글 수정 - 실행
+    @PostMapping("/board/update/{id}")
+    public String boardUpdate(@PathVariable("id") int id, Model model, Board board){
+
+        // 기존 자료에 덮어 씌운다.
+        Board boardTemp = boardService.boardView(id);
+        boardTemp.setTitle(board.getTitle());
+        boardTemp.setContent(board.getContent());
+
+        boardService.write(boardTemp);
+
+        return "redirect:/board/list";
+    }
 }
