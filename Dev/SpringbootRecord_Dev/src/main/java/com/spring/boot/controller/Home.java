@@ -23,7 +23,7 @@ public class Home {
     @Autowired
     StudyService studyService;
 
-    @GetMapping("")
+    @GetMapping("/")
     public String doHome(){
         return "/home/home";
     }

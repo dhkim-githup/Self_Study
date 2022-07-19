@@ -15,6 +15,9 @@ public interface MemberDao {
     // 멤버 One row
     public Vo_member doMemberListOne(String strMemberId);
 
+    // Login 조회
+    public Vo_member doMemberListLogin(String strLoginId);
+
     // 멤버 수정
     public int doMemberUp(Vo_member vo_member);
 

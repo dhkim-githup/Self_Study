@@ -28,6 +28,12 @@ public class MemberService {
         return  vo_member;
     }
 
+    /* One Row Login Id */
+    public Vo_member doMemberListLogin(String strLoginId){
+        Vo_member vo_member = memberDao.doMemberListLogin(strLoginId);
+        return  vo_member;
+    }
+
     /* 멤버 수정 */
     public int doMemberUp(Vo_member vo_member){
 

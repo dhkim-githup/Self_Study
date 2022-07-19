@@ -2,6 +2,30 @@
  헤더 파일
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    String strLoginId="guest";
+    String strName="guest";
+
+    String strLoginOut="";
+    String strLoginUrl="";
+
+    session = request.getSession(false);
+    if (session != null) {
+        strLoginId = (String) session.getAttribute("ss_login_id");
+        strName = (String) session.getAttribute("ss_name");
+        strLoginOut= "LogOut";
+        strLoginUrl= "/login/logout";
+    }
+    if(strLoginId==null) {
+        strLoginId = "guest";
+        strLoginOut= "Login";
+        strLoginUrl= "/login/login";
+    }
+    if(strName==null) strName="guest";
+
+
+%>
+
 <div class="container">
     <header class="d-flex flex-wrap align-items-center justify-content-center py-3 mb-4 border-bottom">
         <ul class="nav nav-pills">
@@ -12,7 +36,7 @@
         </ul>
 
         <div class="col-md-3 text-end">
-            <button type="button" class="btn btn-outline-primary me-2" onclick="location.href='/login/login'" >Login</button>
+            <button type="button" class="btn btn-outline-primary me-2" onclick="location.href='<%=strLoginUrl%>'" ><%=strLoginOut%></button>
             <button type="button" class="btn btn-primary" onclick="location.href='/member/insert'">Sign-up</button>
         </div>
     </header>
