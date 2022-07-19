@@ -5,6 +5,7 @@
 <%
     String strLoginId="guest";
     String strName="guest";
+    String strRole="";
 
     String strLoginOut="";
     String strLoginUrl="";
@@ -13,6 +14,8 @@
     if (session != null) {
         strLoginId = (String) session.getAttribute("ss_login_id");
         strName = (String) session.getAttribute("ss_name");
+        strRole = (String) session.getAttribute("ss_role");
+
         strLoginOut= "LogOut";
         strLoginUrl= "/login/logout";
     }
@@ -31,7 +34,9 @@
         <ul class="nav nav-pills">
             <li class="nav-item"><a href="/home" class="nav-link active" aria-current="page">Home(H)</a></li>
             <li class="nav-item"><a href="/home/study_reg" class="nav-link">공부기록</a></li>
+            <% if ("ADMIN".equals(strRole)){ %>
             <li class="nav-item"><a href="/member/list" class="nav-link">회원목록</a></li>
+            <% } %>
             <li class="nav-item"><a href="#" class="nav-link">About</a></li>
         </ul>
 

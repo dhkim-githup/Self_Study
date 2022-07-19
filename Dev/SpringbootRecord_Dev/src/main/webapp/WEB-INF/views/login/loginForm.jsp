@@ -3,6 +3,9 @@
 <%
     String strMessage = (String) request.getAttribute("message");
     if(strMessage==null){ strMessage="ID 와 비밀번호를 입력해 주세요."; }
+
+    System.out.println("loginForm");
+
 %>
 
 <html lang="en">

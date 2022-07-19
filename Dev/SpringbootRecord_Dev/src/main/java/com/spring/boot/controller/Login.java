@@ -22,6 +22,7 @@ public class Login {
 
     @GetMapping("/login")
     public String doStudy_reg(){
+        System.out.println("Login----");
         return "/login/loginForm";
     }
 
@@ -33,6 +34,8 @@ public class Login {
 
         String strReturn="";
         String strMessage = "";
+        boolean bl_login=false; // 로그인 성공 여부
+
         Vo_member vo_member = memberService.doMemberListLogin(strLoginId);
 
         if (vo_member==null){
@@ -46,6 +49,7 @@ public class Login {
             }else{
                 strMessage = "Login 성공";
                 strReturn = "redirect:/";
+                bl_login  = true;
             }
         }
 
@@ -59,9 +63,12 @@ public class Login {
                - HttpSession이 존재하면 현재 HttpSession을 반환하고 존재하지 않으면 새로이 생성하지 않고 그냥 null을 반환합니다
          */
         HttpSession session = request.getSession();
-        session.setAttribute("ss_member_id", vo_member.getMemberId());
-        session.setAttribute("ss_login_id", vo_member.getLoginId());
-        session.setAttribute("ss_name", vo_member.getName());
+        if( bl_login  == true) {
+            session.setAttribute("ss_member_id", vo_member.getMemberId());
+            session.setAttribute("ss_login_id", vo_member.getLoginId());
+            session.setAttribute("ss_name", vo_member.getName());
+            session.setAttribute("ss_role", vo_member.getRole());
+        }
 
         return strReturn;
     }
