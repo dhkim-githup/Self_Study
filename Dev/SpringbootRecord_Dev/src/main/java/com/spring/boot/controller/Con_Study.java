@@ -5,17 +5,41 @@ import com.spring.boot.vo.Vo_study;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
-@RequestMapping("/study_reg")
+@RequestMapping("/study")
 @Slf4j
-public class StudyRegCon {
+public class Con_Study {
 
     @Autowired
     StudyService studyService;
+
+    @GetMapping("/list")
+    public String doStudy_reg(HttpServletRequest request, Model model){
+
+        List<Vo_study> list = new ArrayList<>();
+        list = studyService.doStudyList();
+
+            /*
+            log.info("vo_study");
+            for(Vo_study vo_study : list){
+                log.info(vo_study.getKeyId());
+                log.info(vo_study.getStudyDay());
+                log.info(vo_study.getContents());
+                log.info(vo_study.getRegDay());
+            }
+            */
+        request.setAttribute("list", list);
+        //   model.addAttribute("list", list);
+
+        return "/study/study_reg";
+    }
 
     /* 입력 */
     @GetMapping("/insert")
@@ -29,7 +53,7 @@ public class StudyRegCon {
 
         int intI = studyService.doStudyIns(vo_study);
 
-        return "redirect:/home/study_reg";
+        return "/study/study_reg";
     }
 
     /* 수정 */
@@ -51,7 +75,7 @@ public class StudyRegCon {
 
         int intI = studyService.doStudyUp(vo_study);
 
-        return "redirect:/home/study_reg";
+        return "/study/study_reg";
     }
 
 
@@ -61,7 +85,7 @@ public class StudyRegCon {
 
         int intI = studyService.doStudyDel(strKeyId);
         log.info("intI => "+intI);
-        return "redirect:/home/study_reg";
+        return "/study/study_reg";
     }
 
 

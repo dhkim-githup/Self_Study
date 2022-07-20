@@ -22,7 +22,7 @@ public class Login {
 
     @GetMapping("/login")
     public String doStudy_reg(){
-        System.out.println("Login----");
+        //System.out.println("Controller - Login");
         return "/login/loginForm";
     }
 
@@ -31,7 +31,7 @@ public class Login {
                                 @RequestParam(value="password", defaultValue = "--") String strPassword,
                                 Model model,
                                 HttpServletRequest request){
-
+        System.out.println("Controller - login/login_exe");
         String strReturn="";
         String strMessage = "";
         boolean bl_login=false; // 로그인 성공 여부
@@ -81,4 +81,6 @@ public class Login {
         session.invalidate();
         return "redirect:/";
     }
+
+
 }

@@ -37,6 +37,7 @@ public class Con_member {
     /* 입력 */
     @GetMapping("/insert")
     public String doIns(){
+        //System.out.println("Controller - insert");
         return "/member/member_join";
     }
 
