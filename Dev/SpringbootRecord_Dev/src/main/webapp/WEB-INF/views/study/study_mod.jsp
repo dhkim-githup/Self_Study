@@ -32,7 +32,7 @@
 
 
 <main>
-    <form name="frm_study_mod" action="/study_reg/modify_exe" method="post">
+    <form name="frm_study_mod" action="/study/modify_exe" method="post">
         <div>KeyID :  <input type="text" name="keyId" value="<%=vo_study.getKeyId()%>" readonly></div><br>
         <div>StudyDay : <input type="text" name="studyDay" value="<%=vo_study.getStudyDay()%>"></div><br>
         <div>Cotents : <input type="text" name="contents" value="<%=vo_study.getContents()%>" size="70"></div></p>

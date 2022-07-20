@@ -33,7 +33,7 @@
     <header class="d-flex flex-wrap align-items-center justify-content-center py-3 mb-4 border-bottom">
         <ul class="nav nav-pills">
             <li class="nav-item"><a href="/home" class="nav-link active" aria-current="page">Home(H)</a></li>
-            <li class="nav-item"><a href="/study/study_reg" class="nav-link">공부기록</a></li>
+            <li class="nav-item"><a href="/study/list" class="nav-link">공부기록</a></li>
             <% if ("ADMIN".equals(strRole)){ %>
             <li class="nav-item"><a href="/member/list" class="nav-link">회원목록</a></li>
             <% } %>

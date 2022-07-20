@@ -30,7 +30,7 @@
 
 
 <main>
-    <form name="frm_study_mod" action="/study_reg/insert_exe" method="post">
+    <form name="frm_study_mod" action="/study/insert_exe" method="post">
         <div>KeyID :  <input type="text" name="keyId" value="자동입력" readonly></div><br>
         <div>StudyDay : <input type="text" name="studyDay" value=""></div><br>
         <div>Cotents : <input type="text" name="contents" value="" size="70"></div></p>

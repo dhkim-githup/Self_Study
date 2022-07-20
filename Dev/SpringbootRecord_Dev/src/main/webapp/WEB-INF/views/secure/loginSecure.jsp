@@ -60,12 +60,12 @@
 <%@ include file="/WEB-INF/views/comm/header.jsp"%>
 
 <main class="form-signin">
-    <form action="/login/login_exe" method="post">
+    <form action="/secure/login_exe" method="post">
         <input type="hidden" name="${ _csrf.parameterName }" value="${ _csrf.token }">
         <img class="mb-4" src="/img/bootstrap-logo.svg" alt="" width="72" height="57">
-        <h1 class="h3 mb-3 fw-normal">회원가입 [logn/loginForm]</h1>
+        <h1 class="h3 mb-3 fw-normal">회원가입 [secure/loginSecure]</h1>
         <div><label><%=strMessage%></label></div>
-        <div><label>Login ID</label> <input type="text" name="loginId"></div><p>
+        <div><label>Login ID</label> <input type="text" name="username"></div><p>
         <div><label>Password</label> <input type="password" name="password"></div><p>
 
         <button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>

@@ -53,7 +53,7 @@ public class Con_Study {
 
         int intI = studyService.doStudyIns(vo_study);
 
-        return "/study/study_reg";
+        return "redirect:/study/list";
     }
 
     /* 수정 */
@@ -75,7 +75,7 @@ public class Con_Study {
 
         int intI = studyService.doStudyUp(vo_study);
 
-        return "/study/study_reg";
+        return "redirect:/study/list";
     }
 
 
@@ -85,7 +85,7 @@ public class Con_Study {
 
         int intI = studyService.doStudyDel(strKeyId);
         log.info("intI => "+intI);
-        return "/study/study_reg";
+        return "redirect:/study/list";
     }
 
 
