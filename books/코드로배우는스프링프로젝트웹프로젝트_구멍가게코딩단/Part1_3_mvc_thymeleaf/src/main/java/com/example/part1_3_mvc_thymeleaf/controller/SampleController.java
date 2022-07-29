@@ -83,4 +83,11 @@ public class SampleController {
     public void doEx3(){
         log.info("ex3");
     }
+
+    /* 3.4 Thymeleaf 레이아웃 */
+    @GetMapping({"/exLayout1","/exLayout2","/exTemplate", "/exSidebar"})
+    public void exLayout1(){
+        log.info("exlayout1");
+    }
+
 }
