@@ -21,7 +21,7 @@ public class SecureService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        System.out.println("username"+username);
+        System.out.println("username : "+username);
         Vo_member vo_member = memberService.doMemberListLogin(username);
 
         List<GrantedAuthority> authorities = new ArrayList<>();

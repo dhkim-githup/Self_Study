@@ -33,7 +33,7 @@
 
 <main>
     <div class="container">
-        <button type="button" onclick="location.href='/study_reg/insert'">등록하기</button>
+        <button type="button" onclick="location.href='/study/insert'">등록하기</button>
         <div class="row mb-2">
             <div class="col">Key_Id(Vo)</div>
             <div class="col">공부일자</div>
@@ -49,8 +49,8 @@
                 <div class="col"><%= vo_study.getStudyDay() %></div>
                 <div class="col"><%= vo_study.getContents() %></div>
                 <div class="col"><%= vo_study.getRegDay() %></div>
-                <div class="col"><a href="/study_reg/modify?key_id=<%= vo_study.getKeyId() %>">수정</a></div>
-                <div class="col"><a href="/study_reg/delete?key_id=<%= vo_study.getKeyId() %>">삭제</a></div>
+                <div class="col"><a href="/study/modify?key_id=<%= vo_study.getKeyId() %>">수정</a></div>
+                <div class="col"><a href="/study/delete?key_id=<%= vo_study.getKeyId() %>">삭제</a></div>
             </div>
         <% } %>
 

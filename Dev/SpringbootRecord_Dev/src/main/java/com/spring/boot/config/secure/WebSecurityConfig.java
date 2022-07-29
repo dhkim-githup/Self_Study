@@ -12,13 +12,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
         @Override
         protected void configure(HttpSecurity http) throws Exception {
             http.authorizeRequests()
-                    .antMatchers("/","/home/**","/img/**","/login/**").permitAll()
+                    .antMatchers("/","/home/**","/img/**","/login/**","/sessionInfo").permitAll()
                     .anyRequest().authenticated()
                     .and()
                     .formLogin()
                         .loginPage("/secure/login")
                         .loginProcessingUrl("/secure/login_exe")
-                        .defaultSuccessUrl("/secure/login_exe") // // 로그인 성공 후 이동 페이지
+                        //.defaultSuccessUrl("/secure/login_exe") // // 로그인 성공 후 이동 페이지
                         .permitAll()
                     .and()
                     .logout()

@@ -1,37 +1,14 @@
-package com.secu.geesun.account;
+package com.spring.boot.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.*;
+import java.util.Enumeration;
 
-@RestController
-public class Account_Controller {
-
-    @Autowired
-    AccountService accountService;
-
-    @GetMapping("/create")
-    public Account create(){
-        Account account = new Account();
-
-        account.setEmail("test@test.com");
-        account.setPassword("password");
-
-        return  accountService.save(account);
-    }
-
-    /*
-    @PostMapping("/perform_login")
-    public void doLogin(){
-        System.out.println("Hi login");
-    }
-    */
+@Controller
+public class Con_comm {
 
     @GetMapping("/sessionInfo")
     public void doSession(HttpServletRequest req){
@@ -53,4 +30,5 @@ public class Account_Controller {
         }
 
     }
+
 }

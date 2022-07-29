@@ -1,7 +1,6 @@
-<%@ page import="java.util.Map" %>
 <%@ page import="java.util.List" %>
-<%@ page import="com.spring.boot.vo.Vo_study" %>
-<%--
+<%@ page import="com.spring.boot.vo.Vo_member" %>
+<%@ page import="com.spring.boot.vo.Vo_study" %><%--
   Created by IntelliJ IDEA.
   User: PC
   Date: 2022-04-22
@@ -11,8 +10,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%
-    Vo_study vo_study = (Vo_study) request.getAttribute("vo_study");
+    List<Vo_member> list = (List<Vo_member>) request.getAttribute("list");
 %>
+
 
 <html lang="en">
 <head>
@@ -25,20 +25,32 @@
 
     <title>Home!</title>
 </head>
-<body class="text-center">
+<body>
 
 <!-- 헤더 위치 -->
 <%@ include file="/WEB-INF/views/comm/header.jsp"%>
 
-
 <main>
-    <form name="frm_study_mod" action="/study/modify_exe" method="post">
-        <div>KeyID :  <input type="text" name="keyId" value="<%=vo_study.getKeyId()%>" readonly></div><br>
-        <div>StudyDay : <input type="text" name="studyDay" value="<%=vo_study.getStudyDay()%>"></div><br>
-        <div>Cotents : <input type="text" name="contents" value="<%=vo_study.getContents()%>" size="70"></div></p>
+    <div class="container">
+        <div class="row mb-2">
+            <div class="col">아이디</div>
+            <div class="col">이름</div>
+            <div class="col">권한</div>
+            <div class="col">등록일자</div>
+            <div class="col">회원삭제</div>
+        </div>
 
-        <input type="submit" value="수정하기">
-    </form>
+        <%  for(Vo_member vo_member : list){  %>
+        <div class="row mb-2">
+            <div class="col"><%= vo_member.getLoginId() %></div>
+            <div class="col"><%= vo_member.getName() %></div>
+            <div class="col"><%= vo_member.getRole() %></div>
+            <div class="col"><%= vo_member.getRegDay() %></div>
+            <div class="col"><a href="/member/delete?key_id=<%= vo_member.getMemberId() %>">삭제</a></div>
+        </div>
+        <% } %>
+
+    </div>
 
 </main>
 

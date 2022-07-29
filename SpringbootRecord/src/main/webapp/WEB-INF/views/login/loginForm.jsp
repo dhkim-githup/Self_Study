@@ -2,10 +2,7 @@
 
 <%
     String strMessage = (String) request.getAttribute("message");
-    if(strMessage==null){ strMessage="ID 와 비밀번호를 입력해 주세요."; }
-
-    //System.out.println("loginForm.jsp");
-
+    if(strMessage==null){ strMessage = "ID와 비밀번호를 입력해 주세요"; }
 %>
 
 <html lang="en">
@@ -20,6 +17,7 @@
     <title>Home!</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/sign-in/">
+
 
 
     <!-- Bootstrap core CSS -->
@@ -51,7 +49,7 @@
         }
     </style>
 
-    <!-- Custom styles for this template -->
+
 
 </head>
 <body class="text-center">
@@ -60,21 +58,20 @@
 <%@ include file="/WEB-INF/views/comm/header.jsp"%>
 
 <main class="form-signin">
-    <form action="/secure/login_exe" method="post">
-        <input type="hidden" name="${ _csrf.parameterName }" value="${ _csrf.token }">
+    <form action="/login/login_exe" method="post">
         <img class="mb-4" src="/img/bootstrap-logo.svg" alt="" width="72" height="57">
-        <h1 class="h3 mb-3 fw-normal">Secure Login [secure/loginSecure]</h1>
+        <h1 class="h3 mb-3 fw-normal">로그인</h1>
         <div><label><%=strMessage%></label></div>
-        <div><label>Login ID</label> <input type="text" name="username"></div><p>
+        <div><label>Login ID</label> <input type="text" name="loginId"></div><p>
         <div><label>Password</label> <input type="password" name="password"></div><p>
 
         <button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
         <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
     </form>
 </main>
+
 <!-- 푸터 위치 -->
 <%@ include file="/WEB-INF/views/comm/footer.jsp"%>
-
 
 
 <!-- Optional JavaScript; choose one of the two! -->

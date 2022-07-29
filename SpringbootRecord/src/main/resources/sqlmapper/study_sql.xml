@@ -36,7 +36,7 @@
     <update id="doStudyUp" parameterType="com.spring.boot.vo.Vo_study">
          Update  study_record
          SET study_day = #{studyDay} , contents=#{contents} , reg_day=sysdate
-         WHERE key_id = to_number(#{strKeyId})
+         WHERE key_id = to_number(#{keyId})
     </update>
 
     <!-- 공부기록 삭제 -->
