@@ -31,6 +31,7 @@ public class AccountService implements UserDetailsService {
         System.out.println("Break --- 2");
 
         List<GrantedAuthority> authorities = new ArrayList<>();
+        //authorities.add(new SimpleGrantedAuthority("ROLE_MEMBER"));
         authorities.add(new SimpleGrantedAuthority("ROLE_MEMBER"));
 
         return new User(account.getEmail(), account.getPassword(), authorities);

@@ -25,9 +25,10 @@ public class SecureService implements UserDetailsService {
         Vo_member vo_member = memberService.doMemberListLogin(username);
 
         List<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority("MEMBER"));
+        // hasRole ,hasAnyRole 사용을 위해 ROLE_ 를 prefix 함
+        authorities.add(new SimpleGrantedAuthority("ROLE_"+vo_member.getRole())); 
 
-        return new User(vo_member.getName(), vo_member.getPassword(),authorities);
+        return new User(vo_member.getLoginId(), vo_member.getPassword(),authorities);
     }
 
 }
