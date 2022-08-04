@@ -16,10 +16,7 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    // https://mvnrepository.com/artifact/org.apache.tomcat.embed/tomcat-embed-jasper
-    implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
-    // https://mvnrepository.com/artifact/javax.servlet/jstl
-    implementation 'javax.servlet:jstl:1.2'
+
     providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
