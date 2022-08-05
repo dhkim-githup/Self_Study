@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,12 +25,13 @@ public class Con_member {
 
     /* 전체 멤버 조회 */
     @GetMapping("/list")
-    public String doMemberList( Model model){
+    public String doMemberList(Model model){
 
         List<Vo_member> list = new ArrayList<>();
         list = memberService.doMemberList();
 
         model.addAttribute("list", list);
+
 
         return  "/member/member_list";
     }
