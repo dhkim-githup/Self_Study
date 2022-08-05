@@ -17,7 +17,8 @@
         strRole = (String) session.getAttribute("ss_role");
 
         strLoginOut= "LogOut";
-        strLoginUrl= "/login/logout";
+        //strLoginUrl= "/login/logout"; // 커스텀 로그아웃
+        strLoginUrl= "/logout"; // 스프링 시큐리티 Logout 사용
     }
     if(strLoginId==null) {
         strLoginId = "guest";
