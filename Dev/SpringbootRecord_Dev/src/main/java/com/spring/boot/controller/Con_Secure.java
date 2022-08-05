@@ -20,10 +20,30 @@ public class Con_Secure {
     @Autowired
     MemberService memberService;
 
+
     @GetMapping("login")
-    public String doLogin(){
+    public String doLogin(@RequestParam(value = "message", defaultValue = "defualt",required = false) String strMsg, Model model){
+
+        System.out.println("doLogin : "+strMsg);
+        model.addAttribute("message", strMsg);
+
         return "/secure/loginSecure";
     }
+
+
+    /*
+    @GetMapping("login")
+    public String doLogin(@RequestParam(value = "error", required = false) String error,
+                          @RequestParam(value = "exception", required = false) String exception, Model model) {
+
+        System.out.println("exception : "+exception);
+        model.addAttribute("error", error);
+        model.addAttribute("exception", exception);
+
+        return "/secure/loginSecure";
+    }
+    */
+
 
     @PostMapping("/login_exe")
     public String doMember_join(@RequestParam(value="loginId", defaultValue = "--") String strLoginId,

@@ -4,6 +4,9 @@
     String strMessage = (String) request.getAttribute("message");
     if(strMessage==null){ strMessage="ID 와 비밀번호를 입력해 주세요."; }
 
+    System.out.println("error : "+(String) request.getAttribute("error"));
+    System.out.println("message : "+(String) request.getAttribute("message"));
+
     //System.out.println("loginForm.jsp");
 
 %>
@@ -63,7 +66,7 @@
     <form action="/secure/login_exe" method="post">
         <input type="hidden" name="${ _csrf.parameterName }" value="${ _csrf.token }">
         <img class="mb-4" src="/img/bootstrap-logo.svg" alt="" width="72" height="57">
-        <h1 class="h3 mb-3 fw-normal">Secure Login [secure/loginSecure]</h1>
+        <h1 class="h3 mb-3 fw-normal">회원가입 [secure/loginSecure]</h1>
         <div><label><%=strMessage%></label></div>
         <div><label>Login ID</label> <input type="text" name="username"></div><p>
         <div><label>Password</label> <input type="password" name="password"></div><p>

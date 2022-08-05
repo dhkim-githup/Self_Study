@@ -23,4 +23,6 @@ public class Vo_member {
         this.regDay = regDay;
     }
 
+
+
 }

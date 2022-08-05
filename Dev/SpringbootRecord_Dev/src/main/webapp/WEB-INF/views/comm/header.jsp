@@ -17,7 +17,8 @@
         strRole = (String) session.getAttribute("ss_role");
 
         strLoginOut= "LogOut";
-        strLoginUrl= "/login/logout";
+        //strLoginUrl= "/login/logout"; // 커스텀 로그아웃
+        strLoginUrl= "/logout"; // 스프링 시큐리티 Logout 사용
     }
     if(strLoginId==null) {
         strLoginId = "guest";
@@ -34,9 +35,9 @@
         <ul class="nav nav-pills">
             <li class="nav-item"><a href="/home" class="nav-link active" aria-current="page">Home(H)</a></li>
             <li class="nav-item"><a href="/study/list" class="nav-link">공부기록</a></li>
-            <% if ("ADMIN".equals(strRole)){ %>
+            <%// if ("ADMIN".equals(strRole)){ %>
             <li class="nav-item"><a href="/member/list" class="nav-link">회원목록</a></li>
-            <% } %>
+            <%// } %>
             <li class="nav-item"><a href="#" class="nav-link">About</a></li>
         </ul>
 
