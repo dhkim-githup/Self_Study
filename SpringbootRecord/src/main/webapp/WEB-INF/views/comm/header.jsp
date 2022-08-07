@@ -18,14 +18,16 @@
         strName = (String) session.getAttribute("ss_name");
         strRole = (String) session.getAttribute("ss_role");
         strLogInOut ="LogOut";
-        strUrl = "/login/logout";
+        //strUrl = "/login/logout";
+        strUrl = "/logout";
 
     }
     if(strLoginId==null){
          strLoginId = "guest";
          strName = "guest";
         strLogInOut ="LogIn";
-        strUrl = "/login/login";
+        //strUrl = "/login/login";
+        strUrl = "/secure/login";
     }
 
     String strAuth = (String) request.getAttribute("ss_auth");
@@ -38,9 +40,9 @@
         <ul class="nav nav-pills">
             <li class="nav-item"><a href="/home" class="nav-link active" aria-current="page">Home(H)</a></li>
             <li class="nav-item"><a href="/study/list" class="nav-link">공부기록</a></li>
-            <% if("Y".equals(strAuth)){ %>
+            <% //if("Y".equals(strAuth)){ %>
             <li class="nav-item"><a href="/member/list" class="nav-link">회원목록</a></li>
-            <% } %>
+            <% //} %>
             <li class="nav-item"><a href="#" class="nav-link">About</a></li>
         </ul>
 

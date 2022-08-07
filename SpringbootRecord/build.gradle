@@ -18,6 +18,9 @@ dependencies {
     providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    testImplementation 'org.springframework.security:spring-security-test'
+
     // https://mvnrepository.com/artifact/org.apache.tomcat.embed/tomcat-embed-jasper
     implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
 

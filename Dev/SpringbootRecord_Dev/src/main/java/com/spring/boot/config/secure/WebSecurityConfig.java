@@ -25,7 +25,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
         protected void configure(HttpSecurity http) throws Exception {
             //System.out.println("==============WebSecurityConfig================");
             http.authorizeRequests()
-                    .antMatchers("/","/home/**","/img/**","/docs/**","/sessionInfo","/secure/**").permitAll()
+                    .antMatchers("/","/home/**","/img/**","/docs/**","/comm/**","/secure/**").permitAll()
                     .antMatchers("/study/**").hasAnyRole("MEMBER","ADMIN")
                     .antMatchers("/member/**").hasAnyRole("ADMIN")
                     .anyRequest().authenticated();
@@ -35,15 +35,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                         //.usernameParameter("username") // default "username"
                         //.passwordParameter("password")  // default "password"
                         .loginProcessingUrl("/secure/login_exe") // default <form action="/login" 이 아닐 경우 명기해준다.
-                        //.defaultSuccessUrl("/secure/login_exe") // // 로그인 성공 후 이동 페이지
+                        //.defaultSuccessUrl("/secure/login_exe") // // successHandler 가 무시된다.
                         .successHandler(handlerLoginSuccess) // 로그인 성공시 수행하는 클래스
                         .failureHandler(handlerLoginFailure)
                         .permitAll();
 
             http.logout()
                     .logoutSuccessHandler(handlerLogoutSuccess)
-                    .logoutSuccessUrl("/");
-                    //.permitAll();
+                    .logoutSuccessUrl("/")
+                    .permitAll();
 
             http.exceptionHandling()
                     .accessDeniedHandler(handlerAccesDeny); // 인증된 사용자지만, 인가권한이 없을경우 사용
