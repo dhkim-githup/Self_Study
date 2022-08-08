@@ -31,7 +31,7 @@ public class SecureService implements UserDetailsService {
             @Override
             public Collection<? extends GrantedAuthority> getAuthorities() {
                 List<GrantedAuthority> authorities = new ArrayList<>();
-                authorities.add(new SimpleGrantedAuthority(vo_member.getRole()));
+                authorities.add(new SimpleGrantedAuthority("ROLE_"+vo_member.getRole()));
                 return authorities;
             }
 
