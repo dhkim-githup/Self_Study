@@ -16,7 +16,7 @@ spring:
 spring:
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://localhost:3307/boot_study
+    url: jdbc:mariadb://localhost:3306/boot_study
     username: boot
     password: boot
 

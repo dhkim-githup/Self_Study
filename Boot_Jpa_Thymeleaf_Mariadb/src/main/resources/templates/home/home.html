@@ -1,4 +1,4 @@
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
@@ -12,9 +12,7 @@
 <body>
 
 <!-- 헤더 위치 -->
-<th:block th:include="~{/comm/header}"></th:block>
-
-
+<div th:include="~{/comm/header}"></div>
 
 
 <main>
@@ -36,8 +34,7 @@
 </main>
 
 <!-- 푸터 위치 -->
-<th:block th:replace="~{/comm/footer}"></th:block>
-
+<div th:include="~{/comm/footer}"></div>
 
 <!-- Optional JavaScript; choose one of the two! -->
 
