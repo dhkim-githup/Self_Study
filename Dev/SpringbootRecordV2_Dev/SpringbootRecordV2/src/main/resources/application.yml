@@ -8,7 +8,7 @@ server:
 --- # Thymeleaf
 spring:
   thymeleaf:
-    cache: false # ?? ?? reload
+    cache: false # reload
     prefix: file:src/main/resources/templates # classpath:/templates
     suffix: .html
 
@@ -25,7 +25,7 @@ spring:
   jpa:
     hibernate:
       ddl-auto: none #update
-    show-sql: true
-  properties:
-    hibernate:
-      format_sql: true
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true

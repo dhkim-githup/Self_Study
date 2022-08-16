@@ -7,7 +7,7 @@ server:
 --- # Thymeleaf
 spring:
   thymeleaf:
-    cache: false # ?? reload
+    cache: false # reload
     prefix: file:src/main/resources/templates # classpath:/templates
     suffix: .html
 
@@ -15,7 +15,7 @@ spring:
 spring:
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://localhost:3306/boot_study
+    url: jdbc:mariadb://localhost:3307/boot_study
     username: boot
     password: boot
 
@@ -24,7 +24,7 @@ spring:
   jpa:
     hibernate:
       ddl-auto: none #update
-    show-sql: true
-  properties:
-    hibernate:
-      format_sql: true
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
