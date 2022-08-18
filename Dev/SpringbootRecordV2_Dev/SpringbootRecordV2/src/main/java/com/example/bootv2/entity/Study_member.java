@@ -1,12 +1,15 @@
 package com.example.bootv2.entity;
 
-import lombok.*;
-import org.hibernate.annotations.ColumnDefault;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenerationTime;
-import org.springframework.data.annotation.CreatedDate;
 
-import javax.persistence.*;
-import java.sql.Timestamp;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.time.LocalDateTime;
 
 @Data
@@ -14,7 +17,7 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Study_record {
+public class Study_member {
 
     /*
         IDENTITY - @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,11 +31,15 @@ public class Study_record {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int key_id ;
+    private int member_id ;
 
-    private String study_day;
+    private String login_id;
 
-    private String contents;
+    private String password;
+
+    private String name;
+
+    private String role;
 
     /*
     INSERT

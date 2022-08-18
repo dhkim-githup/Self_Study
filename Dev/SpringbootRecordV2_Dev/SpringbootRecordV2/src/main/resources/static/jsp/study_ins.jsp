@@ -1,4 +1,18 @@
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<%@ page import="java.util.Map" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.spring.boot.vo.Vo_study" %>
+<%--
+  Created by IntelliJ IDEA.
+  User: PC
+  Date: 2022-04-22
+  Time: 오후 11:20
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+
+
+<html lang="en">
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -9,40 +23,24 @@
 
     <title>Home!</title>
 </head>
-<body>
+<body class="text-center">
 
 <!-- 헤더 위치 -->
-<th:block th:include="~{/comm/header}"></th:block>
+<%@ include file="/WEB-INF/views/comm/header.jsp"%>
+
 
 <main>
-    <div class="container">
-        <div class="row mb-2">
-            <div class="col">아이디</div>
-            <div class="col">이름</div>
-            <div class="col">권한</div>
-            <div class="col">등록일자</div>
-            <div class="col">회원삭제</div>
-        </div>
+    <form name="frm_study_mod" action="/study/insert_exe" method="post">
+        <div>KeyID :  <input type="text" name="keyId" value="자동입력" readonly></div><br>
+        <div>StudyDay : <input type="text" name="studyDay" value=""></div><br>
+        <div>Cotents : <input type="text" name="contents" value="" size="70"></div></p>
 
-        <!--- 데이타 출력 부분 -->
-        <th:block th:each="member : ${list}">
-        <div class="row mb-2">
-            <div class="col" th:text="${member.getLogin_id()}">아이디</div>
-            <div class="col" th:text="${member.getName()}">이름</div>
-            <div class="col" th:text="${member.getRole()}">권한</div>
-            <div class="col" th:text="${#temporals.format(member.getReg_day(),'yyyy.MM.dd hh:mm')}">등록일자</div>
-            <div class="col"><a th:href="@{/member/delete(key_id=${member.getMember_id()})}">회원삭제</a></div>
-        </div>
-        </th:block>
-
-
-    </div>
-
+        <input type="submit" value="등록하기">
+    </form>
 </main>
 
 <!-- 푸터 위치 -->
-<th:block th:replace="~{/comm/footer}"></th:block>
-
+<%@ include file="/WEB-INF/views/comm/footer.jsp"%>
 
 
 <!-- Optional JavaScript; choose one of the two! -->

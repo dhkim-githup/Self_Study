@@ -25,7 +25,6 @@ public class StudyRcordService {
 
     // 데이타 입력
     public void doInsert(Study_record study_record){
-
         studyRcordRepository.save(study_record);
     }
 
