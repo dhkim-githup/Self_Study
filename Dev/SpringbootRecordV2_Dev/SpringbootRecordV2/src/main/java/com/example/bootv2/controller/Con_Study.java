@@ -65,7 +65,7 @@ public class Con_Study {
     @PostMapping("/modify_exe")
     public String doModExe(@ModelAttribute Study_record study_record){
 
-        study_record.setReg_day(LocalDateTime.now());
+        //study_record.setReg_day(LocalDateTime.now());
         studyRcordService.doInsert(study_record);
 
         return "redirect:/study/list";

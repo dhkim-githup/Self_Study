@@ -42,7 +42,12 @@ public class Study_record {
         insert, update할 때 모두 속성값이 생성된다.
         출처: https://anomie7.tistory.com/88 [마지막의 마지막까지 다하는 최선:티스토리]
      */
-    @org.hibernate.annotations.Generated(GenerationTime.INSERT)
+    @org.hibernate.annotations.Generated(GenerationTime.ALWAYS)
+    @Column(name="reg_day", updatable = false)
     private LocalDateTime reg_day;
+
+    @org.hibernate.annotations.Generated(GenerationTime.ALWAYS)
+    @Column(name="mod_day")
+    private LocalDateTime mod_day;
 
 }
