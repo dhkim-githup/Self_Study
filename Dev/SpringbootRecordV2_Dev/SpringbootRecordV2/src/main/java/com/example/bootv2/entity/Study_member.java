@@ -1,5 +1,6 @@
 package com.example.bootv2.entity;
 
+import com.example.bootv2.comm.Con_encrypt;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -31,13 +32,15 @@ public class Study_member {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int member_id ;
+    private int memberId ;
 
-    private String login_id;
+    private String loginId;
 
     private String password;
 
     private String name;
+
+    private String email;
 
     private String role;
 
@@ -50,6 +53,18 @@ public class Study_member {
         출처: https://anomie7.tistory.com/88 [마지막의 마지막까지 다하는 최선:티스토리]
      */
     @org.hibernate.annotations.Generated(GenerationTime.INSERT)
-    private LocalDateTime reg_day;
+    private LocalDateTime regDay;
 
+
+    /* password 단방향 암호화
+    public void chgPassword(String pass){
+        Con_encrypt conEncrypt = new Con_encrypt();
+        this.password = conEncrypt.encryptSHA256(pass);
+    }
+
+    public void chgEmail(String email) throws Exception {
+        Con_encrypt conEncrypt = new Con_encrypt();
+        this.email = conEncrypt.encryptAes(email,"AB123ab456CDcd@#");
+    }
+    */
 }

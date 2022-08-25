@@ -89,7 +89,7 @@ public class Con_encrypt {
      * @return
      * @throws Exception
      */
-    public static String encryptAes(String str, String key) throws Exception {
+    public String encryptAes(String str, String key) throws Exception {
 
         Cipher cipher = Cipher.getInstance("AES");
         SecretKeySpec secretKey = new SecretKeySpec(key.getBytes(), "AES");
@@ -100,7 +100,7 @@ public class Con_encrypt {
         return result;
     }
 
-    public static String decryptAes(String str, String key) throws Exception {
+    public String decryptAes(String str, String key) throws Exception {
 
         Cipher cipher = Cipher.getInstance("AES");
         SecretKeySpec secretKey = new SecretKeySpec(key.getBytes(), "AES");

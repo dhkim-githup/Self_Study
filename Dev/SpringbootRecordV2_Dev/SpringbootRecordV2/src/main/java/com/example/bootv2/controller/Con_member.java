@@ -23,10 +23,9 @@ public class Con_member {
 
     /* 전체 멤버 조회 */
     @GetMapping("/list")
-    public String doMemberList(Model model){
+    public String doMemberList(Model model) throws Exception {
 
         List<Study_member> list = studyMemberService.doSelect();
-
         model.addAttribute("list", list);
 
         return  "/member/member_list";
@@ -43,10 +42,7 @@ public class Con_member {
 
     /* 등록하기 실행  */
     @PostMapping("/insert_exe")
-    public String doInsExe(@ModelAttribute Study_member study_member){
-
-        Con_encrypt conEncrypt = new Con_encrypt();
-        study_member.setPassword(conEncrypt.encryptSHA256(study_member.getPassword()));
+    public String doInsExe(@ModelAttribute Study_member study_member) throws Exception {
 
         studyMemberService.doInsert(study_member);
 

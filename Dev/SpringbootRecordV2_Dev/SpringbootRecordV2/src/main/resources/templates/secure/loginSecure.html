@@ -51,24 +51,22 @@
 <th:block th:include="~{/comm/header}"></th:block>
 
 <main class="form-signin">
-    <form action="/member/insert_exe" method="post">
+    <form action="/secure/login_exe" method="post">
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         <img class="mb-4" src="/img/bootstrap-logo.svg" alt="" width="72" height="57">
-        <h1 class="h3 mb-3 fw-normal">회원가입</h1>
-
-        <div><label>Login ID</label> <input type="text" name="login_id"></div><p>
+        <h1 class="h3 mb-3 fw-normal">Login [Spring Security]</h1>
+        <div><label th:text="${message}">Message</label></div>
+        <div><label>Login ID</label> <input type="text" name="username"></div><p>
         <div><label>Password</label> <input type="password" name="password"></div><p>
-        <div><label>이름</label> <input type="text" name="name"></div><p>
-        <div><label>이메일</label> <input type="text" name="email"></div><p>
-        <div><label>권한</label> <input type="radio" name="role" value="ROLE_MEMBER" checked>MEMBER
-             <input type="radio" name="role" value="ROLE_ADMIN">ADMIN</div>
 
-        <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
         <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
     </form>
 </main>
 
 <!-- 푸터 위치 -->
 <th:block th:replace="~{/comm/footer}"></th:block>
+
 
 <!-- Optional JavaScript; choose one of the two! -->
 

@@ -19,6 +19,7 @@
         <div class="row mb-2">
             <div class="col">아이디</div>
             <div class="col">이름</div>
+            <div class="col">이메일</div>
             <div class="col">권한</div>
             <div class="col">등록일자</div>
             <div class="col">회원삭제</div>
@@ -27,11 +28,12 @@
         <!--- 데이타 출력 부분 -->
         <th:block th:each="member : ${list}">
         <div class="row mb-2">
-            <div class="col" th:text="${member.getLogin_id()}">아이디</div>
+            <div class="col" th:text="${member.getLoginId()}">아이디</div>
             <div class="col" th:text="${member.getName()}">이름</div>
+            <div class="col" th:text="${member.getEmail()}">이메일</div>
             <div class="col" th:text="${member.getRole()}">권한</div>
-            <div class="col" th:text="${#temporals.format(member.getReg_day(),'yyyy.MM.dd hh:mm')}">등록일자</div>
-            <div class="col"><a th:href="@{/member/delete(key_id=${member.getMember_id()})}">회원삭제</a></div>
+            <div class="col" th:text="${#temporals.format(member.getRegDay(),'yyyy.MM.dd hh:mm')}">등록일자</div>
+            <div class="col"><a th:href="@{/member/delete(key_id=${member.getMemberId()})}">회원삭제</a></div>
         </div>
         </th:block>
 
