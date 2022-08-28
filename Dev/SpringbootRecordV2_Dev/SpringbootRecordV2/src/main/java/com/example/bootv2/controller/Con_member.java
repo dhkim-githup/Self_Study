@@ -44,6 +44,7 @@ public class Con_member {
     @PostMapping("/insert_exe")
     public String doInsExe(@ModelAttribute Study_member study_member) throws Exception {
 
+        //log.info("Study.loginId : "+ study_member.getLoginId());
         studyMemberService.doInsert(study_member);
 
         return "redirect:/member/list";

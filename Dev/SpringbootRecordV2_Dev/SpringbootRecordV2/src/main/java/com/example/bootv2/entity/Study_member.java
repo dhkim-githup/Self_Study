@@ -7,14 +7,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenerationTime;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Data
 @Entity
+@Table(name = "STUDY_MEMBER")
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -32,8 +30,10 @@ public class Study_member {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "member_id")
     private int memberId ;
 
+    @Column(name = "login_id")
     private String loginId;
 
     private String password;

@@ -10,7 +10,7 @@ class Con_encryptTest {
     public void doTest() throws Exception {
         Con_encrypt conEncrypt = new Con_encrypt();
 
-        String strName="1234";
+        String strName="03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4";
         String strName2="홍길동이너네아버지이냐 우리 아버지이냐 그것이 궁금하다";
         String strKey16="AB123ab456CDcd@#";
         String strEnc16="Utx45XL8ETGHrl6nOMK2ZQ==";
