@@ -27,7 +27,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         /* 인가처리 */
         http.authorizeRequests()
-                .antMatchers("/", "/study/**","/member/**","/comm/**","/img/**","/css/**","/js/**","/docs/**","/secure/login").permitAll()
+                .antMatchers("/", "/study/**","/studyV2/**","/member/**","/comm/**","/img/**","/css/**","/js/**","/docs/**","/secure/login").permitAll()
                 //.antMatchers("/study/**").hasAnyAuthority("ROLE_MEMBER","ROLE_ADMIN")
                 //.antMatchers("/member/**").hasAuthority("ROLE_ADMIN")
                 //.antMatchers("/study/**").hasAnyRole("MEMBER","ADMIN")

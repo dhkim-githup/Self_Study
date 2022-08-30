@@ -20,7 +20,7 @@ public class StudyMemberService {
     StudyMemberRepository studyMemberRepository;
 
     /* application.yml 속성값에서 암호화 key 값 가져온다 */
-    @Value("${encrypt.key16}")
+     @Value("${encrypt.key16}")
     private String strKey16;
 
     // 전체 조회

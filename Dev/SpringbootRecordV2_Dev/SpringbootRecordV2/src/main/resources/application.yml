@@ -32,4 +32,4 @@ spring:
 
 --- # encrypt Key
 encrypt:
-  key16: AB123ab456CDcd@#
+  key16: ABCdefg123456plm

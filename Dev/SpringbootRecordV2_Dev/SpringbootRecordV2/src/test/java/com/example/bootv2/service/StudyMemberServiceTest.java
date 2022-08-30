@@ -23,8 +23,6 @@ class StudyMemberServiceTest {
             System.out.println(study_member.getLoginId());
             System.out.println(study_member.getName());
             System.out.println(study_member.getRole());
-
-
-
+            
     }
 }
