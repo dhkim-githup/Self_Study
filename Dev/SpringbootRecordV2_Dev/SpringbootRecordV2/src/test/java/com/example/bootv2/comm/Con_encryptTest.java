@@ -24,6 +24,11 @@ class Con_encryptTest {
         strNameEncrypt = conEncrypt.encryptSHA256(strName);
         System.out.println("strNameEncrypt : "+strNameEncrypt);
 
+        /* 단반향암호화 */
+        strNameEncrypt = conEncrypt.encrypt(strName);
+        System.out.println("encrypt : "+strNameEncrypt);
+
+
         //assertEquals("03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4",strNameEncrypt);
 
         /* 양방향 암호화 */

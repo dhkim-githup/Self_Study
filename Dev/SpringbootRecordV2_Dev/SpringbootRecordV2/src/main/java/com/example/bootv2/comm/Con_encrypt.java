@@ -113,4 +113,27 @@ public class Con_encrypt {
         return result;
     }
 
+    /**
+     * blog 참조 256 암호화
+     * @param text
+     * @return
+     * @throws NoSuchAlgorithmException
+     * @see <a href="https://bamdule.tistory.com/233">https://bamdule.tistory.com/233</a>
+     */
+    public String encrypt(String text) throws NoSuchAlgorithmException {
+        MessageDigest md = MessageDigest.getInstance("SHA-256");
+        md.update(text.getBytes());
+
+        return bytesToHex(md.digest());
+    }
+
+    private String bytesToHex(byte[] bytes) {
+        StringBuilder builder = new StringBuilder();
+        for (byte b : bytes) {
+            builder.append(String.format("%02x", b));
+        }
+        return builder.toString();
+    }
+
+
 }
