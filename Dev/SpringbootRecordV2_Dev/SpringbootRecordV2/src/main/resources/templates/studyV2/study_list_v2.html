@@ -32,7 +32,7 @@
     <th:block th:each="study : ${list}">
         <div class="row mb-2">
           <div class="col" th:text="${study.getKey_id()}">Key_Id(Vo)</div>
-          <div class="col">이름</div>
+          <div class="col" th:text="${study.getStudy_member().getName()}">이름</div>
           <div class="col" th:text="${study.getStudy_day()}">공부일자</div>
           <div class="col" th:text="${study.getContents()}">공부내용</div>
           <!-- <div class="col" th:text="${study.getReg_day()}">등록일자</div> -->

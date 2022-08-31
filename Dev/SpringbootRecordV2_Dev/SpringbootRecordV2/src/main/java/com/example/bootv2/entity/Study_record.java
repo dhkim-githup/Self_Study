@@ -4,6 +4,7 @@ import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.GenerationTime;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.repository.cdi.Eager;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -49,5 +50,12 @@ public class Study_record {
     @org.hibernate.annotations.Generated(GenerationTime.ALWAYS)
     @Column(name="mod_day")
     private LocalDateTime mod_day;
+
+
+    //@ManyToOne(fetch = FetchType.LAZY) // N : 1 관계 설정
+    @ManyToOne // N : 1 관계 설정
+    @JoinColumn(name = "member_id")
+    private Study_member study_member;
+
 
 }

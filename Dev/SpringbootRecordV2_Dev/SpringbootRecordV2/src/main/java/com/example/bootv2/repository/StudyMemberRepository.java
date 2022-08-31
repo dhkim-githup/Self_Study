@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+
 @Repository
 public interface StudyMemberRepository extends JpaRepository<Study_member, Integer> {
     //Study_member findByName(String name);

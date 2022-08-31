@@ -34,6 +34,8 @@ public class SecureUser implements UserDetailsService {
 
         log.info("=== authorities >> "+authorities);
         //return new User(vo_member.getLoginId(), "{noop}"+vo_member.getPassword(), authorities);
-        return new User(vo_member.getLoginId(), "{sha256}"+vo_member.getPassword(), authorities);
+        //return new User(vo_member.getLoginId(), vo_member.getPassword(), authorities);
+        return new User(vo_member.getLoginId(), "{SHA-256}"+vo_member.getPassword(), authorities);
+
     }
 }
