@@ -33,6 +33,7 @@ public class SecureUser implements UserDetailsService {
         authorities.add(new SimpleGrantedAuthority(vo_member.getRole()));
 
         log.info("=== authorities >> "+authorities);
+        /* https://docs.spring.io/spring-security/reference/features/authentication/password-storage.html */
         //return new User(vo_member.getLoginId(), "{noop}"+vo_member.getPassword(), authorities);
         //return new User(vo_member.getLoginId(), vo_member.getPassword(), authorities);
         return new User(vo_member.getLoginId(), "{SHA-256}"+vo_member.getPassword(), authorities);
