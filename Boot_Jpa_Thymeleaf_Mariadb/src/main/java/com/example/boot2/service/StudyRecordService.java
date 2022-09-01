@@ -15,7 +15,8 @@ public class StudyRecordService {
 
     /* 전체 Row Select */
     public List<Study_record> doSelectAll(){
-        return studyRecordRepo.findAll();
+        return studyRecordRepo.findJpql();
+        //return studyRecordRepo.findAll();
     }
 
     /* One row Select */

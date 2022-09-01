@@ -32,4 +32,9 @@ public class Study_record {
     @org.hibernate.annotations.Generated(GenerationTime.ALWAYS)
     @Column(name="mod_day")
     private LocalDateTime mod_day;
+
+    //@ManyToOne(fetch = FetchType.LAZY) // N : 1 관계 설정
+    @ManyToOne
+    @JoinColumn(name="member_id")
+    private Study_member study_member;
 }
