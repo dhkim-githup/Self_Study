@@ -14,6 +14,9 @@ public interface CoffeV1Dao {
     /* 전체 리스트 조회  */
     List<Map<String, String>> doCoffeList();
 
+    /* 전체 리스트 조회 - Overload */
+    List<Map<String, String>> doCoffeList(String start_date, String end_date, String name, String kind);
+
     /* 커피 메뉴 등록 */
     int doInsert(String strName, String strKind, String strPrice);
 
@@ -25,4 +28,6 @@ public interface CoffeV1Dao {
 
     /* 수정하기 Post */
     int doUpdate(String strCoffee_id, String strName, String strKind, String strPrice);
+
+
 }

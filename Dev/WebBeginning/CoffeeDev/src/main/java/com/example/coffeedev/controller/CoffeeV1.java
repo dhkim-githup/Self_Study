@@ -1,6 +1,7 @@
 package com.example.coffeedev.controller;
 
 import com.example.coffeedev.service.CoffeV1Service;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +19,7 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping("/v1")
+@Log4j2
 public class CoffeeV1 {
 
     @Autowired
@@ -27,16 +29,31 @@ public class CoffeeV1 {
     @GetMapping("/coffee")
     public String doCoffeeGet(Model model){
 
-        List<Map<String, String>> list = v1Service.doCoffeList();
-        model.addAttribute("list",list);
-
+        //List<Map<String, String>> list = v1Service.doCoffeList();
+        //model.addAttribute("list",list);
+        log.info("- doCoffeeGet -");
         return "/coffee/coffeeV1";
+
     }
 
     /* 조회하기 눌렀을때 Post 방식처리 */
     @PostMapping("/coffee")
-    public String doCoffePost(){
-        return "redirect:/v1/coffee";
+    public String doCoffePost( @RequestParam(value="start_date") String start_date,
+                               @RequestParam(value="end_date") String end_date,
+                               @RequestParam(value="name") String name,
+                               @RequestParam(value="kind") String kind,
+                               Model model
+                             ){
+
+        //log.info("- start_date -"+start_date);
+        //log.info("- end_date -"+end_date);
+        //log.info("- name -"+name);
+        //log.info("- kind -"+kind);
+
+        List<Map<String, String>> list = v1Service.doCoffeList(start_date, end_date, name, kind);
+        model.addAttribute("list",list);
+        log.info("- doCoffePost -");
+        return "/coffee/coffeeV1";
     }
 
 

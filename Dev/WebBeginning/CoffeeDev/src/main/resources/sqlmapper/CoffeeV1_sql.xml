@@ -5,11 +5,41 @@
 
 <mapper namespace="com.example.coffeedev.dao.CoffeV1Dao">
 
-    <!-- 전체조회 Coffee V1 List  [ List , Map ] -->
+    <!-- 전체조회 Coffee V1 List  [ List , Map ]
+            <![CDATA[   ]]>   : xml 파싱에 관여하지 않도록 처리
+    -->
     <select id="doCoffeList" resultType="map">
         SELECT coffee_id, name, kind, price,
                DATE_FORMAT(reg_day,'%Y.%m.%d') AS reg_day, DATE_FORMAT(mod_day,'%Y.%m.%d') AS mod_day
         FROM coffee
+        WHERE 1=1
+
+          <!-- 등록기간 쿼리 -->
+          <choose>
+              <when test="start_date == null">
+                  AND reg_day >=date_add(now(), INTERVAL -7 day)
+              </when>
+              <otherwise>
+                  <![CDATA[
+                      AND reg_day >= DATE_FORMAT( #{start_date},'%Y%m%d')
+                      AND reg_day <  date_add(DATE_FORMAT(#{end_date},'%Y%m%d'), INTERVAL +1 DAY)
+                  ]]>
+              </otherwise>
+          </choose>
+
+        <!-- 메뉴명 쿼리 , null , 빈값에 대한 처리 필요
+            [MySQL]title like CONCAT('%',#{keyword},'%')
+            [Oracle]title like '%' || #{keyword} || '%'
+            [MSSQL]title like '%' + #{keyword} + '%'
+        -->
+        <if test="name != null and name != ''">
+            AND name like CONCAT(#{name},'%')
+        </if>
+
+        <!-- 종류 쿼리 -->
+        <if test="kind != null and kind != 'ALL' ">
+            AND kind = #{kind}
+        </if>
         ORDER BY kind, price
     </select>
 

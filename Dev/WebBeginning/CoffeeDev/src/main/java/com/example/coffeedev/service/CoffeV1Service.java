@@ -22,6 +22,11 @@ public class CoffeV1Service {
         return list;
     }
 
+    /* 전체 리스트 조회 - Overload */
+    public List<Map<String, String>> doCoffeList(String start_date, String end_date, String name, String kind) {
+        List<Map<String, String>> list = v1Dao.doCoffeList(start_date,end_date,name,kind );
+        return list;
+    }
 
     public int doInsert(String strName, String strKind, String strPrice) {
         int intI = v1Dao.doInsert(strName, strKind, strPrice);
@@ -45,4 +50,6 @@ public class CoffeV1Service {
         int intI = v1Dao.doUpdate(strCoffee_id, strName, strKind, strPrice);
         return  intI;
     }
+
+
 }

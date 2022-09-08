@@ -9,8 +9,7 @@
   <link rel="stylesheet" type="text/css" href="/css/coffee.css">
 
 </head>
-<body>
-
+<body onload="fSearch()">
 
 <!-- 헤더 위치 -->
 <th:block th:include="~{/comm/header}"></th:block>
@@ -20,19 +19,20 @@
 
   <div id="search" style="height: 150px;padding: 15px; font-size: small; width: 90%; margin-left: auto;  margin-right: auto;">
     <h3>[ JavaScript (No jQuery) , No Vo, No Yaml ]</h3>
-    <form name="coffeeV1" autocomplete="on" action="/v1/coffee">
+    <!--  <form name="coffeeV1" autocomplete="on" action="/v1/coffee" method="post">  -->
+    <form name="coffeeV1" autocomplete="on" action="/v1/coffee" method="post" onSubmit="return fSearch()">
       <fieldset>
-        <legend>검색조건</legend>
+        <legend> [검색조건] </legend>
         <label>등록기간</label><input type="date" id="start_date" name="start_date" min="2020-01-01" max="2023-12-31">
                            - <input type="date" id="end_date" name="end_date" min="2020-01-01" max="2023-12-31">
         &nbsp;&nbsp;
         <label>메뉴명</label> <input type="text" name="name">
         &nbsp;&nbsp;
         <label>종류</label> <select name="kind">
-                            <option value="All">전체</option>
-                            <option value="커피">커피</option>
-                            <option value="에이드">에이드</option>
-                            <option value="스무디">스무디</option>
+                            <option value="ALL">전체</option>
+                            <option value="1.커피">1.커피</option>
+                            <option value="2.에이드">2.에이드</option>
+                            <option value="3.스무디">3.스무디</option>
                           </select>
 
         &nbsp;&nbsp;<input type="submit" value="조회" style="width: 80px;height: 30px;font-weight: bold; font-size: medium">
@@ -86,20 +86,33 @@
 
 <script>
   /* 현재 시간 날짜에 적용시키기 */
-  document.getElementById("start_date").value=new Date().toISOString().slice(0,10);
-  document.getElementById("end_date").value=new Date().toISOString().slice(0,10);
+  //document.getElementById("start_date").value=new Date().toISOString().slice(0,10);
+  //document.getElementById("end_date").value=new Date().toISOString().slice(0,10);
+  const now = new Date();	// 현재 날짜 및 시간
+  const time7 = new Date(now.setDate(now.getDate() - 7));	// 1주일전
+  document.getElementById("start_date").value= time7.toISOString().slice(0,10);
+  document.getElementById("end_date").value= new Date().toISOString().slice(0,10);
 
-  // 닫기 클릭 시
-  function f_PopupLayer(flag){
-    if(flag=="1"){ // 열기
-      document.getElementById('popupDiv').style.display="inline";
-    }else{  // 닫기
-      document.getElementById('popupDiv').style.display="none";
 
-    }
+  /* 검색시 사용 */
+  function fSearch(){
+    console.log('fSearch');
+
+    /* _self : 현재 창에 결과를 보여준다. (기본값)
+       _blank : 브라우저 새탭에 결과를 보여준다.
+       _top : 브라우저 최상단 창에 결과를 보여준다. (상위 창이 없으면 = _self)
+       _parent : 부모창에 결과를 보여준다. (부모창 없으면 = _self)
+     */
+    //document.coffeeV1.target="_self";
+    //document.coffeeV1.action="/v1/coffee";
+      console.log(document.coffeeV1.action);
+    //document.coffeeV1.method="POST";
+      console.log(document.coffeeV1.method);
+      alert("hi");
+
+      return false;
   }
 
-  /* popupDiv 컨트롤 */
 
 </script>
 </body>

@@ -25,17 +25,17 @@
     <h3>[ JavaScript (No jQuery) , No Vo, No Yaml ]</h3>
     <form name="coffeeV1" autocomplete="on" action="/coffeeV1">
       <fieldset>
-        <legend>검색조건</legend>
+        <legend> [검색조건] </legend>
         <label>등록기간</label><input type="date" id="start_date" name="start_date" min="2020-01-01" max="2023-12-31">
                            - <input type="date" id="end_date" name="end_date" min="2020-01-01" max="2023-12-31">
         &nbsp;&nbsp;
         <label>메뉴명</label> <input type="text" name="name">
         &nbsp;&nbsp;
         <label>종류</label> <select name="kind">
-                            <option value="All">전체</option>
-                            <option value="커피">커피</option>
-                            <option value="에이드">에이드</option>
-                            <option value="스무디">스무디</option>
+                          <option value="ALL">전체</option>
+                          <option value="1.커피">1.커피</option>
+                          <option value="2.에이드">2.에이드</option>
+                          <option value="3.스무디">3.스무디</option>
                           </select>         
          &nbsp;&nbsp;<input type="submit" value="조회" style="width: 80px;height: 30px;font-weight: bold; font-size: medium">
          &nbsp;&nbsp;<button onclick="document.location='/v1/insert'" value="등록" style="width: 80px;height: 30px;font-weight: bold; font-size: medium">등록</button>
