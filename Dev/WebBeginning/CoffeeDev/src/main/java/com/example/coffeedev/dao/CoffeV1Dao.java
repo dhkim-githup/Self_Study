@@ -28,6 +28,4 @@ public interface CoffeV1Dao {
 
     /* 수정하기 Post */
     int doUpdate(String strCoffee_id, String strName, String strKind, String strPrice);
-
-
 }

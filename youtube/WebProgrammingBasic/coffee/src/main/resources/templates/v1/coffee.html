@@ -20,7 +20,7 @@
 
     <div id="search" style="height: 150px;padding: 15px; font-size: small">
         <h3>[ JavaScript (No jQuery) , No Vo, No Yaml ]</h3>
-        <form name="coffeeV1" autocomplete="on" action="/coffeeV1">
+        <form name="coffeeV1" autocomplete="on" action="/v1/coffee" method="post">
             <fieldset>
                 <legend> [검색조건] </legend>
                 <label>등록기간</label><input type="date" id="start_date" name="start_date" min="2020-01-01" max="2023-12-31">
@@ -35,8 +35,8 @@
                 <option value="3.스무디">3.스무디</option>
             </select>
                 &nbsp;&nbsp;<input type="submit" value="조회" style="width: 80px;height: 30px;font-weight: bold; font-size: medium">
-                &nbsp;&nbsp;<button onclick="document.location='/v1/insert'" value="등록" style="width: 80px;height: 30px;font-weight: bold; font-size: medium">등록</button>
-                &nbsp;&nbsp;<button onclick="document.location='/v1/'" value="삭제" style="width: 80px;height: 30px;font-weight: bold; font-size: medium">삭제</button>
+                &nbsp;&nbsp;<button style="width: 80px;height: 30px;font-weight: bold; font-size: medium"><a href="/v1/insert">등록</a></button>
+                &nbsp;&nbsp;<button style="width: 80px;height: 30px;font-weight: bold; font-size: medium"><a href="/v1/deleteAll">삭제</a></button>
             </fieldset>
         </form>
     </div>
@@ -52,35 +52,27 @@
             <th>가격</th>
             <th>등록일</th>
             <th>수정일</th>
+            <th>수정</th>
             <th>삭제</th>
         </tr>
         </thead>
 
 
         <tbody id="t_body">
-        <tr class="tr_td">
-            <td><input type="checkbox" name="coffee_id" value="ID"></td>
-            <td>ID</td>
-            <td>메뉴명</td>
-            <td>종류</td>
-            <td>가격</td>
-            <td>등록일</td>
-            <td>수정일</td>
-            <td>수정</td>
-            <td>삭제</td>
-        </tr>
-
-        <tr>
-            <td><input type="checkbox" name="coffee_id" value="ID"></td>
-            <td>ID</td>
-            <td>메뉴명</td>
-            <td>종류</td>
-            <td>가격</td>
-            <td>등록일</td>
-            <td>수정일</td>
-            <td>수정</td>
-            <td>삭제</td>
-        </tr>
+            <!--- 데이타 출력 부분 -->
+            <th:block th:each="coffeeV1 : ${list}">
+                <tr class="tr_td">
+                    <td><input type="checkbox" name="coffee_id" value="ID"></td>
+                    <td th:text="${coffeeV1.get('coffee_id')}">ID</td>
+                    <td th:text="${coffeeV1.get('name')}">메뉴명</td>
+                    <td th:text="${coffeeV1.get('kind')}">종류</td>
+                    <td th:text="${coffeeV1.get('price')}">가격</td>
+                    <td th:text="${coffeeV1.get('reg_day')}">등록일</td>
+                    <td th:text="${coffeeV1.get('mod_day')}">수정일</td>
+                    <td><a th:href="@{/v1/update(coffee_id=${coffeeV1.get('coffee_id')})}">수정</a></td>
+                    <td><a th:href="@{/v1/delete(coffee_id=${coffeeV1.get('coffee_id')})}">삭제</a></td>
+                </tr>
+            </th:block>
         </tbody>
     </table>
 </div>
@@ -92,8 +84,13 @@
 
 <script>
     /* 현재 시간 날짜에 적용시키기 */
-    document.getElementById("start_date").value=new Date().toISOString().slice(0,10);
-    document.getElementById("end_date").value=new Date().toISOString().slice(0,10);
+    //document.getElementById("start_date").value=new Date().toISOString().slice(0,10);
+    //document.getElementById("end_date").value=new Date().toISOString().slice(0,10);
+    const now = new Date();	// 현재 날짜 및 시간
+    const time7 = new Date(now.setDate(now.getDate() - 200));	// 1주일전
+    document.getElementById("start_date").value= time7.toISOString().slice(0,10);
+    document.getElementById("end_date").value= new Date().toISOString().slice(0,10);
+
 </script>
 </body>
 </html>

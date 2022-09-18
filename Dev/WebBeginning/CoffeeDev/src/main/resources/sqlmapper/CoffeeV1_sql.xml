@@ -17,13 +17,11 @@
           <!-- 등록기간 쿼리 -->
           <choose>
               <when test="start_date == null">
-                  AND reg_day >=date_add(now(), INTERVAL -7 day)
+                  AND reg_day >= date_add(now(), INTERVAL-7 day)
               </when>
               <otherwise>
-                  <![CDATA[
                       AND reg_day >= DATE_FORMAT( #{start_date},'%Y%m%d')
-                      AND reg_day <  date_add(DATE_FORMAT(#{end_date},'%Y%m%d'), INTERVAL +1 DAY)
-                  ]]>
+                      AND reg_day &lt;  date_add(DATE_FORMAT(#{end_date},'%Y%m%d'), INTERVAL +1 DAY)
               </otherwise>
           </choose>
 
