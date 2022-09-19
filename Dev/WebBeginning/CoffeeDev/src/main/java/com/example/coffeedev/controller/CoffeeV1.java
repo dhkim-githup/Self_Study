@@ -32,7 +32,7 @@ public class CoffeeV1 {
         List<Map<String, String>> list = v1Service.doCoffeList();
         model.addAttribute("list",list);
         log.info("- doCoffeeGet -");
-        return "/coffee/coffeeV1";
+        return "/v1/coffee";
 
     }
 
@@ -53,14 +53,15 @@ public class CoffeeV1 {
         List<Map<String, String>> list = v1Service.doCoffeList(start_date, end_date, name, kind);
         model.addAttribute("list",list);
         log.info("- doCoffePost -");
-        return "/coffee/coffeeV1";
+
+        return "/v1/coffee";
     }
 
 
     /* 등록하기 Get */
     @GetMapping("/insert")
     public String doInsert(){
-        return "/coffee/coffeeV1_Ins";
+        return "/v1/coffee_Ins";
     }
 
     /* 등록하기 Post , HttpServletRequest 사용 */
@@ -83,7 +84,7 @@ public class CoffeeV1 {
         Map<String,String>  map = v1Service.doListOne(strCoffee_id);
         model.addAttribute("map", map);
 
-        return "/coffee/coffeeV1_Up";
+        return "/v1/coffee_Up";
     }
 
     /* 수정하기 Post , @RequestParam 사용 */

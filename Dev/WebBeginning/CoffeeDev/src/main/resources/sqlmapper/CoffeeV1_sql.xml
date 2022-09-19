@@ -38,7 +38,7 @@
         <if test="kind != null and kind != 'ALL' ">
             AND kind = #{kind}
         </if>
-        ORDER BY kind, price
+        ORDER BY coffee_id, kind, price
     </select>
 
     <!-- 1 row 조회  -->

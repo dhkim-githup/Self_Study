@@ -37,11 +37,11 @@
 
         &nbsp;&nbsp;<input type="submit" value="조회" style="width: 80px;height: 30px;font-weight: bold; font-size: medium">
         &nbsp;&nbsp;<button style="width: 80px;height: 30px;font-weight: bold; font-size: medium"><a href="/v1/insert">등록</a></button>
-        &nbsp;&nbsp;<button style="width: 80px;height: 30px;font-weight: bold; font-size: medium"><a href="/v1/deleteAll">삭제</a></button>
+        &nbsp;&nbsp;<button style="width: 80px;height: 30px;font-weight: bold; font-size: medium"><a href="/v1/deleteAll">삭제</a></button>        &nbsp;&nbsp;
       </fieldset>
 
     </form>
-
+    <button onclick="loadDocArray()" value="삭제" style="width: 80px;height: 30px;font-weight: bold; font-size: medium">test</button>
 
   </div>
 
@@ -65,7 +65,7 @@
       <tbody id="t_body">
       <!--- 데이타 출력 부분 -->
       <th:block th:each="coffeeV1 : ${list}">
-        <tr class="tr_td">
+        <tr id="tr_loop" class="tr_td">
           <td><input type="checkbox" name="coffee_id" value="ID"></td>
           <td th:text="${coffeeV1.get('coffee_id')}">ID</td>
           <td th:text="${coffeeV1.get('name')}">메뉴명</td>
@@ -89,7 +89,7 @@
   //document.getElementById("start_date").value=new Date().toISOString().slice(0,10);
   //document.getElementById("end_date").value=new Date().toISOString().slice(0,10);
   const now = new Date();	// 현재 날짜 및 시간
-  const time7 = new Date(now.setDate(now.getDate() - 7));	// 1주일전
+  const time7 = new Date(now.setDate(now.getDate() - 200));	// 1주일전
   document.getElementById("start_date").value= time7.toISOString().slice(0,10);
   document.getElementById("end_date").value= new Date().toISOString().slice(0,10);
 
@@ -112,7 +112,72 @@
       return true;
   }
 
+  function loadDoc() {
+    const xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      /* 4: request finished and response is ready , 200: "OK" */
+      if (this.readyState == 4 && this.status == 200) {
+        const myAjax = JSON.parse(this.responseText); // Parsing
 
+        let ajaxTD ="";
+        ajaxTD += '<td><input type="checkbox" name="coffee_id" value="ID"></td>';
+        ajaxTD += '<td>'+myAjax.coffee_id+'</td>';
+        ajaxTD += '<td>'+myAjax.name+'</td>';
+        ajaxTD += '<td>'+myAjax.kind+'</td>';
+        ajaxTD += '<td>'+myAjax.price+'</td>';
+        ajaxTD += '<td>'+myAjax.reg_day+'</td>';
+        ajaxTD += '<td>'+myAjax.mod_day+'</td>';
+        ajaxTD += '<td><a href="/v1/update?coffee_id='+myAjax.coffee_id+'">수정</a></td>';
+        ajaxTD += '<td><a href="/v1/delete?coffee_id='+myAjax.coffee_id+'">삭제</a></td>';
+
+         document.getElementById("tr_loop").innerHTML = ajaxTD;
+      }
+    };
+    xhttp.open("GET", "/txt/ajax_sample.txt");
+    xhttp.send();
+  }
+
+  /**
+   * 배열값 처리하기
+   */
+  function loadDocArray() {
+    const xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+
+      /* 4: request finished and response is ready , 200: "OK" */
+      if (this.readyState == 4 && this.status == 200) {
+
+        console.log(this.responseText); // 데이타 확인
+
+        const myAjax = JSON.parse(this.responseText); // Parsing
+        console.log("myAjax.coffee_list.length="+myAjax.coffee_list.length)
+        console.log("myAjax.coffee_list="+myAjax.coffee_list[0].coffee_id)
+
+        // 기존값 초기화
+        document.getElementById("t_body").innerHTML="";
+
+        for(let i=0; i<myAjax.coffee_list.length; i++){
+          console.log("i="+i);
+          let ajaxTD = "";
+          ajaxTD += '<tr id="tr_loop" className="tr_td">';
+          ajaxTD += '<td><input type="checkbox" name="coffee_id" value="ID"></td>';
+          ajaxTD += '<td>' + myAjax.coffee_list[i].coffee_id + '</td>';
+          ajaxTD += '<td>' + myAjax.coffee_list[i].name + '</td>';
+          ajaxTD += '<td>' + myAjax.coffee_list[i].kind + '</td>';
+          ajaxTD += '<td>' + myAjax.coffee_list[i].price + '</td>';
+          ajaxTD += '<td>' + myAjax.coffee_list[i].reg_day + '</td>';
+          ajaxTD += '<td>' + myAjax.coffee_list[i].mod_day + '</td>';
+          ajaxTD += '<td><a href="/v1/update?coffee_id=' + myAjax.coffee_list[i].coffee_id + '">수정</a></td>';
+          ajaxTD += '<td><a href="/v1/delete?coffee_id=' + myAjax.coffee_list[i].coffee_id + '">삭제</a></td>';
+          ajaxTD += '</tr>';
+
+          document.getElementById("t_body").innerHTML += ajaxTD;
+        }
+      }
+    };
+    xhttp.open("GET", "/txt/ajax_sample_array.txt");
+    xhttp.send();
+  }
 </script>
 </body>
 </html>
