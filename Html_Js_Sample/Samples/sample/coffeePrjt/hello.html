@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="UTF-8">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    
+    <body>
+        Hello World ! </p>
+        <a href="javascript:onF()" id="js"><h1>Java Script</h1></a></p>
+
+        <div id="jQuery">jQuery</div></p>
+
+        <div id="JSON">JSON</div></p>
+
+        <div id="AJAX">AJAX</div></p>
+
+        <input type="text" id="txtInput" name="txtInput" value="동적 스크립트 내용"></p>
+
+        <div id="Age">나이가 : </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script>
+            const myObj = {hello:"Hello Json !", age:30};        
+            
+            /* 나는 순수 자바 스크립트 펑션 입니다. */
+            function onF(){
+                //alert("Hello Javascript");
+                document.getElementById("txtInput").value="Vanilla Java Script !!";            
+                document.getElementById("Age").innerHTML +="10";            
+            }
+    
+            $(document).ready(function(){            
+    
+                /* jQuery 사용 */
+                $("#jQuery").click(function(){                
+                    //document.getElementById("txtInput").value="jQuery !!";                            
+                    $("#txtInput").val("Hello jQuery !!");
+                    $("#Age").append(20);                
+    
+                });
+    
+                /* jSon 사용 */
+                $("#JSON").click(function(){
+                    $("#txtInput").val(myObj.hello);                
+                    $("#Age").append(myObj.age);                
+                });
+    
+                /* Ajax 를 이용한 jSon 사용 */
+                $("#AJAX").click(function(){
+    
+                    const xmlhttp = new XMLHttpRequest();
+                    xmlhttp.onload = function() {
+                        /*
+                        const myAjax = this.responseText;                    
+                        $("#txtInput").val(myAjax);                
+                        $("#AJAX").text("Hello AJAX");
+                        */
+                        const myAjax = JSON.parse(this.responseText);
+                        $("#txtInput").val(myAjax.hello);                
+                        $("#Age").append(myAjax.age); 
+    
+                    }
+                    xmlhttp.open("GET", "./ajax.txt");
+                    xmlhttp.send();
+                    
+                });                                          
+    
+            });
+        </script>    
+    </body>   
+
+</html>
+
