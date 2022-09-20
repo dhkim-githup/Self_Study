@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta sitelink="https://www.w3schools.com/html/html5_webstorage.asp">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="result"></div>
+
+<script>
+  // Check browser support
+  if (typeof(Storage) !== "undefined") {
+    // Store
+    // localStorage.lastname = "Smith";
+    localStorage.setItem("lastname", "Smith");
+
+    // 삭제
+    // localStorage.removeItem("lastname");
+
+    // Retrieve
+    // document.getElementById("result").innerHTML = localStorage.lastname;
+    document.getElementById("result").innerHTML = localStorage.getItem("lastname");
+  } else {
+    document.getElementById("result").innerHTML = "Sorry, your browser does not support Web Storage...";
+  }
+</script>
+
+
+<hr>
+
+
+</body>
+</html>
