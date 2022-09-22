@@ -1,0 +1,5 @@
+[
+    {"filename":"<u>ajax_jsonArray.txt</u>","name":"jsonName1", "age":50},
+    {"filename":"<u>ajax_jsonArray.txt</u>","name":"jsonName2", "age":60},
+    {"filename":"<u>ajax_jsonArray.txt</u>","name":"jsonName3", "age":70}
+]

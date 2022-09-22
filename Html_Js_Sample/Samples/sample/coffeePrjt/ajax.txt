@@ -1,1 +1,0 @@
-{"hello":"Hello Ajax + Json !", "age":50}  

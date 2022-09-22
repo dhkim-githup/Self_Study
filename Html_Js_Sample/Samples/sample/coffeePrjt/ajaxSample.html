@@ -9,17 +9,105 @@
 
 <body>
 Hello World ! </p>
-<a href="javascript:onF()" id="js"><h1>Java Script</h1></a></p>
 
-<div id="jQuery">jQuery</div></p>
+<!-- 순수 자바 스크립트 -->
+<a href="javascript:onF()" id="js"><h2>Java Script</h2></a>
+<input type="text" id="txtInput1" name="txtInput1" value="동적 스크립트 내용">
+<div id="Age1">나이가 : </div>
+<hr>
 
-<div id="JSON">JSON</div></p>
+<!-- jQuery -->
+<div id="jQuery"><h2>jQuery</h2></div>
+<input type="text" id="txtInput2" name="txtInput2" value="동적 스크립트 내용">
+<div id="Age2">나이가 : </div>
+<hr>
 
-<div id="AJAX">AJAX</div></p>
+<!-- JSON -->
+<div id="JSON"><h2>JSON</h2></div>
+<input type="text" id="txtInput3" name="txtInput3" value="동적 스크립트 내용">
+<div id="Age3">나이가 : </div>
+<hr>
 
-<input type="text" id="txtInput" name="txtInput" value="동적 스크립트 내용"></p>
+<!-- AJAX -->
+<div id="AJAX"><h2>AJAX</h2></div>
+<div id="file0">file name : </div>
+<input type="text" id="txtInput4" name="txtInput4" value="동적 스크립트 내용">
+<div id="Age4">나이가 : </div>
+<hr>
 
-<div id="Age">나이가 : </div>
+<!-- AJAX -->
+<div id="AJAX2"><h2>AJAX No Json</h2></div>
+<div id="file2">file name : ~ </div>
+<div id="AJAX2_TXT">TXT : </div>
+    <table style="border-collapse: collapse;border: 1px solid #dddddd;width:30%">
+        <tr>
+            <th>이름</th>
+            <th>나이</th>
+        </tr>
+        <tbody id="tbody2">
+        <tr>
+            <td>이름</td>
+            <td>나이</td>
+        </tr>
+        </tbody>
+    </table>
+<hr>
+
+<!-- AJAX Json -->
+<div id="AJAX3"><h2>AJAX Json </h2></div>
+<div id="file3">file name : ~ </div>
+<div id="AJAX3_TXT">TXT : </div>
+<table style="border-collapse: collapse;border: 1px solid #dddddd;width:30%">
+    <tr>
+        <th>이름</th>
+        <th>나이</th>
+    </tr>
+    <tbody id="tbody3">
+    <tr>
+        <td>이름</td>
+        <td>나이</td>
+    </tr>
+    </tbody>
+</table>
+<hr>
+
+<!-- AJAX Json Array  -->
+<div id="AJAX4"><h2>AJAX Json Array </h2></div>
+<div id="file4">file name : ~ </div>
+<div id="AJAX4_TXT">TXT : </div>
+<table style="border-collapse: collapse;border: 1px solid #dddddd;width:30%">
+    <tr>
+        <th>이름</th>
+        <th>나이</th>
+    </tr>
+    <tbody id="tbody4">
+    <tr>
+        <td>이름</td>
+        <td>나이</td>
+    </tr>
+    </tbody>
+</table>
+<hr>
+
+<!-- AJAX Json Array  -->
+<div id="AJAX5"><h2>AJAX Json Array End </h2></div>
+<div id="file5">file name : ~ </div>
+<div id="AJAX5_TXT">TXT : </div>
+<table style="border-collapse: collapse;border: 1px solid #dddddd;width:30%">
+    <tr>
+        <th>이름</th>
+        <th>나이</th>
+    </tr>
+    <tbody id="tbody5">
+    <tr>
+        <td>이름</td>
+        <td>나이</td>
+    </tr>
+    </tbody>
+</table>
+<hr>
+
+<!-- Java Script ---->
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
@@ -28,8 +116,8 @@ Hello World ! </p>
     /* 나는 순수 자바 스크립트 펑션 입니다. */
     function onF(){
         //alert("Hello Javascript");
-        document.getElementById("txtInput").value="Vanilla Java Script !!";
-        document.getElementById("Age").innerHTML +="10";
+        document.getElementById("txtInput1").value="Vanilla Java Script !!";
+        document.getElementById("Age1").innerHTML +="10";
     }
 
     $(document).ready(function(){
@@ -37,15 +125,15 @@ Hello World ! </p>
         /* jQuery 사용 */
         $("#jQuery").click(function(){
             //document.getElementById("txtInput").value="jQuery !!";
-            $("#txtInput").val("Hello jQuery !!");
-            $("#Age").append(20);
+            $("#txtInput2").val("Hello jQuery !!");
+            $("#Age2").append(20);
 
         });
 
         /* jSon 사용 */
         $("#JSON").click(function(){
-            $("#txtInput").val(myObj.hello);
-            $("#Age").append(myObj.age);
+            $("#txtInput3").val(myObj.hello);
+            $("#Age3").append(myObj.age);
         });
 
         /* Ajax 를 이용한 jSon 사용 */
@@ -59,14 +147,88 @@ Hello World ! </p>
                 $("#AJAX").text("Hello AJAX");
                 */
                 const myAjax = JSON.parse(this.responseText);
-                $("#txtInput").val(myAjax.hello);
-                $("#Age").append(myAjax.age);
+                $("#file0").append(myAjax.filename);
+                $("#txtInput4").val(myAjax.hello);
+                $("#Age4").append(myAjax.age);
 
             }
-            xmlhttp.open("GET", "./ajax.txt");
+            xmlhttp.open("GET", "./txt/ajax.txt");
             xmlhttp.send();
 
         });
+
+        /* Ajax No Json*/
+        $("#AJAX2").click(function(){
+            const xmlhttp = new XMLHttpRequest();
+            xmlhttp.onload = function() {
+                console.log(this.responseText);
+                $("#AJAX2_TXT").text(this.responseText);
+                $("#tbody2").html(this.responseText);
+
+            }
+            xmlhttp.open("GET", "./txt/ajax_nojson.txt");
+            xmlhttp.send();
+
+        });
+
+        /* Ajax Json 를 이용한 jSon 사용 */
+        $("#AJAX3").click(function(){
+            const xmlhttp = new XMLHttpRequest();
+            xmlhttp.onload = function() {
+                console.log(this.responseText);
+                const myAjax = JSON.parse(this.responseText);
+                    $("#file3").append(myAjax.filename);
+                    $("#AJAX3_TXT").text(this.responseText);
+
+                    let _str="";
+                    _str +='<tr><td>'+myAjax.name+'</td><td>'+myAjax.age+'</td></tr>';
+                    $("#tbody3").html(_str);
+
+            }
+            xmlhttp.open("GET", "./txt/ajax_json.txt");
+            xmlhttp.send();
+        });
+
+        /* Ajax Json Array 1 */
+        $("#AJAX4").click(function(){
+            const xmlhttp = new XMLHttpRequest();
+            xmlhttp.onload = function() {
+                console.log(this.responseText);
+                const myAjax = JSON.parse(this.responseText);
+                //$("#file4").append(myAjax[0].filename);
+                $("#AJAX4_TXT").text(this.responseText);
+
+                let _str="";
+                for(let x in myAjax ) {
+                    _str += '<tr><td>' + myAjax[x].name + '</td><td>' + myAjax[x].age + '</td></tr>';
+                }
+                $("#tbody4").html(_str);
+
+            }
+            xmlhttp.open("GET", "./txt/ajax_jsonArray.txt");
+            xmlhttp.send();
+        });
+
+        /* Ajax Json Array End */
+        $("#AJAX5").click(function(){
+            const xmlhttp = new XMLHttpRequest();
+            xmlhttp.onload = function() {
+                console.log(this.responseText);
+                const myAjax = JSON.parse(this.responseText);
+                $("#file5").append(myAjax.filename);
+                $("#AJAX5_TXT").text(this.responseText);
+
+                let _str="";
+                for(let x in myAjax.tbody) {
+                    _str += '<tr><td>' + myAjax.tbody[x].name + '</td><td>' + myAjax.tbody[x].age + '</td></tr>';
+                }
+                $("#tbody5").html(_str);
+
+            }
+            xmlhttp.open("GET", "./txt/ajax_jsonArrayEnd.txt");
+            xmlhttp.send();
+        });
+
 
     });
 </script>

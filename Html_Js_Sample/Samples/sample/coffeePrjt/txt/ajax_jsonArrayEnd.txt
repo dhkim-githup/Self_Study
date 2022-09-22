@@ -1,0 +1,7 @@
+{"filename":"<u>ajax_jsonArrayEnd.txt</u>",
+  "tbody":[
+        {"name":"jsonName1", "age":50},
+        {"name":"jsonName2", "age":60},
+        {"name":"jsonName3", "age":70}
+    ]
+}

@@ -1,0 +1,8 @@
+<tr>
+        <td>AJAX이름</td>
+        <td>AJAX나이</td>
+</tr>
+<tr>
+        <td>AJAX이름</td>
+        <td>AJAX나이</td>
+</tr>

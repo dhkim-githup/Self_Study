@@ -1,16 +1,18 @@
 package com.example.coffeedev.controller;
 
 import com.example.coffeedev.service.CoffeV1Service;
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import lombok.extern.log4j.Log4j2;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.jackson.JsonObjectDeserializer;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -57,6 +59,58 @@ public class CoffeeV1 {
         return "/v1/coffee";
     }
 
+    /* Json Get */
+    @GetMapping("/coffeeAjax")
+    @ResponseBody
+    public String doCoffeeAjax(){
+        List<Map<String, String>> list = v1Service.doCoffeList();
+
+        String strList="";
+        JSONArray resArr = new JSONArray();
+
+        for(Map<String, String> map : list){
+               log.info(map);
+            JSONObject resObj = new JSONObject(map);
+                log.info(resObj);
+            resArr.put(resObj);
+                log.info(resArr);
+        }
+
+        String strArr = "{\"coffee_list\":";
+               strArr += String.valueOf(resArr);
+               strArr +="}";
+
+        return strArr;
+    }
+
+    /* Json */
+    @PostMapping("/coffeeAjax")
+    @ResponseBody
+    public String doCoffeeAjaxPost(@RequestParam(value="start_date") String start_date,
+                                   @RequestParam(value="end_date") String end_date,
+                                   @RequestParam(value="name") String name,
+                                   @RequestParam(value="kind") String kind
+    ){
+        log.info("start_date :", start_date);
+        List<Map<String, String>> list = v1Service.doCoffeList(start_date, end_date, name, kind);
+
+
+        JSONArray resArr = new JSONArray();
+
+        for(Map<String, String> map : list){
+            log.info(map);
+            JSONObject resObj = new JSONObject(map);
+            log.info(resObj);
+            resArr.put(resObj);
+            log.info(resArr);
+        }
+
+        String strArr = "{\"coffee_list\":";
+        strArr += String.valueOf(resArr);
+        strArr +="}";
+
+        return strArr;
+    }
 
     /* 등록하기 Get */
     @GetMapping("/insert")

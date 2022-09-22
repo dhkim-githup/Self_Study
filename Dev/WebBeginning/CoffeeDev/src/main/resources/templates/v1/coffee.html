@@ -26,9 +26,9 @@
         <label>등록기간</label><input type="date" id="start_date" name="start_date" min="2020-01-01" max="2023-12-31">
                            - <input type="date" id="end_date" name="end_date" min="2020-01-01" max="2023-12-31">
         &nbsp;&nbsp;
-        <label>메뉴명</label> <input type="text" name="name">
+        <label>메뉴명</label> <input type="text" id="name" name="name">
         &nbsp;&nbsp;
-        <label>종류</label> <select name="kind">
+        <label>종류</label> <select id="kind" name="kind">
                             <option value="ALL">전체</option>
                             <option value="1.커피">1.커피</option>
                             <option value="2.에이드">2.에이드</option>
@@ -37,7 +37,8 @@
 
         &nbsp;&nbsp;<input type="submit" value="조회" style="width: 80px;height: 30px;font-weight: bold; font-size: medium">
         &nbsp;&nbsp;<button style="width: 80px;height: 30px;font-weight: bold; font-size: medium"><a href="/v1/insert">등록</a></button>
-        &nbsp;&nbsp;<button style="width: 80px;height: 30px;font-weight: bold; font-size: medium"><a href="/v1/deleteAll">삭제</a></button>        &nbsp;&nbsp;
+        &nbsp;&nbsp;<button style="width: 80px;height: 30px;font-weight: bold; font-size: medium"><a href="/v1/deleteAll">삭제</a></button>
+          <a href="javascript:loadDocArray()">test</a>
       </fieldset>
 
     </form>
@@ -141,6 +142,7 @@
    * 배열값 처리하기
    */
   function loadDocArray() {
+    console.log("function : loadDocArray ")
     const xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
 
@@ -150,13 +152,13 @@
         console.log(this.responseText); // 데이타 확인
 
         const myAjax = JSON.parse(this.responseText); // Parsing
-        console.log("myAjax.coffee_list.length="+myAjax.coffee_list.length)
-        console.log("myAjax.coffee_list="+myAjax.coffee_list[0].coffee_id)
+        //console.log("myAjax.coffee_list.length="+myAjax.coffee_list.length)
+        //console.log("myAjax.coffee_list="+myAjax.coffee_list[0].coffee_id)
 
         // 기존값 초기화
         document.getElementById("t_body").innerHTML="";
-
-        for(let i=0; i<myAjax.coffee_list.length; i++){
+        //for(let i=0; i<myAjax.coffee_list.length; i++){
+        for(let i in myAjax.coffee_list) {
           console.log("i="+i);
           let ajaxTD = "";
           ajaxTD += '<tr id="tr_loop" className="tr_td">';
@@ -175,8 +177,20 @@
         }
       }
     };
-    xhttp.open("GET", "/txt/ajax_sample_array.txt");
-    xhttp.send();
+    //xhttp.open("GET", "/txt/ajax_sample_array.txt");
+    /* Get
+      xhttp.open("GET", "/v1/coffeeAjax");
+      xhttp.send();
+     */
+    let _start_date = document.getElementById("start_date").value;
+    let _end_date   = document.getElementById("end_date").value;
+    let _name       = document.getElementById("name").value;
+    let _kind       = document.getElementById("kind").value;
+
+    xhttp.open("POST", "/v1/coffeeAjax?aa=bb");
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send("start_date="+_start_date+"&end_date="+_end_date+"&name="+_name+"&kind="+_kind);
+
   }
 </script>
 </body>
