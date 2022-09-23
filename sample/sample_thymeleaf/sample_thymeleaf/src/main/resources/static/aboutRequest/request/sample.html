@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>aboutRequest</title>
+</head>
+<body>
+Test Data : name=홍길동 , age=20
+<h1 id="request">Request</h1>
+
+<hr>
+      <p>GET : <a href="/aboutRequest/request/get?name=홍길동Get&age=20">/aboutRequest/request/get?name=홍길동Get&age=20</a> </p>
+
+<hr>
+      <p>POST :
+
+        <form name="formPost" action="/aboutRequest/request/post" method="post">
+            <input type="text" name="name" value="홍길동Post">
+            <input type="text" name="age" value="30">
+            <input type="submit">
+        </form>
+
+      </p>
+
+<hr>
+
+      <p>Ajax Get : <a href="javascript:fAjaxGet()">Json GET</a> </p>
+        <script>
+
+            /**
+             * Json Get Request
+             */
+            function fAjaxGet() {
+                const xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        console.log("OK");
+                    }
+                };
+
+                let obj = "name=홍길동Get&age=20";
+                xhttp.open("GET", "/aboutRequest/request/get?"+obj);
+                xhttp.send();
+            }
+
+        </script>
+      </p>
+
+<hr>
+
+    <p>Ajax Post : <a href="javascript:fAjaxPost()">Json Post</a> </p>
+    <script>
+
+        /**
+         * Json Get Request
+         */
+        function fAjaxPost() {
+            const xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    console.log("OK");
+                }
+            };
+
+            let obj = "name=홍길동Post&age=30";
+            xhttp.open("POST", "/aboutRequest/request/post");
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhttp.send(obj);
+        }
+
+    </script>
+    </p>
+
+<hr>
+    <p>Ajax Json : <a href="javascript:fAjaxJson()">Ajax Json</a> </p>
+    <script>
+
+        /**
+         * Json Get Request
+         */
+        function fAjaxJson() {
+            const xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    console.log("OK");
+                }
+            };
+
+            const obj = {name: "홍길동JSON", age: 40};
+            const myJSON = JSON.stringify(obj);
+            xhttp.open("POST", "/aboutRequest/request/json");
+            xhttp.setRequestHeader("Content-type", "application/json");
+            xhttp.send(myJSON);
+        }
+
+    </script>
+    </p>
+
+</body>
+</html>
