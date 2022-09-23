@@ -1,0 +1,37 @@
+--- # 문서의 시작
+
+--- # change port
+server:
+  port: 8084
+
+--- # mvc view
+spring:
+   #mvc
+   mvc:
+     view:
+       prefix: /WEB-INF/views/
+       suffix: .jsp
+
+--- # devtools
+spring:
+   devtools:
+     livereload:
+        enabled: true
+     restart:
+        enabled: false
+
+   #oracle settings
+   datasource:
+      #driver-class-name: oracle.jdbc.driver.OracleDriver
+      driver-class-name: oracle.jdbc.OracleDriver
+      url: jdbc:oracle:thin:@localhost:1521/xe
+      username: scott
+      password: tiger
+
+--- #mybatis mapper xml
+mybatis:
+   mapper-locations: classpath:sqlmapper/**/*.xml
+   configuration:
+     map-underscore-to-camel-case: true
+
+... # 문서의 끝
