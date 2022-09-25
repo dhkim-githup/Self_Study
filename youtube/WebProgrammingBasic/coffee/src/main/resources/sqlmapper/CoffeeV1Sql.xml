@@ -4,7 +4,9 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.coffee.dao.CoffeeV1Dao">
 
-    <!--  전체리스트 조회  -->
+    <!-- 전체조회 Coffee V1 List  [ List , Map ]
+        <![CDATA[   ]]>   : xml 파싱에 관여하지 않도록 처리
+    -->
     <select id="doCoffeeList" resultType="map">
         SELECT coffee_id, name, kind, price,
                DATE_FORMAT(reg_day,'%Y.%m.%d') AS reg_day, DATE_FORMAT(mod_day,'%Y.%m.%d') AS mod_day

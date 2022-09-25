@@ -1,6 +1,7 @@
 package com.example.coffeedev.service;
 
-import com.example.coffeedev.dao.CoffeV1Dao;
+import com.example.coffeedev.dao.CoffeeV1Dao;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,22 +12,25 @@ import java.util.Map;
  * Coffe V1 관련 Service
  */
 @Service
-public class CoffeV1Service {
+@Log4j2
+public class CoffeeV1Service {
 
     @Autowired
-    CoffeV1Dao v1Dao;
+    CoffeeV1Dao v1Dao;
 
 
     /* 전체 리스트 조회  */
-    public List<Map<String, String>> doCoffeList(){
-        List<Map<String, String>> list = v1Dao.doCoffeList();
+    public List<Map<String, String>> doCoffeeList(){
+        List<Map<String, String>> list = v1Dao.doCoffeeList();
         return list;
     }
 
     /* 전체 리스트 조회 - Overload */
-    public List<Map<String, String>> doCoffeList(String start_date, String end_date, String name, String kind) {
-        List<Map<String, String>> list = v1Dao.doCoffeList(start_date,end_date,name,kind );
+    public List<Map<String, String>> doCoffeeList(String strStart_date, String strEnd_date, String strName, String strKind) {
+        log.info(strStart_date);
+        List<Map<String, String>> list = v1Dao.doCoffeeList(strStart_date,strEnd_date,strName,strKind);
         return list;
+
     }
 
     public int doInsert(String strName, String strKind, String strPrice) {

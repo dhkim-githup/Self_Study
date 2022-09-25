@@ -1,12 +1,11 @@
 package com.example.coffeedev.controller;
 
-import com.example.coffeedev.service.CoffeV1Service;
-import com.fasterxml.jackson.databind.util.JSONPObject;
+import com.example.coffeedev.service.CoffeeV1Service;
+
 import lombok.extern.log4j.Log4j2;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.jackson.JsonObjectDeserializer;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -25,13 +24,13 @@ import java.util.Map;
 public class CoffeeV1 {
 
     @Autowired
-    CoffeV1Service v1Service;
+    CoffeeV1Service v1Service;
 
     /* 메뉴 눌렀을때 Get 방식 처리 */
     @GetMapping("/coffee")
     public String doCoffeeGet(Model model){
 
-        List<Map<String, String>> list = v1Service.doCoffeList();
+        List<Map<String, String>> list = v1Service.doCoffeeList();
         model.addAttribute("list",list);
         log.info("- doCoffeeGet -");
         return "/v1/coffee";
@@ -40,30 +39,29 @@ public class CoffeeV1 {
 
     /* 조회하기 눌렀을때 Post 방식처리 */
     @PostMapping("/coffee")
-    public String doCoffePost( @RequestParam(value="start_date") String start_date,
-                               @RequestParam(value="end_date") String end_date,
-                               @RequestParam(value="name") String name,
-                               @RequestParam(value="kind") String kind,
-                               Model model
-                             ){
+    public String doCoffeePost(HttpServletRequest request, Model model){
 
-        //log.info("- start_date -"+start_date);
-        //log.info("- end_date -"+end_date);
-        //log.info("- name -"+name);
-        //log.info("- kind -"+kind);
+        String strStart_date = request.getParameter("start_date");
+        String strEnd_date   = request.getParameter("end_date");
+        String strName       = request.getParameter("name");
+        String strKind       = request.getParameter("kind");
+        log.info(strKind);
 
-        List<Map<String, String>> list = v1Service.doCoffeList(start_date, end_date, name, kind);
-        model.addAttribute("list",list);
-        log.info("- doCoffePost -");
+        /* 전체리스트 조회 - 오버로딩 */
+        List<Map<String, String>> list = v1Service.doCoffeeList(strStart_date,strEnd_date,strName,strKind);
+
+        model.addAttribute("list", list);
+        // System.out.println(list);
 
         return "/v1/coffee";
     }
 
     /* Json Get */
     @GetMapping("/coffeeAjax")
-    @ResponseBody
+    //@ResponseBody
     public String doCoffeeAjax(){
-        List<Map<String, String>> list = v1Service.doCoffeList();
+        /*
+        List<Map<String, String>> list = v1Service.doCoffeeList();
 
         String strList="";
         JSONArray resArr = new JSONArray();
@@ -79,8 +77,16 @@ public class CoffeeV1 {
         String strArr = "{\"coffee_list\":";
                strArr += String.valueOf(resArr);
                strArr +="}";
-
-        return strArr;
+         */
+        /*
+        String strArr ="{\"coffee_list\":[";
+         strArr +="{\"coffee_id\":\"15\", \"name\":\"메뉴명\", \"kind\":\"종류\", \"price\":\"가격\", \"reg_day\": \"등록일\", \"mod_day\":\"수정일\"},";
+         strArr +="{\"coffee_id\":\"16\", \"name\":\"메뉴명\", \"kind\":\"종류\", \"price\":\"가격\", \"reg_day\": \"등록일\", \"mod_day\":\"수정일\"},";
+         strArr +="{\"coffee_id\":\"27\", \"name\":\"메뉴명\", \"kind\":\"종류\", \"price\":\"가격\", \"reg_day\": \"등록일\", \"mod_day\":\"수정일\"},";
+        strArr  +="{\"coffee_id\":\"18\", \"name\":\"메뉴명\", \"kind\":\"종류\", \"price\":\"가격\", \"reg_day\": \"등록일\", \"mod_day\":\"수정일\"}";
+        strArr +="]}";
+        */
+        return "/v1/coffee_ajax";
     }
 
     /* Json */
@@ -89,10 +95,13 @@ public class CoffeeV1 {
     public String doCoffeeAjaxPost(@RequestParam(value="start_date") String start_date,
                                    @RequestParam(value="end_date") String end_date,
                                    @RequestParam(value="name") String name,
-                                   @RequestParam(value="kind") String kind
-    ){
-        log.info("start_date :", start_date);
-        List<Map<String, String>> list = v1Service.doCoffeList(start_date, end_date, name, kind);
+                                   @RequestParam(value="kind") String kind)
+    {
+
+        log.info("start_date :"+ start_date);
+        log.info("end_date :"+ end_date);
+        log.info("kind :"+ kind);
+        List<Map<String, String>> list = v1Service.doCoffeeList(start_date, end_date, name, kind);
 
 
         JSONArray resArr = new JSONArray();

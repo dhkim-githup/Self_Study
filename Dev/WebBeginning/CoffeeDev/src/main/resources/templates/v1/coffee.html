@@ -42,7 +42,7 @@
       </fieldset>
 
     </form>
-    <button onclick="loadDocArray()" value="삭제" style="width: 80px;height: 30px;font-weight: bold; font-size: medium">test</button>
+
 
   </div>
 
@@ -179,19 +179,20 @@
       }
     };
     //xhttp.open("GET", "/txt/ajax_sample_array.txt");
-    /* Get
+    /* Get */
       xhttp.open("GET", "/v1/coffeeAjax");
       xhttp.send();
-     */
+
+    /*
     let _start_date = document.getElementById("start_date").value;
     let _end_date   = document.getElementById("end_date").value;
     let _name       = document.getElementById("name").value;
     let _kind       = document.getElementById("kind").value;
 
-    xhttp.open("POST", "/v1/coffeeAjax?aa=bb");
+    xhttp.open("POST", "/v1/coffeeAjax");
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send("start_date="+_start_date+"&end_date="+_end_date+"&name="+_name+"&kind="+_kind);
-
+    */
   }
 </script>
 </body>

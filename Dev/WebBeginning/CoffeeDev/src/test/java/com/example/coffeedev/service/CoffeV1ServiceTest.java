@@ -13,11 +13,17 @@ import static org.junit.jupiter.api.Assertions.*;
 class CoffeV1ServiceTest {
 
     @Autowired
-    CoffeV1Service v1Service;
+    CoffeeV1Service v1Service;
 
     @Test
     public void doTest(){
-        List<Map<String, String>> list = v1Service.doCoffeList();
+        //List<Map<String, String>> list = v1Service.doCoffeList();
+
+        String strStart_date="2022-03-09";
+        String strEnd_date="2022-09-25";
+        String strName=null;
+        String strKind="ALL";
+        List<Map<String, String>> list = v1Service.doCoffeeList(strStart_date,strEnd_date,strName,strKind);
 
         System.out.println(list);
 
