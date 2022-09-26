@@ -29,10 +29,11 @@ public class CoffeeV1 {
     /* 메뉴 눌렀을때 Get 방식 처리 */
     @GetMapping("/coffee")
     public String doCoffeeGet(Model model){
-
+        /*
         List<Map<String, String>> list = v1Service.doCoffeeList();
         model.addAttribute("list",list);
         log.info("- doCoffeeGet -");
+        */
         return "/v1/coffee";
 
     }
@@ -40,7 +41,7 @@ public class CoffeeV1 {
     /* 조회하기 눌렀을때 Post 방식처리 */
     @PostMapping("/coffee")
     public String doCoffeePost(HttpServletRequest request, Model model){
-
+        log.info("-----------doCoffeePost------------");
         String strStart_date = request.getParameter("start_date");
         String strEnd_date   = request.getParameter("end_date");
         String strName       = request.getParameter("name");
@@ -97,7 +98,7 @@ public class CoffeeV1 {
                                    @RequestParam(value="name") String name,
                                    @RequestParam(value="kind") String kind)
     {
-
+        log.info("-----------doCoffeeAjaxPost------------");
         log.info("start_date :"+ start_date);
         log.info("end_date :"+ end_date);
         log.info("kind :"+ kind);
@@ -107,11 +108,11 @@ public class CoffeeV1 {
         JSONArray resArr = new JSONArray();
 
         for(Map<String, String> map : list){
-            log.info(map);
+            //og.info(map);
             JSONObject resObj = new JSONObject(map);
-            log.info(resObj);
+            //log.info(resObj);
             resArr.put(resObj);
-            log.info(resArr);
+            //log.info(resArr);
         }
 
         String strArr = "{\"coffee_list\":";

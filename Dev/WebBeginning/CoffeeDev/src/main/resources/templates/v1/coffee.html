@@ -9,7 +9,7 @@
   <link rel="stylesheet" type="text/css" href="/css/coffee.css">
 
 </head>
-<body onload="fSearch()">
+<body onload="loadDocArray()">
 
 <!-- 헤더 위치 -->
 <th:block th:include="~{/comm/header}"></th:block>
@@ -104,13 +104,9 @@
        _top : 브라우저 최상단 창에 결과를 보여준다. (상위 창이 없으면 = _self)
        _parent : 부모창에 결과를 보여준다. (부모창 없으면 = _self)
      */
-    //document.coffeeV1.target="_self";
-    //document.coffeeV1.action="/v1/coffee";
-      console.log(document.coffeeV1.action);
-    //document.coffeeV1.method="POST";
-      console.log(document.coffeeV1.method);
+    loadDocArray();
 
-      return true;
+    return false;
   }
 
   function loadDoc() {
@@ -179,11 +175,11 @@
       }
     };
     //xhttp.open("GET", "/txt/ajax_sample_array.txt");
-    /* Get */
+    /* Get
       xhttp.open("GET", "/v1/coffeeAjax");
       xhttp.send();
+    */
 
-    /*
     let _start_date = document.getElementById("start_date").value;
     let _end_date   = document.getElementById("end_date").value;
     let _name       = document.getElementById("name").value;
@@ -192,7 +188,7 @@
     xhttp.open("POST", "/v1/coffeeAjax");
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send("start_date="+_start_date+"&end_date="+_end_date+"&name="+_name+"&kind="+_kind);
-    */
+
   }
 </script>
 </body>
