@@ -17,7 +17,7 @@
           <!-- 등록기간 쿼리 -->
           <choose>
               <when test="strStart_date == null">
-                  AND reg_day >= date_add(now(), INTERVAL-7 day)
+                  AND reg_day >= date_add(now(), INTERVAL-300 day)
               </when>
               <otherwise>
                       AND reg_day >= DATE_FORMAT( #{strStart_date},'%Y%m%d')

@@ -2,6 +2,10 @@ package com.example.coffeedev.controller;
 
 import com.example.coffeedev.service.CoffeeV1Service;
 
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import lombok.extern.log4j.Log4j2;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -88,6 +92,57 @@ public class CoffeeV1 {
         strArr +="]}";
         */
         return "/v1/coffee_ajax";
+    }
+
+    /* Json Get */
+    @GetMapping("/coffeeAjax2")
+    @ResponseBody
+    public String doCoffeeAjax2() throws JsonProcessingException {
+
+        List<Map<String, String>> list = v1Service.doCoffeeList();
+
+       /* ObjectMapper 사용 */
+        ObjectMapper mapper = new ObjectMapper();
+        String jsonStr = mapper.writeValueAsString(list);
+        log.info("ObjectMapper : "+jsonStr);
+
+
+        JSONPObject json = new JSONPObject("JSON.parse", list);
+        jsonStr = mapper.writeValueAsString(json);
+        log.info("JSONPObject : "+jsonStr);
+
+        /* JSONArray, JSONObject */
+        String strList="";
+        JSONArray resArr = new JSONArray();
+
+
+        for(Map<String, String> map : list){
+            //log.info(map);
+            ObjectMapper mapper2 = new ObjectMapper((JsonFactory) map);
+            //log.info(mapper2);
+
+            //log.info(resArr);
+        }
+
+        log.info("resArr : "+jsonStr);
+
+        return jsonStr;
+    }
+
+
+    /* Json Get */
+    @GetMapping("/coffeeAjax3")
+    @ResponseBody
+    public String doCoffeeAjax3(){
+
+        List<Map<String, String>> list = v1Service.doCoffeeList();
+
+        Map<String, String> mapr = new HashMap<String,String>();
+        for(Map<String, String> map : list){
+            mapr = map;
+        }
+        return String.valueOf(mapr);
+        //return String.format(mapr.toString());
     }
 
     /* Json */
