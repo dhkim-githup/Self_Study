@@ -26,9 +26,9 @@
                 <label>등록기간</label><input type="date" id="start_date" name="start_date" min="2020-01-01" max="2023-12-31">
                 - <input type="date" id="end_date" name="end_date" min="2020-01-01" max="2023-12-31">
                 &nbsp;&nbsp;
-                <label>메뉴명</label> <input type="text" name="name">
+                <label>메뉴명</label> <input type="text" id="name" name="name">
                 &nbsp;&nbsp;
-                <label>종류</label> <select name="kind">
+                <label>종류</label> <select id="kind" name="kind">
                 <option value="ALL">전체</option>
                 <option value="1.커피">1.커피</option>
                 <option value="2.에이드">2.에이드</option>
@@ -136,8 +136,18 @@
                 document.getElementById("t_body").innerHTML = ajaxTD;
             }
         };
-        xhttp.open("GET", "/txt/ajax_array.txt");
+        /* Get
+        xhttp.open("GET", "/v1/coffeeAjaxPost");
         xhttp.send();
+        */
+        let _start_date = document.getElementById("start_date").value;
+        let _end_date   = document.getElementById("end_date").value;
+        let _name       = document.getElementById("name").value;
+        let _kind       = document.getElementById("kind").value;
+
+        xhttp.open("POST", "/v1/coffeeAjaxPost");
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send("start_date="+_start_date+"&end_date="+_end_date+"&name="+_name+"&kind="+_kind);
     }
 
 

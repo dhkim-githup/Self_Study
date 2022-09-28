@@ -143,6 +143,8 @@
     const xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
 
+      document.getElementById("t_body").innerHTML="<img src='/img/Spinner-loading.gif' alt='loading'>"
+
       /* 4: request finished and response is ready , 200: "OK" */
       if (this.readyState == 4 && this.status == 200) {
 
@@ -190,6 +192,9 @@
     xhttp.send("start_date="+_start_date+"&end_date="+_end_date+"&name="+_name+"&kind="+_kind);
 
   }
+
+ 
+
 </script>
 </body>
 </html>

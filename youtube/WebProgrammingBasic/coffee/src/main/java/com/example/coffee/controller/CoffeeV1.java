@@ -2,13 +2,12 @@ package com.example.coffee.controller;
 
 import com.example.coffee.service.CoffeeV1Service;
 import lombok.extern.log4j.Log4j2;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -34,6 +33,21 @@ public class CoffeeV1 {
         return "/v1/coffee";
     }
 
+    /* Ajax Get */
+    @GetMapping("/coffeeAjax")
+    @ResponseBody
+    public String doCoffeeAjax(Model model){
+
+        String strArr ="{\"coffee_list\":[";
+        strArr +="{\"coffee_id\":\"150\", \"name\":\"메뉴명\", \"kind\":\"종류\", \"price\":\"가격\", \"reg_day\": \"등록일\", \"mod_day\":\"수정일\"},";
+        strArr +="{\"coffee_id\":\"160\", \"name\":\"메뉴명\", \"kind\":\"종류\", \"price\":\"가격\", \"reg_day\": \"등록일\", \"mod_day\":\"수정일\"},";
+        strArr +="{\"coffee_id\":\"270\", \"name\":\"메뉴명\", \"kind\":\"종류\", \"price\":\"가격\", \"reg_day\": \"등록일\", \"mod_day\":\"수정일\"},";
+        strArr  +="{\"coffee_id\":\"180\", \"name\":\"메뉴명\", \"kind\":\"종류\", \"price\":\"가격\", \"reg_day\": \"등록일\", \"mod_day\":\"수정일\"}";
+        strArr +="]}";
+
+        return strArr;
+    }
+
     @PostMapping("/coffee")
     public String doCoffeePost(HttpServletRequest request, Model model){
 
@@ -50,6 +64,37 @@ public class CoffeeV1 {
         // System.out.println(list);
 
         return "/v1/coffee";
+    }
+
+    /* Ajax Post */
+    @PostMapping("/coffeeAjaxPost")
+    @ResponseBody
+    public String doCoffeePostAjax(HttpServletRequest request){
+
+        log.info("=== doCoffeePostAjax === ");
+        String strStart_date = request.getParameter("start_date");
+        String strEnd_date   = request.getParameter("end_date");
+        String strName       = request.getParameter("name");
+        String strKind       = request.getParameter("kind");
+        log.info(strKind);
+
+        /* 전체리스트 조회 - 오버로딩 */
+        List<Map<String, String>> list = v1Service.doCoffeeList(strStart_date,strEnd_date,strName,strKind);
+        log.info(list);
+
+        JSONArray jsonArray = new JSONArray();
+        for(Map<String, String> fMap : list){
+            JSONObject jsonObject = new JSONObject(fMap);
+            log.info(jsonObject);
+            jsonArray.put(jsonObject);
+        }
+
+        String strArr = "{\"coffee_list\":";
+            strArr += String.valueOf(jsonArray);
+            strArr += "}";
+
+        log.info("strArr : "+strArr);
+        return strArr;
     }
 
     /* 등록하기 Get */
