@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="/css/coffee.css">
 
 </head>
-<body>
+<body onload="loadDocArray()">
 
 
 <!-- 헤더 위치 -->
@@ -20,7 +20,7 @@
 
     <div id="search" style="height: 150px;padding: 15px; font-size: small">
         <h3>[ JavaScript (No jQuery) , No Vo, No Yaml ]</h3>
-        <form name="coffeeV1" autocomplete="on" action="/v1/coffee" method="post">
+        <form name="coffeeV1" autocomplete="on" action="/v1/coffee" method="post" onSubmit="return fSearch()">
             <fieldset>
                 <legend> [검색조건] </legend>
                 <label>등록기간</label><input type="date" id="start_date" name="start_date" min="2020-01-01" max="2023-12-31">
@@ -37,7 +37,7 @@
                 &nbsp;&nbsp;<input type="submit" value="조회" style="width: 80px;height: 30px;font-weight: bold; font-size: medium">
                 &nbsp;&nbsp;<button style="width: 80px;height: 30px;font-weight: bold; font-size: medium"><a href="/v1/insert">등록</a></button>
                 &nbsp;&nbsp;<button style="width: 80px;height: 30px;font-weight: bold; font-size: medium"><a href="/v1/deleteAll">삭제</a></button>
-                  <a href="javascript:loadDocArray()">ajax</a>
+                  <!-- <a href="javascript:loadDocArray()">ajax</a> -->
             </fieldset>
         </form>
     </div>
@@ -109,9 +109,17 @@
     }
      */
 
+    function fSearch(){
+        console.log("fSearch");
+        loadDocArray();
+        return false;
+    }
+
     function loadDocArray() {
         const xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
+            document.getElementById("t_body").innerHTML = "<img src='/img/Spinner-loading.gif' alt='Loading'>";
+
             if (this.readyState == 4 && this.status == 200) {
 
                 console.log(this.responseText);
