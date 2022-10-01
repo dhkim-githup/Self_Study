@@ -38,7 +38,8 @@
         &nbsp;&nbsp;<input type="submit" value="조회" style="width: 80px;height: 30px;font-weight: bold; font-size: medium">
         &nbsp;&nbsp;<button style="width: 80px;height: 30px;font-weight: bold; font-size: medium"><a href="/v1/insert">등록</a></button>
         &nbsp;&nbsp;<button style="width: 80px;height: 30px;font-weight: bold; font-size: medium"><a href="/v1/deleteAll">삭제</a></button>
-          <a href="javascript:loadDocArray()">test</a>
+          <!-- <a href="javascript:loadDocArray()">test</a> -->
+          <label>CheckBox : </label><span id="idCheckBox"></span>
       </fieldset>
 
     </form>
@@ -105,6 +106,8 @@
        _parent : 부모창에 결과를 보여준다. (부모창 없으면 = _self)
      */
     loadDocArray();
+    console.log("109 :",document.getElementsByName("coffee_id").length);
+    document.getElementById("idCheckBox").innerHTML= String(document.getElementsByName("coffee_id").length);
 
     return false;
   }
@@ -139,15 +142,16 @@
    * https://www.w3schools.com/js/js_ajax_http.asp
    */
   function loadDocArray() {
-    console.log("function : loadDocArray ")
+    console.log("function : loadDocArray 1 ")
     const xhttp = new XMLHttpRequest();
+    console.log("function : loadDocArray 2 ")
     xhttp.onreadystatechange = function() {
-
-      document.getElementById("t_body").innerHTML="<img src='/img/Spinner-loading.gif' alt='loading'>"
-
+      console.log("function : loadDocArray 3 ")
+      //document.getElementById("t_body").innerHTML="<img src='/img/Spinner-loading.gif' alt='loading'>"
+      console.log("function : loadDocArray 4 ")
       /* 4: request finished and response is ready , 200: "OK" */
       if (this.readyState == 4 && this.status == 200) {
-
+        console.log("function : loadDocArray 5 ")
         console.log(this.responseText); // 데이타 확인
 
         const myAjax = JSON.parse(this.responseText); // Parsing
@@ -158,7 +162,7 @@
         document.getElementById("t_body").innerHTML="";
         //for(let i=0; i<myAjax.coffee_list.length; i++){
         for(let i in myAjax.coffee_list) {
-          console.log("i="+i);
+          //console.log("i="+i);
           let ajaxTD = "";
           ajaxTD += '<tr id="tr_loop" className="tr_td">';
           ajaxTD += '<td><input type="checkbox" name="coffee_id" value="ID"></td>';
@@ -175,6 +179,7 @@
           document.getElementById("t_body").innerHTML += ajaxTD;
         }
       }
+      //document.getElementById("idCheckBox").innerHTML= String(document.getElementsByName("coffee_id").length);
     };
     //xhttp.open("GET", "/txt/ajax_sample_array.txt");
     /* Get

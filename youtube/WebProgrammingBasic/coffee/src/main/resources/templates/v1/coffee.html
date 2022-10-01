@@ -38,6 +38,7 @@
                 &nbsp;&nbsp;<button style="width: 80px;height: 30px;font-weight: bold; font-size: medium"><a href="/v1/insert">등록</a></button>
                 &nbsp;&nbsp;<button style="width: 80px;height: 30px;font-weight: bold; font-size: medium"><a href="/v1/deleteAll">삭제</a></button>
                   <!-- <a href="javascript:loadDocArray()">ajax</a> -->
+                 <label>CheckBox : </label><span id="idCheckBox"></span>
             </fieldset>
         </form>
     </div>
@@ -111,17 +112,25 @@
 
     function fSearch(){
         console.log("fSearch");
-        loadDocArray();
+        loadDocArray(fChkLength);
+        console.log("116:",document.getElementsByName("coffee_id").length);
+
         return false;
     }
 
-    function loadDocArray() {
+    function fChkLength(){
+        document.getElementById("idCheckBox").innerHTML= String(document.getElementsByName("coffee_id").length);
+    }
+
+    function loadDocArray(myCallBack) {
         const xhttp = new XMLHttpRequest();
+        console.log('loadDocArray1');
         xhttp.onreadystatechange = function() {
-            document.getElementById("t_body").innerHTML = "<img src='/img/Spinner-loading.gif' alt='Loading'>";
-
+            console.log('loadDocArray2');
+            //document.getElementById("t_body").innerHTML = "<img src='/img/Spinner-loading.gif' alt='Loading'>";
+            console.log('loadDocArray3');
             if (this.readyState == 4 && this.status == 200) {
-
+                console.log('loadDocArray4');
                 console.log(this.responseText);
                 const myAjax = JSON.parse(this.responseText)
                 console.log(myAjax);
@@ -142,6 +151,7 @@
                     ajaxTD += '</tr>';
                 }
                 document.getElementById("t_body").innerHTML = ajaxTD;
+                myCallBack();
             }
         };
         /* Get
@@ -153,7 +163,7 @@
         let _name       = document.getElementById("name").value;
         let _kind       = document.getElementById("kind").value;
 
-        xhttp.open("POST", "/v1/coffeeAjaxPost");
+        xhttp.open("POST", "/v1/coffeeAjaxPost", true);
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xhttp.send("start_date="+_start_date+"&end_date="+_end_date+"&name="+_name+"&kind="+_kind);
     }
