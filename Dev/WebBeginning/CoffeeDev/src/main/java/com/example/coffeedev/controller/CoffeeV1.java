@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -97,7 +98,7 @@ public class CoffeeV1 {
     /* Json Get */
     @GetMapping("/coffeeAjax2")
     @ResponseBody
-    public String doCoffeeAjax2() throws JsonProcessingException {
+    public JSONPObject doCoffeeAjax2() throws JsonProcessingException {
 
         List<Map<String, String>> list = v1Service.doCoffeeList();
 
@@ -115,7 +116,7 @@ public class CoffeeV1 {
         String strList="";
         JSONArray resArr = new JSONArray();
 
-
+        /*
         for(Map<String, String> map : list){
             //log.info(map);
             ObjectMapper mapper2 = new ObjectMapper((JsonFactory) map);
@@ -124,25 +125,64 @@ public class CoffeeV1 {
             //log.info(resArr);
         }
 
+         */
+
         log.info("resArr : "+jsonStr);
 
-        return jsonStr;
+        return json;
     }
 
 
-    /* Json Get */
+    /* Json Map */
     @GetMapping("/coffeeAjax3")
     @ResponseBody
+    //public Map<String, Object> doCoffeeAjax3(){
     public String doCoffeeAjax3(){
 
-        List<Map<String, String>> list = v1Service.doCoffeeList();
+        Map<String, Object> map = new HashMap<>();
+        map.put("Name", "Hong");
+        map.put("Age",50);
+        System.out.println(map);
 
-        Map<String, String> mapr = new HashMap<String,String>();
-        for(Map<String, String> map : list){
-            mapr = map;
-        }
-        return String.valueOf(mapr);
-        //return String.format(mapr.toString());
+        return String.valueOf(map);
+    }
+
+    /* Json List */
+    @GetMapping("/coffeeAjax4")
+    @ResponseBody
+    public List<Map<String,Object>> doCoffeeAjax4(){
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("Name", "Hong");
+        map.put("Age",50);
+        System.out.println(map);
+
+        List<Map<String,Object>> list = new ArrayList<>();
+        list.add(map);
+        System.out.println(list);
+        return list;
+    }
+
+    /* Json JSONObject vs JSONPObject */
+    @GetMapping("/coffeeAjax5")
+    @ResponseBody
+    public JSONPObject doCoffeeAjax5(){
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("Name", "Hong");
+        map.put("Age",50);
+        System.out.println(map);
+
+        JSONObject resObj = new JSONObject(map);
+
+        List<Map<String,Object>> list = new ArrayList<>();
+        list.add(map);
+        System.out.println(list);
+
+        ObjectMapper mapper = new ObjectMapper();
+        JSONPObject json = new JSONPObject("", list);
+
+        return json;
     }
 
     /* Json */

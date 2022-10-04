@@ -1,4 +1,4 @@
-package com.example.guide1;
+package com.example.guide1.Testing_the_Web_Layer;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,8 +10,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 public class HomeController {
 
     @RequestMapping("/")
-    public @ResponseBody
-    String greeting() {
+    public @ResponseBody String greeting() {
         return "Hello, World";
     }
 

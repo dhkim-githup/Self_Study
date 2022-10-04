@@ -29,7 +29,8 @@ public class _ControllerModel {
             log.info("Name:"+ person.getName());
             log.info("Age:"+ person.getAge());
 
-        return "get";
+        String strTemplate = "request_model | name : %s , age : %s ";
+        return String.format(strTemplate, person.getName(), person.getAge());
     }
 
     /**
@@ -38,11 +39,11 @@ public class _ControllerModel {
      * @return No
      */
     @PostMapping("/post")
-    public String doPost(@ModelAttribute Person person){
+    public String doPost(Person person){
 
-        log.info("Name:"+ person.getName());
-        log.info("Age:"+ person.getAge());
-        return "post";
+        String strTemplate = "request_model | name : %s , age : %s ";
+        return String.format(strTemplate, person.getName(), person.getAge());
+
     }
 
     /**
@@ -59,7 +60,9 @@ public class _ControllerModel {
         log.info("Name:"+ person.getName());
         log.info("Age:"+ person.getAge());
 
-        return "json";
+        String strTemplate = "request_model | name : %s , age : %s ";
+        return String.format(strTemplate, person.getName(), person.getAge());
+
     }
 
 

@@ -1,6 +1,7 @@
 package com.example.sample.aboutRequest.request;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import lombok.extern.log4j.Log4j2;
 import org.json.JSONObject;
 import org.springframework.util.StreamUtils;
@@ -35,6 +36,7 @@ public class _Controller {
     @GetMapping("/get")
     public String doGet(HttpServletRequest request) throws IOException {
 
+        /*
         // 파라메터를 배열 객체로 받는다.
         Enumeration e = request.getParameterNames();
 
@@ -44,8 +46,13 @@ public class _Controller {
             strName = (String) e.nextElement();
             log.info(strName+":"+ request.getParameter(strName));
         }
+        */
+        String strTemplate = "request | name : %s , age : %s ";
 
-        return "get";
+        String strName = request.getParameter("name");
+        String strAge  = request.getParameter("age");
+
+        return String.format(strTemplate, strName, strAge);
     }
 
     /**
@@ -55,7 +62,7 @@ public class _Controller {
      */
     @PostMapping("/post")
     public String doPost(HttpServletRequest request) throws IOException {
-
+        /*
         // 파라메터를 배열 객체로 받는다.
         Enumeration e = request.getParameterNames();
 
@@ -65,8 +72,15 @@ public class _Controller {
             strName = (String) e.nextElement();
             log.info(strName+":"+ request.getParameter(strName));
         }
+        */
 
-        return "post";
+        String strTemplate = "request | name : %s , age : %s ";
+
+        String strName = request.getParameter("name");
+        String strAge  = request.getParameter("age");
+
+        return String.format(strTemplate, strName, strAge);
+
     }
 
     /**
@@ -81,14 +95,14 @@ public class _Controller {
         /* https://docs.oracle.com/javaee/7/api/javax/servlet/ServletInputStream.html */
         ServletInputStream inputStream = request.getInputStream();
         String messageBody = StreamUtils.copyToString(inputStream, StandardCharsets.UTF_8);
-        log.info(messageBody);
+        log.info("messageBody:"+messageBody);
 
         JSONObject jObject = new JSONObject(messageBody);
 
-        log.info("name:"+ jObject.getString("name"));
-        log.info("age:"+ jObject.getInt("age"));
+        log.info("JSONObject:name:"+ jObject.getString("name"));
+        log.info("JSONObject:age:"+ jObject.getInt("age"));
 
-        return "json";
+        return String.valueOf(jObject);
     }
 
 

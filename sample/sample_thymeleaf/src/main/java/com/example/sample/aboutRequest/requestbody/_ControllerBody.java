@@ -24,34 +24,32 @@ public class _ControllerBody {
      * @return No
      */
     @GetMapping("/get")
-    public String doGet(@RequestBody Person person){
+    public String doGet(@RequestBody String strBody){
 
-            log.info("Name:"+ person.getName());
-            log.info("Age:"+ person.getAge());
-
-        return "get";
+        log.info("strBody:"+ strBody);
+        return strBody;
     }
+
 
     /**
      * post 방식 파라메터 확인
      * @param
      * @return No
      */
-    @PostMapping("/post")
-    public String doPost(@RequestBody Person person){
 
-        log.info("Name:"+ person.getName());
-        log.info("Age:"+ person.getAge());
-        return "post";
+    @PostMapping("/post")
+    public String doPost(@RequestBody String strBody){
+            log.info("strBody:"+ strBody);
+        return strBody;
     }
 
     /**
      * json 방식 파라메터 확인
-     * @param
+     * @param person
      * @return No
      * @link https://docs.oracle.com/javaee/7/api/javax/servlet/ServletInputStream.html
      */
-    /*
+
     @PostMapping("/json")
     public String doJson(@RequestBody Person person){
 
@@ -59,25 +57,34 @@ public class _ControllerBody {
         log.info("Name:"+ person.getName());
         log.info("Age:"+ person.getAge());
 
-        return "json";
+        String strTemplate = "name : %s , age : %s ";
+        return String.format(strTemplate, person.getName(), person.getAge());
     }
-    */
 
-    @PostMapping("/json")
-    public String doJson(@RequestBody Map<String, Object> map){
+    /**
+     * json 방식 파라메터 확인
+     * @param  map
+     * @return No
+     * @link https://docs.oracle.com/javaee/7/api/javax/servlet/ServletInputStream.html
+     */
+
+
+    @PostMapping("/json2")
+    public String doJson2(@RequestBody Map<String, Object> map){
 
         log.info(map);
 
+        /*
         map.forEach((k, v)
                 -> log.info("name:"+k+", Value:"+v)
         );
+        */
 
+        String strTemplate = "name : %s , age : %s ";
+        return String.format(strTemplate, map.get("name"), map.get("age"));
 
-        //log.info("Name:"+ person.getName());
-        //log.info("Age:"+ person.getAge());
-
-        return "json";
     }
+
 
 
 }

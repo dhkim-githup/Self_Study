@@ -15,7 +15,7 @@ import java.util.Map;
 /**
  * request 객체가 파라메터를 받는 방법 설명
  * @author IT늦공
- * @since 2022-09 *
+ * @since 2022-10 *
  */
 
 @RestController
@@ -36,12 +36,14 @@ public class _ControllerParam {
             log.info("Name:"+ strName);
             log.info("Age:"+ strAge);
 
-        return "get";
+        String strTemplate = "request_param | name : %s , age : %s ";
+
+        return String.format(strTemplate, strName, strAge);
     }
 
     /**
      * post 방식 파라메터 확인, map 처리
-     * @param request
+     * @param map
      * @return No
      */
     @PostMapping("/post")
@@ -50,12 +52,15 @@ public class _ControllerParam {
         log.info(map);
         log.info("Name:"+ map.get("name"));
         log.info("Age:"+ map.get("age"));
-        return "post";
+
+        String strTemplate = "request_param | name : %s , age : %s ";
+
+        return String.format(strTemplate, map.get("name"), map.get("age"));
     }
 
     /**
      * json 방식 파라메터 확인
-     * @param request
+     * @param map
      * @return No
      * @link https://docs.oracle.com/javaee/7/api/javax/servlet/ServletInputStream.html
      */
@@ -66,7 +71,8 @@ public class _ControllerParam {
         log.info("Name:"+ map.get("name"));
         log.info("Age:"+ map.get("age"));
 
-        return "json";
+        String strTemplate = "name : %s , age : %s ";
+        return String.format(strTemplate, map.get("name"), map.get("age"));
     }
 
 
