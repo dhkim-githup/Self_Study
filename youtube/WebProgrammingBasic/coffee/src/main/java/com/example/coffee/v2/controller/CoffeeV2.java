@@ -1,6 +1,6 @@
-package com.example.coffee.controller;
+package com.example.coffee.v2.controller;
 
-import com.example.coffee.service.CoffeeV1Service;
+import com.example.coffee.v2.service.CoffeeV2Service;
 import lombok.extern.log4j.Log4j2;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -14,22 +14,22 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/v1")
+@RequestMapping("/v2")
 @Log4j2
-public class CoffeeV1 {
+public class CoffeeV2 {
 
     @Autowired
-    CoffeeV1Service v1Service;
+    CoffeeV2Service v2Service;
 
     @GetMapping("/coffee")
     public String doCoffee(Model model){
 
         /* 전체리스트 조회 */
-       //List<Map<String, String>> list = v1Service.doCoffeeList();
+       //List<Map<String, String>> list = v2Service.doCoffeeList();
        //model.addAttribute("list", list);
        // System.out.println(list);
 
-        return "/v1/coffee";
+        return "/v2/coffee";
     }
 
     /* Ajax Get */
@@ -57,12 +57,12 @@ public class CoffeeV1 {
         log.info(strKind);
 
         /* 전체리스트 조회 - 오버로딩 */
-        List<Map<String, String>> list = v1Service.doCoffeeList(strStart_date,strEnd_date,strName,strKind);
+        List<Map<String, String>> list = v2Service.doCoffeeList(strStart_date,strEnd_date,strName,strKind);
 
         model.addAttribute("list", list);
         // System.out.println(list);
 
-        return "/v1/coffee";
+        return "/v2/coffee";
     }
 
     /* Ajax Post */
@@ -78,7 +78,7 @@ public class CoffeeV1 {
         log.info(strKind);
 
         /* 전체리스트 조회 - 오버로딩 */
-        List<Map<String, String>> list = v1Service.doCoffeeList(strStart_date,strEnd_date,strName,strKind);
+        List<Map<String, String>> list = v2Service.doCoffeeList(strStart_date,strEnd_date,strName,strKind);
         log.info(list);
 
         JSONArray jsonArray = new JSONArray();
@@ -99,7 +99,7 @@ public class CoffeeV1 {
     /* 등록하기 Get */
     @GetMapping("/insert")
     public String doInsert(){
-        return "/v1/coffee_Ins";
+        return "/v2/coffee_Ins";
     }
 
     /* 등록하기 Post , HttpServletRequest 사용 */
@@ -109,19 +109,19 @@ public class CoffeeV1 {
                                @RequestParam(value="price") String price,
                                Model model){
         log.info(name + kind + price);
-        int intI = v1Service.doInsert(name, kind, price);
+        int intI = v2Service.doInsert(name, kind, price);
 
-        return "redirect:/v1/coffee";
+        return "redirect:/v2/coffee";
     }
 
     /* 수정하기 Get , @RequestParam 사용 */
     @GetMapping("/update")
     public String doUpdate(@RequestParam(value="coffee_id") String strCoffee_id, Model model){
 
-        Map<String,String>  map = v1Service.doListOne(strCoffee_id);
+        Map<String,String>  map = v2Service.doListOne(strCoffee_id);
         model.addAttribute("map", map);
 
-        return "/v1/coffee_Up";
+        return "/v2/coffee_Up";
     }
 
     /* 수정하기 Post , @RequestParam 사용 */
@@ -133,18 +133,18 @@ public class CoffeeV1 {
             @RequestParam(value="price") String strPrice
     ){
 
-        int intI  = v1Service.doUpdate(strCoffee_id, strName, strKind, strPrice);
+        int intI  = v2Service.doUpdate(strCoffee_id, strName, strKind, strPrice);
 
-        return "redirect:/v1/coffee";
+        return "redirect:/v2/coffee";
     }
 
     /* 삭제하기 1 row , @RequestParam 사용  */
     @GetMapping("/delete")
     public String doDelete(@RequestParam(value="coffee_id") String strCoffee_id){
 
-        int intI = v1Service.doDelete(strCoffee_id);
+        int intI = v2Service.doDelete(strCoffee_id);
 
-        return "redirect:/v1/coffee";
+        return "redirect:/v2/coffee";
     }
 
 }

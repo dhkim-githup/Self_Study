@@ -1,4 +1,4 @@
-package com.example.coffee.dao;
+package com.example.coffee.v2.dao;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 @Mapper
-public interface CoffeeV1Dao {
+public interface CoffeeV2Dao {
 
     /* 전체리스트 조회 */
     List<Map<String, String>> doCoffeeList();
