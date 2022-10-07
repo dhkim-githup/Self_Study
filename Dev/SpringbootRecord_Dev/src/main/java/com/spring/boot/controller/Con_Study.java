@@ -2,6 +2,7 @@ package com.spring.boot.controller;
 
 import com.spring.boot.service.StudyService;
 import com.spring.boot.vo.Vo_study;
+import lombok.extern.log4j.Log4j2;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,7 +15,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/study")
-@Slf4j
+@Log4j2
 public class Con_Study {
 
     @Autowired

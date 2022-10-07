@@ -1,4 +1,4 @@
-package com.example.coffeedev.controller;
+package com.example.coffeedev.comm;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;

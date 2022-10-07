@@ -9,7 +9,7 @@
   <link rel="stylesheet" type="text/css" href="/css/coffee.css">
 
 </head>
-<body onload="loadDocArray()">
+<body onload="loadDocArray(fChkLength)">
 
 <!-- 헤더 위치 -->
 <th:block th:include="~{/comm/header}"></th:block>
@@ -105,11 +105,15 @@
        _top : 브라우저 최상단 창에 결과를 보여준다. (상위 창이 없으면 = _self)
        _parent : 부모창에 결과를 보여준다. (부모창 없으면 = _self)
      */
-    loadDocArray();
+    loadDocArray(fChkLength);
     console.log("109 :",document.getElementsByName("coffee_id").length);
-    document.getElementById("idCheckBox").innerHTML= String(document.getElementsByName("coffee_id").length);
+
 
     return false;
+  }
+
+  function fChkLength(){
+    document.getElementById("idCheckBox").innerHTML= String(document.getElementsByName("coffee_id").length);
   }
 
   function loadDoc() {
@@ -141,7 +145,7 @@
    * 배열값 처리하기
    * https://www.w3schools.com/js/js_ajax_http.asp
    */
-  function loadDocArray() {
+  function loadDocArray(myCallBack) {
     console.log("function : loadDocArray 1 ")
     const xhttp = new XMLHttpRequest();
     console.log("function : loadDocArray 2 ")
@@ -177,6 +181,7 @@
           ajaxTD += '</tr>';
 
           document.getElementById("t_body").innerHTML += ajaxTD;
+          myCallBack();
         }
       }
       //document.getElementById("idCheckBox").innerHTML= String(document.getElementsByName("coffee_id").length);

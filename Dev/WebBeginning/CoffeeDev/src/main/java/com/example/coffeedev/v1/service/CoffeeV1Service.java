@@ -1,6 +1,6 @@
-package com.example.coffeedev.service;
+package com.example.coffeedev.v1.service;
 
-import com.example.coffeedev.dao.CoffeeV1Dao;
+import com.example.coffeedev.v1.dao.CoffeeV1Dao;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

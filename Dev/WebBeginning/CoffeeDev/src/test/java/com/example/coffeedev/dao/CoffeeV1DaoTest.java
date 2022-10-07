@@ -1,13 +1,12 @@
 package com.example.coffeedev.dao;
 
+import com.example.coffeedev.v1.dao.CoffeeV1Dao;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 import java.util.Map;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class CoffeeV1DaoTest {
