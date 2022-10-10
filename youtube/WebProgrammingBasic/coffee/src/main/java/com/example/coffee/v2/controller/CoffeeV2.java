@@ -1,6 +1,7 @@
 package com.example.coffee.v2.controller;
 
 import com.example.coffee.v2.service.CoffeeV2Service;
+import com.example.coffee.v2.vo.VoCoffeeV2;
 import lombok.extern.log4j.Log4j2;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -57,7 +58,7 @@ public class CoffeeV2 {
         log.info(strKind);
 
         /* 전체리스트 조회 - 오버로딩 */
-        List<Map<String, String>> list = v2Service.doCoffeeList(strStart_date,strEnd_date,strName,strKind);
+        List<VoCoffeeV2> list = v2Service.doCoffeeList(strStart_date,strEnd_date,strName,strKind);
 
         model.addAttribute("list", list);
         // System.out.println(list);
@@ -78,13 +79,13 @@ public class CoffeeV2 {
         log.info(strKind);
 
         /* 전체리스트 조회 - 오버로딩 */
-        List<Map<String, String>> list = v2Service.doCoffeeList(strStart_date,strEnd_date,strName,strKind);
+        List<VoCoffeeV2> list = v2Service.doCoffeeList(strStart_date,strEnd_date,strName,strKind);
         log.info(list);
 
         JSONArray jsonArray = new JSONArray();
-        for(Map<String, String> fMap : list){
+        for(VoCoffeeV2 fMap : list){
             JSONObject jsonObject = new JSONObject(fMap);
-            log.info(jsonObject);
+            //log.info(jsonObject);
             jsonArray.put(jsonObject);
         }
 
@@ -104,12 +105,10 @@ public class CoffeeV2 {
 
     /* 등록하기 Post , HttpServletRequest 사용 */
     @PostMapping("/insert")
-    public String doInsertPost(@RequestParam(value="name") String name,
-                               @RequestParam(value="kind") String kind,
-                               @RequestParam(value="price") String price,
-                               Model model){
-        log.info(name + kind + price);
-        int intI = v2Service.doInsert(name, kind, price);
+    public String doInsertPost(@ModelAttribute VoCoffeeV2 voCoffeeV2
+                               ){
+        log.info("voCoffeeV2 :"+voCoffeeV2);
+        int intI = v2Service.doInsert(voCoffeeV2);
 
         return "redirect:/v2/coffee";
     }
@@ -126,14 +125,10 @@ public class CoffeeV2 {
 
     /* 수정하기 Post , @RequestParam 사용 */
     @PostMapping("/update")
-    public String doUpdatePost(
-            @RequestParam(value="coffee_id") String strCoffee_id,
-            @RequestParam(value="name") String strName,
-            @RequestParam(value="kind") String strKind,
-            @RequestParam(value="price") String strPrice
-    ){
+    public String doUpdatePost(VoCoffeeV2 voCoffeeV2 ){
 
-        int intI  = v2Service.doUpdate(strCoffee_id, strName, strKind, strPrice);
+        log.info("voCoffeeV2"+voCoffeeV2);
+        int intI  = v2Service.doUpdate(voCoffeeV2);
 
         return "redirect:/v2/coffee";
     }
