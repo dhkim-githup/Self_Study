@@ -17,38 +17,36 @@
 
 <div id="main" style="font-size:large; text-align: center; ">
 
-  <div id="search" style="height: 150px;padding: 15px; font-size: small; width: 90%; margin-left: auto;  margin-right: auto;">
-    <h3>[ JavaScript (No jQuery) , No Vo, No Yaml ]</h3>
+  <h5>[ JavaScript (No jQuery) , No Vo, No Yaml ] <span id="OpenHide">[닫기/열기]</span></h5>
+  <div id="search" style="height: 70px; font-size: small; width: 90%; margin-left: auto;  margin-right: auto;">
+
     <!--  <form name="coffeeV2" autocomplete="on" action="/v2/coffee" method="post">  -->
-    <form name="FormcoffeeV2" id="IdFormcoffeeV2" autocomplete="on" action="/v2/coffee" method="post" onSubmit="return fSearch()">
-      <fieldset>
-        <legend> [검색조건] </legend>
-        <label>등록기간</label><input type="date" id="start_date" name="start_date" min="2020-01-01" max="2023-12-31">
-                           - <input type="date" id="end_date" name="end_date" min="2020-01-01" max="2023-12-31">
-        &nbsp;&nbsp;
-        <label>메뉴명</label> <input type="text" id="name" name="name">
-        &nbsp;&nbsp;
-        <label>종류</label> <select id="kind" name="kind">
-                            <option value="ALL">전체</option>
-                            <option value="1.커피">1.커피</option>
-                            <option value="2.에이드">2.에이드</option>
-                            <option value="3.스무디">3.스무디</option>
-                          </select>
+      <form name="FormcoffeeV2" id="IdFormcoffeeV2" autocomplete="on" action="/v2/coffee" method="post" onSubmit="return fSearch()">
+        <fieldset>
+          <legend> [검색조건] </legend>
+          <label>등록기간</label><input type="date" id="start_date" name="start_date" min="2020-01-01" max="2023-12-31">
+                             - <input type="date" id="end_date" name="end_date" min="2020-01-01" max="2023-12-31">
+          &nbsp;&nbsp;
+          <label>메뉴명</label> <input type="text" id="name" name="name">
+          &nbsp;&nbsp;
+          <label>종류</label> <select id="kind" name="kind">
+                              <option value="ALL">전체</option>
+                              <option value="1.커피">1.커피</option>
+                              <option value="2.에이드">2.에이드</option>
+                              <option value="3.스무디">3.스무디</option>
+                            </select>
 
-        &nbsp;&nbsp;<input type="submit" value="조회" style="width: 80px;height: 30px;font-weight: bold; font-size: medium">
-        &nbsp;&nbsp;<button style="width: 80px;height: 30px;font-weight: bold; font-size: medium"><a href="/v2/insert">등록</a></button>
-        &nbsp;&nbsp;<button style="width: 80px;height: 30px;font-weight: bold; font-size: medium"><a href="/v2/deleteAll">삭제</a></button>
-          <!-- <a href="javascript:loadDocArray()">test</a> -->
-          <label>CheckBox : </label><span id="idCheckBox"></span>
-      </fieldset>
-
-    </form>
-
-
+          &nbsp;&nbsp;<input type="submit" value="조회" style="width: 80px;height: 30px;font-weight: bold; font-size: medium">
+          &nbsp;&nbsp;<button style="width: 80px;height: 30px;font-weight: bold; font-size: medium"><a href="/v2/insert">등록</a></button>
+          &nbsp;&nbsp;<button style="width: 80px;height: 30px;font-weight: bold; font-size: medium"><a href="/v2/deleteAll">삭제</a></button>
+            <!-- <a href="javascript:loadDocArray()">test</a> -->
+            <label>CheckBox : </label><span id="idCheckBox"></span>
+        </fieldset>
+      </form>
   </div>
 
 
-  <table class="table">
+  <table class="table" id="IdMainTable">
     <thead>
     <tr class="tr_td">
       <th>Chk</th>
@@ -165,7 +163,7 @@
            console.log("code = "+request.status
                       +"message = "+ request.responseText
                       +"error   = "+ error);
-           $("#t_body").html("Ajax 실행 중 에러발생");
+           alert("데이타 조회중 오류가 발생했습니다.");
       },
       complete : function (){  // 성공/실패와 상관없이 실행 (java finally)
            console.log("Finish")
@@ -174,6 +172,17 @@
     });
 
   }
+
+  // jQuery Area
+  $(document).ready(function(){
+
+    $("#OpenHide").click(function(){
+      // $("#IdDivForm").slideToggle();
+      $("#search").slideToggle();
+    });
+
+
+  });
 
  
 

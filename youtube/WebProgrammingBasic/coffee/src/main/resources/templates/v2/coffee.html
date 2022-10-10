@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="/css/coffee.css">
 
 </head>
-<body onload="loadDocArray()">
+<body onload="loadDocArrayAjax(fChkLength)">
 
 
 <!-- 헤더 위치 -->
@@ -18,9 +18,10 @@
 
 <div id="main" style="font-size:large; text-align: center; ">
 
-    <div id="search" style="height: 150px;padding: 15px; font-size: small">
-        <h3>[ JavaScript (js -> jQuery) , Vo, Yaml ]</h3>
-        <form name="coffeeV2" autocomplete="on" action="/v2/coffee" method="post" onSubmit="return fSearch()">
+    <h5>[ JavaScript (Vanila Js -> jQuery) , Vo, Yaml ] <span id="OpenClose">닫기/열기</span></h5>
+    <div id="search" style="height: 80px;padding: 5px; font-size: small">
+
+        <form name="coffeeV2" id="IdFormCoffeeV2" autocomplete="on" action="/v2/coffee" method="post" onSubmit="return fSearch()">
             <fieldset>
                 <legend> [검색조건] </legend>
                 <label>등록기간</label><input type="date" id="start_date" name="start_date" min="2020-01-01" max="2023-12-31">
@@ -84,14 +85,16 @@
 <th:block th:replace="~{/comm/footer}"></th:block>
 
 
+<script src="/js/jquery-3.6.1.js"></script>
 <script>
     /* 현재 시간 날짜에 적용시키기 */
     //document.getElementById("start_date").value=new Date().toISOString().slice(0,10);
     //document.getElementById("end_date").value=new Date().toISOString().slice(0,10);
     const now = new Date();	// 현재 날짜 및 시간
     const time7 = new Date(now.setDate(now.getDate() - 200));	// 1주일전
-    document.getElementById("start_date").value= time7.toISOString().slice(0,10);
-    document.getElementById("end_date").value= new Date().toISOString().slice(0,10);
+
+    $("#start_date").val(time7.toISOString().slice(0,10));
+    $("#end_date").val(new Date().toISOString().slice(0,10));
 
     /**
      * Ajax 활용
@@ -112,29 +115,45 @@
 
     function fSearch(){
         console.log("fSearch");
-        loadDocArray(fChkLength);
+        loadDocArrayAjax(fChkLength);
         console.log("116:",document.getElementsByName("coffee_id").length);
 
         return false;
     }
 
     function fChkLength(){
-        document.getElementById("idCheckBox").innerHTML= String(document.getElementsByName("coffee_id").length);
+       $("#idCheckBox").text(String(document.getElementsByName("coffee_id").length));
     }
 
-    function loadDocArray(myCallBack) {
-        const xhttp = new XMLHttpRequest();
-        console.log('loadDocArray1');
-        xhttp.onreadystatechange = function() {
-            console.log('loadDocArray2');
-            //document.getElementById("t_body").innerHTML = "<img src='/img/Spinner-loading.gif' alt='Loading'>";
-            console.log('loadDocArray3');
-            if (this.readyState == 4 && this.status == 200) {
-                console.log('loadDocArray4');
-                console.log(this.responseText);
-                const myAjax = JSON.parse(this.responseText)
-                console.log(myAjax);
-                console.log(myAjax.coffee_list.length);
+    /**
+     *배열값 처리하기
+     * https://www.w3schools.com/js/js_ajax_http.asp
+     */
+    function loadDocArrayAjax(myCallBack) {
+
+        /*
+        let _start_date = document.getElementById("start_date").value;
+        let _end_date   = document.getElementById("end_date").value;
+        let _name       = document.getElementById("name").value;
+        let _kind       = document.getElementById("kind").value;
+        let _data = "start_date="+_start_date+"&end_date="+_end_date+"&name="+_name+"&kind="+_kind;
+        */
+        let _data = $("#IdFormCoffeeV2").serialize();
+
+       // console.log("_data", _data);
+       // console.log("_data2", _data2);
+
+
+        $.ajax({
+            url : "/v2/coffeeAjaxPost", // 파일경로
+            method : "POST", // get, post
+            contentType : "application/x-www-form-urlencoded",
+            data : _data,  // 서버에 전달할 Parameter
+            dataType: "json", // 서버에서 전달받을 Data 형식
+            async: false,  // true , false
+            success : function(myAjax) { // 성공시 실행 (java try) , JSON.parse 자동적용 RespData
+                console.log(myAjax)
+
                 /* JSON 데이타 넣기 */
                 let ajaxTD = "";
                 for(let i in myAjax.coffee_list) {
@@ -146,28 +165,33 @@
                     ajaxTD += '<td>' + myAjax.coffee_list[i].price + '</td>';
                     ajaxTD += '<td>' + myAjax.coffee_list[i].reg_day + '</td>';
                     ajaxTD += '<td>' + myAjax.coffee_list[i].mod_day + '</td>';
-                    ajaxTD += '<td><a href="/v2/update?coffee_id=' + myAjax.coffee_list[i].coffee_id + '">수정</a></td>';
-                    ajaxTD += '<td><a href="/v2/delete?coffee_id=' + myAjax.coffee_list[i].coffee_id + '">삭제</a></td>';
+                    ajaxTD += '<td><a href="/v1/update?coffee_id=' + myAjax.coffee_list[i].coffee_id + '">수정</a></td>';
+                    ajaxTD += '<td><a href="/v1/delete?coffee_id=' + myAjax.coffee_list[i].coffee_id + '">삭제</a></td>';
                     ajaxTD += '</tr>';
                 }
-                document.getElementById("t_body").innerHTML = ajaxTD;
+                $("#t_body").html(ajaxTD);
                 myCallBack();
+            },
+            error:function(request,status,error){  // 오류시 실행 (java catch)
+                console.log("code = "+request.status
+                    +"message = "+ request.responseText
+                    +"error   = "+ error);
+                alert("데이타 조회중 오류가 발생했습니다.");
+            },
+            complete : function (){  // 성공/실패와 상관없이 실행 (java finally)
+                console.log("Finish")
             }
-        };
-        /* Get
-        xhttp.open("GET", "/v2/coffeeAjaxPost");
-        xhttp.send();
-        */
-        let _start_date = document.getElementById("start_date").value;
-        let _end_date   = document.getElementById("end_date").value;
-        let _name       = document.getElementById("name").value;
-        let _kind       = document.getElementById("kind").value;
+        });
 
-        xhttp.open("POST", "/v2/coffeeAjaxPost", true);
-        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xhttp.send("start_date="+_start_date+"&end_date="+_end_date+"&name="+_name+"&kind="+_kind);
     }
 
+    $(document).ready(function(){
+        // jQuery methods go here...
+        $("#OpenClose").click(function (){
+            $("#search").slideToggle();
+        });
+
+    });
 
 </script>
 </body>
