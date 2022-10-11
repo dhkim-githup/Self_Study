@@ -192,7 +192,7 @@ public class CoffeeV2 {
                                    @RequestParam(value="name") String name,
                                    @RequestParam(value="kind") String kind)
     {
-        log.info("-----------doCoffeeAjaxPost------------");
+        log.info("-----------doCoffeeAjaxPost------------Line 195");
         log.info("start_date :"+ start_date);
         log.info("end_date :"+ end_date);
         log.info("kind :"+ kind);
@@ -214,6 +214,47 @@ public class CoffeeV2 {
         strArr +="}";
 
         log.info(strArr);
+
+        return strArr;
+    }
+
+    @PostMapping("/coffeeAjaxJson")
+    @ResponseBody
+    public String doCoffeeAjaxJson(@RequestParam(value="start_date") String start_date,
+                                   @RequestParam(value="end_date") String end_date,
+                                   @RequestParam(value="name") String name,
+                                   @RequestParam(value="kind") String kind) throws JsonProcessingException {
+        log.info("-----------doCoffeeAjaxJson------------Line 228");
+        log.info("start_date :"+ start_date);
+        log.info("end_date :"+ end_date);
+        log.info("name :"+ name);
+        List<VoCoffeeV2> list = v2Service.doCoffeeList(start_date, end_date, name, kind);
+
+        log.info("list :"+list);
+
+        ObjectMapper mapper = new ObjectMapper();
+        String jsonStr = mapper.writeValueAsString(list);
+        log.info("jsonStr :"+jsonStr);
+
+
+        /*
+        JSONArray resArr = new JSONArray();
+
+        for(VoCoffeeV2 map : list){
+            //og.info(map);
+            JSONObject resObj = new JSONObject(map);
+            //log.info(resObj);
+            resArr.put(resObj);
+            //log.info(resArr);
+        }
+        */
+
+
+        String strArr = "{\"coffee_list\":";
+        strArr += String.valueOf(jsonStr);
+        strArr +="}";
+
+        //log.info(strArr);
 
         return strArr;
     }

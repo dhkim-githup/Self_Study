@@ -122,27 +122,42 @@
    */
   function loadDocArrayAjax(myCallBack) {
     console.log(new Date());
-    let _start_date = document.getElementById("start_date").value;
-    let _end_date   = document.getElementById("end_date").value;
-    let _name       = document.getElementById("name").value;
-    let _kind       = document.getElementById("kind").value;
+    // let _start_date = document.getElementById("start_date").value;
+    console.log($("#start_date").val())
+    // let _end_date   = document.getElementById("end_date").value;
+    // let _name       = document.getElementById("name").value;
+    // let _kind       = document.getElementById("kind").value;
     //let _data = "start_date="+_start_date+"&end_date="+_end_date+"&name="+_name+"&kind="+_kind;
+    let _dataJson = {
+      start_date : $("#start_date").val(),
+      end_date : $("#end_date").val(),
+      name : $("#name").val(),
+      kind : $("#kind").val(),
+    };
 
-    let _data = $("#IdFormcoffeeV2").serialize(); // Form 의 내용을 전송파라메터로 전환
-    //let _data = $("form").serialize(); // Form 의 내용을 전송파라메터로 전환
+    console.log("_dataJson:",_dataJson);
+    //let _data = $("#IdFormcoffeeV2").serialize(); // Form 의 내용을 전송파라메터로 전환
+    //console.log(_data);
+
+
+
     //console.log(_data);
     //console.log(_data2);
     $.ajax({
-      url : "/v2/coffeeAjax",
+      //url : "/v2/coffeeAjax",
+      url : "/v2/coffeeAjaxJson",
       method : "POST",
       contentType : "application/x-www-form-urlencoded",
-      data : _data,  // 서버에 전달할 Parameter
+      data : _dataJson,  // 서버에 전달할 Parameter
       dataType: "json", // 서버에서 전달받을 Data 형식
       async: false,
       success : function(myAjax) { // 성공시 실행 (java try) , JSON.parse 자동적용 RespData
+
+        let ajaxTD = "";
+        $("#t_body").empty();
           for(let i in myAjax.coffee_list) {
             //console.log("i="+i);
-            let ajaxTD = "";
+
             ajaxTD += '<tr id="tr_loop" className="tr_td">';
             ajaxTD += '<td><input type="checkbox" name="coffee_id" value="ID"></td>';
             ajaxTD += '<td>' + myAjax.coffee_list[i].coffee_id + '</td>';
@@ -154,10 +169,9 @@
             ajaxTD += '<td><a href="/v1/update?coffee_id=' + myAjax.coffee_list[i].coffee_id + '">수정</a></td>';
             ajaxTD += '<td><a href="/v1/delete?coffee_id=' + myAjax.coffee_list[i].coffee_id + '">삭제</a></td>';
             ajaxTD += '</tr>';
-
-            $("#t_body").append(ajaxTD);
-            myCallBack();
           }
+        $("#t_body").append(ajaxTD);
+        myCallBack();
         },
       error:function(request,status,error){  // 오류시 실행 (java catch)
            console.log("code = "+request.status
