@@ -55,12 +55,37 @@
         Values (#{name},#{kind}, CAST(#{price} as INTEGER))
     </insert>
 
+    <!-- 커피메뉴 등록하기 , 파라메터는 자동으로 인식됨 , 가격은 숫자로 변환 -->
+    <insert id="doInsertLog">
+        Insert into coffee_log(coffee_id,price)
+        <foreach item="coffee_id" index="index" collection="chkList"  separator=" UNION ALL "  nullable="true">
+           SELECT #{coffee_id}, CAST(#{strPrice} as INTEGER) FROM DUAL
+        </foreach>
+    </insert>
+
+
 
     <!-- 커피메뉴 수정하기 , 파라메터는 자동으로 인식됨 , 가격은 숫자로 변환 -->
     <insert id="doUpdate" >
         UPDATE coffee
         SET name=#{name}, kind=#{kind}, price=CAST(#{price} as INTEGER)
         WHERE coffee_id = CAST(#{coffee_id} as INTEGER)
+    </insert>
+
+    <!-- 커피메뉴 수정하기 , 파라메터는 자동으로 인식됨 , 가격은 숫자로 변환 -->
+    <insert id="doUpdatePrice" >
+        UPDATE coffee
+        SET price=CAST(#{strPrice} as INTEGER)
+        <where>
+            <foreach item="coffee_id" index="index" collection="chkList" open="coffee_id in (" separator="," close=")" nullable="true">
+                #{coffee_id}
+            </foreach>
+        </where>
+<!--        WHERE 1=1-->
+<!--            AND coffee_id in-->
+<!--            <foreach item="coffee_id" index="index" collection="chkList" open="(" separator="," close=")" nullable="true">-->
+<!--                    #{coffee_id}-->
+<!--            </foreach>-->
     </insert>
 
 

@@ -32,5 +32,9 @@ public interface CoffeeV2Dao {
     /* 수정하기 Post */
     int doUpdate(VoCoffeeV2 voCoffeeV2);
 
+    /* 가격 변경 - 다중처리 */
+    int doUpdatePrice(String strPrice, List<String> chkList);
 
+    /* 로그기록 */
+    int doInsertLog(String strPrice, List<String> chkList);
 }

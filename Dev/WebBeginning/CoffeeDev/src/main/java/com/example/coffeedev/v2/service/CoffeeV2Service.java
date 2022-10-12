@@ -57,4 +57,15 @@ public class CoffeeV2Service {
         return  intI;
     }
 
+    /* 가격 일괄변경 */
+    public int doUpdatePrice(String strPrice, List<String> chkList) {
+        int intI  = v2Dao.doUpdatePrice(strPrice, chkList);
+        return intI;
+    }
+
+    /* 로그기록 */
+    public int doInsertLog(String strPrice, List<String> chkList) {
+        int intI  = v2Dao.doInsertLog(strPrice, chkList);
+        return intI;
+    }
 }

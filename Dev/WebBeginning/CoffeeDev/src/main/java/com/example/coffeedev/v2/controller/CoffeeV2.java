@@ -306,5 +306,30 @@ public class CoffeeV2 {
         return "redirect:/v2/coffee";
     }
 
+    /**
+     * 가격일괄수정
+     * @param
+     * @return
+     */
+    @PostMapping("/updatePrice")
+    public String doUpdatePrice(@RequestParam(value = "hidden_price") String strPrice,
+                                @RequestParam(value = "chkCoffee_id", required = false) List<String> chkList){
+        log.info("strPrice:"+strPrice);
+        log.info("chkList:"+chkList);
 
+        /*
+        chkList.forEach(coffeid ->
+                // DB 처리
+                log.info("forEach:"+coffeid)
+        );
+        */
+        if(chkList != null) {
+            /* 로그기록 */
+            int intI = v2Service.doInsertLog(strPrice, chkList);
+
+            /* 가격 일괄변경 */
+            intI = v2Service.doUpdatePrice(strPrice, chkList);
+        }
+        return "redirect:/v2/coffee";
+    }
 }
