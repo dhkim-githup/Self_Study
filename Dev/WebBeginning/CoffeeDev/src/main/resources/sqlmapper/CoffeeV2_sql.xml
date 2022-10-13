@@ -95,4 +95,17 @@
         WHERE coffee_id = CAST(#{strCoffee_id} as INTEGER)
     </insert>
 
+    <!--- 한개값 입력 -->
+    <insert id="doInsertLogOld">
+    Insert into coffee_log(coffee_id,price)
+    Values ( CAST(#{coffee_id} as INTEGER), CAST(#{strPrice} as INTEGER))
+    </insert>
+
+    <!--- 한개값 수정 -->
+    <insert id="doUpdatePriceOld" >
+        UPDATE coffee
+        SET  price=CAST(#{strPrice} as INTEGER)
+        WHERE coffee_id = CAST(#{coffee_id} as INTEGER)
+    </insert>
+
 </mapper>

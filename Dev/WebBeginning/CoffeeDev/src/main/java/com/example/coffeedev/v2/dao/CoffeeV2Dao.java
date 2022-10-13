@@ -37,4 +37,10 @@ public interface CoffeeV2Dao {
 
     /* 로그기록 */
     int doInsertLog(String strPrice, List<String> chkList);
+
+    /* 1 개값 Insert */
+    int doInsertLogOld(@Param("strPrice") String strPrice, @Param("coffee_id") String coffee_id);
+
+    /* 1 개값 수정 */
+    int doUpdatePriceOld(@Param("strPrice") String strPrice, @Param("coffee_id") String coffee_id);
 }

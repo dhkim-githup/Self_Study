@@ -5,6 +5,7 @@ import com.example.coffeedev.v2.vo.VoCoffeeV2;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
@@ -67,5 +68,15 @@ public class CoffeeV2Service {
     public int doInsertLog(String strPrice, List<String> chkList) {
         int intI  = v2Dao.doInsertLog(strPrice, chkList);
         return intI;
+    }
+
+    public int doInsertLogOld(String strPrice, String coffee_id) {
+        int int1 = v2Dao.doInsertLogOld(strPrice, coffee_id);
+        return int1;
+    }
+
+    public int doUpdatePriceOld(String strPrice, String coffee_id) {
+        int int2 = v2Dao.doUpdatePriceOld(strPrice, coffee_id);
+        return int2;
     }
 }

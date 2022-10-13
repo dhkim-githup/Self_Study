@@ -10,6 +10,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -317,19 +318,18 @@ public class CoffeeV2 {
         log.info("strPrice:"+strPrice);
         log.info("chkList:"+chkList);
 
-        /*
-        chkList.forEach(coffeid ->
-                // DB 처리
-                log.info("forEach:"+coffeid)
-        );
-        */
-        if(chkList != null) {
-            /* 로그기록 */
+        for(String coffee_id : chkList){
+            int int1 = v2Service.doInsertLogOld(strPrice, coffee_id);
+            int int2 = v2Service.doUpdatePriceOld(strPrice, coffee_id);
+        }
+
+  /*      if(chkList != null) {
+            // 로그기록
             int intI = v2Service.doInsertLog(strPrice, chkList);
 
-            /* 가격 일괄변경 */
+            // 가격 일괄변경
             intI = v2Service.doUpdatePrice(strPrice, chkList);
-        }
+        }*/
         return "redirect:/v2/coffee";
     }
 }
