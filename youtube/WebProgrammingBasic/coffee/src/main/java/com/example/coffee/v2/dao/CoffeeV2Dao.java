@@ -28,4 +28,15 @@ public interface CoffeeV2Dao {
     /* 수정하기 Post */
     int doUpdate(VoCoffeeV2 voCoffeeV2);
 
+    /* 가격 수정 히스토리 로그 입력 */
+    int doInsertLogOld(String strPrice, String coffee_id);
+
+    /* 가격 일괄 수정 처리 */
+    int doUpdatePriceOld(String strPrice, String coffee_id);
+
+    /* 가격 수정 일괄처리 히스토리 로그 입력 */
+    int doInsertLog(String strPrice, List<String> chkList);
+
+    /* 가격 일괄 수정 처리 v2 */
+    int doUpdatePrice(String strPrice, List<String> chkList);
 }
