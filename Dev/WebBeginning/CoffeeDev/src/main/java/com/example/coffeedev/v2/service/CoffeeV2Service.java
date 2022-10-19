@@ -59,12 +59,14 @@ public class CoffeeV2Service {
     }
 
     /* 가격 일괄변경 */
+
     public int doUpdatePrice(String strPrice, List<String> chkList) {
         int intI  = v2Dao.doUpdatePrice(strPrice, chkList);
         return intI;
     }
 
     /* 로그기록 */
+
     public int doInsertLog(String strPrice, List<String> chkList) {
         int intI  = v2Dao.doInsertLog(strPrice, chkList);
         return intI;
@@ -78,5 +80,29 @@ public class CoffeeV2Service {
     public int doUpdatePriceOld(String strPrice, String coffee_id) {
         int int2 = v2Dao.doUpdatePriceOld(strPrice, coffee_id);
         return int2;
+    }
+
+    /* 가격 일괄 변경 처리
+    * https://medium.com/webeveloper/transactional-%EC%9D%80-%EC%96%B4%EB%8A%90-layer-%EC%97%90-%EB%91%90%EB%8A%94%EA%B2%8C-%EB%A7%9E%EC%9D%84%EA%B9%8C-807f50610f0b
+    * https://docs.spring.io/spring-framework/docs/3.0.x/spring-framework-reference/html/transaction.html#transaction-declarative-annotations
+    * https://goddaehee.tistory.com/m/167
+    * */
+    @Transactional(rollbackFor = Exception.class)
+    public int doUpdatePriceService(String strPrice, List<String> chkList) {
+
+        log.info("strPrice:"+strPrice);
+        log.info("chkList:"+chkList);
+
+         int intI=0;
+
+         if(chkList != null) {
+            // 로그기록
+             intI  = v2Dao.doInsertLog(strPrice, chkList);
+
+            // 가격 일괄변경
+             intI  = v2Dao.doUpdatePrice(strPrice, chkList);
+        }
+
+       return intI;
     }
 }

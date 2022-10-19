@@ -315,15 +315,15 @@ public class CoffeeV2 {
     @PostMapping("/updatePrice")
     public String doUpdatePrice(@RequestParam(value = "hidden_price") String strPrice,
                                 @RequestParam(value = "chkCoffee_id", required = false) List<String> chkList){
-        log.info("strPrice:"+strPrice);
-        log.info("chkList:"+chkList);
-
+        /*
         for(String coffee_id : chkList){
             int int1 = v2Service.doInsertLogOld(strPrice, coffee_id);
             int int2 = v2Service.doUpdatePriceOld(strPrice, coffee_id);
         }
+        */
+        int intI = v2Service.doUpdatePriceService(strPrice, chkList);
 
-  /*      if(chkList != null) {
+        /*if(chkList != null) {
             // 로그기록
             int intI = v2Service.doInsertLog(strPrice, chkList);
 
