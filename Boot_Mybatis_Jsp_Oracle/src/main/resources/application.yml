@@ -2,7 +2,7 @@
 
 --- # change port
 server:
-  port: 8085
+  port: 8088
 
 --- # mvc view
 spring:

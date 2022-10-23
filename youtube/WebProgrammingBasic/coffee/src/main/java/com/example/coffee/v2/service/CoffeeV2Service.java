@@ -4,6 +4,7 @@ import com.example.coffee.v2.dao.CoffeeV2Dao;
 import com.example.coffee.v2.vo.VoCoffeeV2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
