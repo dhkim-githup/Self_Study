@@ -88,20 +88,25 @@ public class CoffeeV2Service {
     * https://goddaehee.tistory.com/m/167
     * */
     @Transactional(rollbackFor = Exception.class)
-    public int doUpdatePriceService(String strPrice, List<String> chkList) {
+    public int doUpdatePriceService(String strPrice, List<String> chkList){
 
         log.info("strPrice:"+strPrice);
         log.info("chkList:"+chkList);
 
          int intI=0;
 
-         if(chkList != null) {
-            // 로그기록
-             intI  = v2Dao.doInsertLog(strPrice, chkList);
+         try {
+             if (chkList != null) {
+                 // 로그기록
+                 intI = v2Dao.doInsertLog(strPrice, chkList);
 
-            // 가격 일괄변경
-             intI  = v2Dao.doUpdatePrice(strPrice, chkList);
-        }
+                 // 가격 일괄변경
+                 intI = v2Dao.doUpdatePrice(strPrice, chkList);
+             }
+         }catch (Exception e){
+             log.info("Exception --- 오류 Line 107");
+             throw new RuntimeException(e);
+         }
 
        return intI;
     }

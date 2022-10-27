@@ -315,12 +315,14 @@ public class CoffeeV2 {
     @PostMapping("/updatePrice")
     public String doUpdatePrice(@RequestParam(value = "hidden_price") String strPrice,
                                 @RequestParam(value = "chkCoffee_id", required = false) List<String> chkList){
-        /*
+        /* Loop 실행으로 단일 처리
         for(String coffee_id : chkList){
             int int1 = v2Service.doInsertLogOld(strPrice, coffee_id);
             int int2 = v2Service.doUpdatePriceOld(strPrice, coffee_id);
         }
         */
+
+        // 서비스에서 DB 처리
         int intI = v2Service.doUpdatePriceService(strPrice, chkList);
 
         /*if(chkList != null) {

@@ -74,7 +74,7 @@
 
     <!-- 커피메뉴 수정하기 , 파라메터는 자동으로 인식됨 , 가격은 숫자로 변환 -->
     <insert id="doUpdatePrice" >
-        UPDATE coffee
+        UPDATEcoffee
         SET price=CAST(#{strPrice} as INTEGER)
         <where>
             <foreach item="coffee_id" index="index" collection="chkList" open="coffee_id in (" separator="," close=")" nullable="true">
