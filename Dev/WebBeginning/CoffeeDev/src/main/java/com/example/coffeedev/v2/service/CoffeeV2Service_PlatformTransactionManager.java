@@ -8,18 +8,16 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
 
 /**
- * Coffe V1 관련 Service,
+ * Coffe V1 관련 Service, PlatformTransactionManager
  */
 @Service
 @Log4j2
-public class CoffeeV2Service {
+public class CoffeeV2Service_PlatformTransactionManager {
 
     @Autowired
     CoffeeV2Dao v2Dao;

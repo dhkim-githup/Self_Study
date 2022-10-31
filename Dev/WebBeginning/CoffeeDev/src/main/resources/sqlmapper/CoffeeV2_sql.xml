@@ -108,4 +108,10 @@
         WHERE coffee_id = CAST(#{coffee_id} as INTEGER)
     </insert>
 
+    <!--  Commonlog 기록 -->
+    <insert id="doInsertCommonLog">
+        Insert into log(memo)
+        Values ( #{strMemo})
+    </insert>
+
 </mapper>
