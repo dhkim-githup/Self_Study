@@ -106,16 +106,15 @@ public class CoffeeV2Service {
     * https://goddaehee.tistory.com/m/167
     * */
     //@Transactional(rollbackFor = Exception.class)
+    @Transactional
     public int doUpdatePriceService(String strPrice, List<String> chkList){
-
-        TransactionStatus status = transactionManager.getTransaction(definition);
 
         log.info("strPrice:"+strPrice);
         log.info("chkList:"+chkList);
 
          int intI=0;
 
-         try {
+
              if (chkList != null) {
                  // 로그기록
                  intI = doInsertLog(strPrice, chkList);
@@ -123,18 +122,14 @@ public class CoffeeV2Service {
                  // 가격 일괄변경
                  intI = doUpdatePrice(strPrice, chkList);
              }
-             transactionManager.commit(status);
-         }catch (Exception e) {
-             transactionManager.rollback(status);
-             log.info("Exception --- 오류 Line 107");
-         }finally {
+
              intI = doInsertCommonLog("CoffeeV2Service.doUpdatePriceService");
              //transactionManager.commit(status);
              /* 오류 발생
                 이미 커밋이나 롤백을 실행했으니 더이상 커밋과 롤백을 하지 말라는 오류.같은 메서드 공간안에서 두번이나 수동으로 커밋과 롤백을 불러들였더니 이런 에러가 발생했다.
                 transactionManager 매니저를 계속 사용해서는 안된다.
               */
-         }
+
 
        return intI;
     }
