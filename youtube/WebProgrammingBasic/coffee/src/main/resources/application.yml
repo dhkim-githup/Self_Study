@@ -11,7 +11,7 @@ spring:
     username: boot
     password: boot
     hikari:
-      auto-commit: false
+       auto-commit: true
 
 --- # Thymeleaf
 spring:

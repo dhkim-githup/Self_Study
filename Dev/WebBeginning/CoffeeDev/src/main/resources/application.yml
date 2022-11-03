@@ -30,6 +30,8 @@ spring:
     password: boot
      #hikari:
        #auto-commit: false
+    hikari:
+      maximum-pool-size: 20
 
 --- #mybatis mapper xml
 mybatis:

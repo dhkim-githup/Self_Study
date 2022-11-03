@@ -145,14 +145,17 @@ public class CoffeeV2 {
     /* 가격을 한번에 수정 */
     @PostMapping("/updatePrice")
     public String doUpdatePrice(@RequestParam(value = "hidden_price") String strPrice,
-                                @RequestParam(value = "chkCoffee_id", required = false) List<String> chkList){
+                                @RequestParam(value = "chkCoffee_id", required = false) List<String> chkList) throws Exception {
         log.info("strPrice:"+strPrice);
         log.info("chkList:"+chkList);
 
-        if(chkList != null) {
-            int int1 = v2Service.doInsertLog(strPrice, chkList);
-            int int2 = v2Service.doUpdatePrice(strPrice, chkList);
-        }
+        int int1 = v2Service.doUpdatePriceService(strPrice, chkList);
+        /*
+        //if(chkList != null) {
+           // int int1 = v2Service.doInsertLog(strPrice, chkList);
+           // int int2 = v2Service.doUpdatePrice(strPrice, chkList);
+        //}
+        */
         /*
         for(String coffee_id : chkList){
             int int1 = v2Service.doInsertLogOld(strPrice, coffee_id);

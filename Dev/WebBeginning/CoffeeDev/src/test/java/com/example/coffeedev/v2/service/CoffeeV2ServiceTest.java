@@ -29,7 +29,7 @@ class CoffeeV2ServiceTest {
         int intI=0;
         String strPrice="100";
         List<String> chkList = new ArrayList<>();
-        chkList.add("30");
+        chkList.add("40");
         // 서비스에서 DB 처리
         try {
             intI = v2Service.doUpdatePriceService(strPrice, chkList);

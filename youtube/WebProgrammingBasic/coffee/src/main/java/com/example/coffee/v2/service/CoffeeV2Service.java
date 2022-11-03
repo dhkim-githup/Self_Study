@@ -1,5 +1,6 @@
 package com.example.coffee.v2.service;
 
+import com.example.coffee.comm.MyExceptionRuntime;
 import com.example.coffee.v2.dao.CoffeeV2Dao;
 import com.example.coffee.v2.vo.VoCoffeeV2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,5 +77,21 @@ public class CoffeeV2Service {
     public int doUpdatePrice(String strPrice, List<String> chkList) {
         int int2 = v2Dao.doUpdatePrice(strPrice, chkList);
         return int2;
+    }
+
+    //@Transactional(rollbackFor = Exception.class)
+    @Transactional
+    public int doUpdatePriceService(String strPrice, List<String> chkList) throws MyExceptionRuntime {
+        int intI=0;
+
+        if(chkList != null) {
+            intI = doInsertLog(strPrice, chkList);
+            intI = doUpdatePrice(strPrice, chkList);
+
+            if(intI>0){
+                throw new MyExceptionRuntime("Update 1개 이상이여서 오류발생", "CoffeeV2Service.doUpdatePriceService");
+            }
+        }
+        return intI;
     }
 }

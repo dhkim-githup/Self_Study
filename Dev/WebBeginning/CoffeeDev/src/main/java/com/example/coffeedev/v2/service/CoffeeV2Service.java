@@ -1,5 +1,7 @@
 package com.example.coffeedev.v2.service;
 
+import com.example.coffeedev.comm.MyExceptionRuntime;
+import com.example.coffeedev.comm.MyExceptionRuntime;
 import com.example.coffeedev.v2.dao.CoffeeV2Dao;
 import com.example.coffeedev.v2.vo.VoCoffeeV2;
 import lombok.extern.log4j.Log4j2;
@@ -107,7 +109,7 @@ public class CoffeeV2Service {
     * */
     //@Transactional(rollbackFor = Exception.class)
     @Transactional
-    public int doUpdatePriceService(String strPrice, List<String> chkList) throws Exception{
+    public int doUpdatePriceService(String strPrice, List<String> chkList) throws MyExceptionRuntime{
 
         log.info("strPrice:"+strPrice);
         log.info("chkList:"+chkList);
@@ -123,7 +125,7 @@ public class CoffeeV2Service {
                  intI = doUpdatePrice(strPrice, chkList);
 
                  if(intI>0){
-                    throw new Exception();
+                    throw new MyExceptionRuntime("에러가 났어요.", "CoffeeV2Service.doUpdatePriceService");
                  }
 
              }
