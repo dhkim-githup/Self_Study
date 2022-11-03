@@ -107,7 +107,7 @@ public class CoffeeV2Service {
     * */
     //@Transactional(rollbackFor = Exception.class)
     @Transactional
-    public int doUpdatePriceService(String strPrice, List<String> chkList){
+    public int doUpdatePriceService(String strPrice, List<String> chkList) throws Exception{
 
         log.info("strPrice:"+strPrice);
         log.info("chkList:"+chkList);
@@ -121,9 +121,15 @@ public class CoffeeV2Service {
 
                  // 가격 일괄변경
                  intI = doUpdatePrice(strPrice, chkList);
+
+                 if(intI>0){
+                    throw new Exception();
+                 }
+
              }
 
-             intI = doInsertCommonLog("CoffeeV2Service.doUpdatePriceService");
+
+             //intI = doInsertCommonLog("CoffeeV2Service.doUpdatePriceService");
              //transactionManager.commit(status);
              /* 오류 발생
                 이미 커밋이나 롤백을 실행했으니 더이상 커밋과 롤백을 하지 말라는 오류.같은 메서드 공간안에서 두번이나 수동으로 커밋과 롤백을 불러들였더니 이런 에러가 발생했다.

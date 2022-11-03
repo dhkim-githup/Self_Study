@@ -323,7 +323,11 @@ public class CoffeeV2 {
         */
 
         // 서비스에서 DB 처리
-        int intI = v2Service.doUpdatePriceService(strPrice, chkList);
+        try {
+            int intI = v2Service.doUpdatePriceService(strPrice, chkList);
+        }catch (Exception e){
+            System.out.println("처리중 오류 발생 ---"+e.getMessage());
+        }
 
         /*if(chkList != null) {
             // 로그기록

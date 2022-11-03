@@ -24,8 +24,23 @@ class CoffeeV2ServiceTest {
     CoffeeV2Service v2Service;
 
     @Test
-    @Transactional
-    @Commit
+    //@Transactional // Test 에서 Transactional 은 기본적으로 rollback 처리를 한다.
+    public void doTransactionServiceTest(){
+        int intI=0;
+        String strPrice="100";
+        List<String> chkList = new ArrayList<>();
+        chkList.add("30");
+        // 서비스에서 DB 처리
+        try {
+            intI = v2Service.doUpdatePriceService(strPrice, chkList);
+        }catch (Exception e){
+            System.out.println("처리중 오류 발생 ---"+e.getMessage());
+        }
+    }
+
+    @Test
+    //@Transactional // Test 에서 Transactional 은 기본적으로 rollback 처리를 한다.
+    @Rollback
     public void doTransactionTest(){
 
         int intI=0;
@@ -49,9 +64,9 @@ class CoffeeV2ServiceTest {
 //        er.equals("error");
 
         // Common log
-        intI = v2Service.doInsertCommonLog("CoffeeV2Service.doUpdatePriceService");
+        //intI = v2Service.doInsertCommonLog("CoffeeV2Service.doUpdatePriceService");
 
-        throw new RuntimeException();
+       // throw new Exception();
     }
 
 }
