@@ -7,6 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Commit;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,24 +24,43 @@ class CoffeeV2ServiceTest {
     @Autowired
     CoffeeV2Service v2Service;
 
+    @Autowired
+    CoffeeV2Service_PlatformTransactionManager coffeeV2Service_platformTransactionManager;
+
+    @Autowired
+    CoffeeV2Service_TransactionTemplate transactionTemplate;
+
     @Test
     //@Transactional // Test 에서 Transactional 은 기본적으로 rollback 처리를 한다.
     public void doTransactionServiceTest(){
         int intI=0;
-        String strPrice="100";
+        String strPrice="5555";
         List<String> chkList = new ArrayList<>();
-        chkList.add("40");
-        // 서비스에서 DB 처리
-        try {
-            intI = v2Service.doUpdatePriceService(strPrice, chkList);
+        chkList.add("30");
+
+         try {
+            intI = transactionTemplate.doUpdatePriceService(strPrice, chkList);
         }catch (Exception e){
             System.out.println("처리중 오류 발생 ---"+e.getMessage());
         }
+        // 서비스에서 DB 처리
+       /* try {
+            intI = coffeeV2Service_platformTransactionManager.doUpdatePriceService(strPrice, chkList);
+        }catch (Exception e){
+            System.out.println("처리중 오류 발생 ---"+e.getMessage());
+        }*/
+
+/*        try {
+            intI = v2Service.doUpdatePriceService(strPrice, chkList);
+        }catch (Exception e){
+            System.out.println("처리중 오류 발생 ---"+e.getMessage());
+        }*/
+
     }
 
     @Test
     //@Transactional // Test 에서 Transactional 은 기본적으로 rollback 처리를 한다.
-    @Rollback
+    //@Rollback
     public void doTransactionTest(){
 
         int intI=0;

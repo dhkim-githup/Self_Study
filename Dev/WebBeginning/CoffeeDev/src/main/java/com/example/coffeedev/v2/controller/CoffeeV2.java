@@ -314,19 +314,23 @@ public class CoffeeV2 {
      */
     @PostMapping("/updatePrice")
     public String doUpdatePrice(@RequestParam(value = "hidden_price") String strPrice,
-                                @RequestParam(value = "chkCoffee_id", required = false) List<String> chkList){
+                                @RequestParam(value = "chkCoffee_id", required = false) List<String> chkList,
+                                Model model){
         /* Loop 실행으로 단일 처리
         for(String coffee_id : chkList){
             int int1 = v2Service.doInsertLogOld(strPrice, coffee_id);
             int int2 = v2Service.doUpdatePriceOld(strPrice, coffee_id);
         }
         */
+        String strReturn = "redirect:/v2/coffee";
 
         // 서비스에서 DB 처리
         try {
             int intI = v2Service.doUpdatePriceService(strPrice, chkList);
         }catch (Exception e){
             System.out.println("처리중 오류 발생 ---"+e.getMessage());
+            model.addAttribute("em",e.getMessage());
+            strReturn = "/comm/error_db";
         }
 
         /*if(chkList != null) {
@@ -336,6 +340,7 @@ public class CoffeeV2 {
             // 가격 일괄변경
             intI = v2Service.doUpdatePrice(strPrice, chkList);
         }*/
-        return "redirect:/v2/coffee";
+        //return "redirect:/v2/coffee";
+        return strReturn;
     }
 }

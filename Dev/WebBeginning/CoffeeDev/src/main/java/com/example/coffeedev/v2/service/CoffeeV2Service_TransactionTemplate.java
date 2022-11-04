@@ -1,7 +1,5 @@
 package com.example.coffeedev.v2.service;
 
-import com.example.coffeedev.comm.MyExceptionRuntime;
-import com.example.coffeedev.comm.MyExceptionRuntime;
 import com.example.coffeedev.v2.dao.CoffeeV2Dao;
 import com.example.coffeedev.v2.vo.VoCoffeeV2;
 import lombok.extern.log4j.Log4j2;
@@ -12,27 +10,31 @@ import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.TransactionCallbackWithoutResult;
+import org.springframework.transaction.support.TransactionTemplate;
 
 import java.util.List;
 import java.util.Map;
 
 /**
- * Coffe V1 관련 Service,
+ * Coffe V1 관련 Service, PlatformTransactionManager
  */
 @Service
 @Log4j2
-public class CoffeeV2Service {
-
-    @Autowired
-    CoffeeV2Dao v2Dao;
+public class CoffeeV2Service_TransactionTemplate {
 
     @Autowired
     CommonLogService commonLogService;
 
     @Autowired
-    PlatformTransactionManager transactionManager;
-    @Autowired
-    TransactionDefinition definition;
+    CoffeeV2Dao v2Dao;
+
+//    @Autowired
+//    PlatformTransactionManager transactionManager;
+//    @Autowired
+//    TransactionDefinition definition;
+      @Autowired
+    TransactionTemplate  transactionTemplate;
 
 
     /* 전체 리스트 조회  */
@@ -100,10 +102,18 @@ public class CoffeeV2Service {
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public int doInsertCommonLog(String strMemo) {
         log.info("우린 같은 클래스...=================== 같은 클래스. doInsertCommonLog");
-        //TransactionStatus status = transactionManager.getTransaction(definition);
-            int int1 = v2Dao.doInsertCommonLog(strMemo);
-        //transactionManager.commit(status);
-        return int1;
+        int intI=0;
+        try{
+            transactionTemplate.execute(new TransactionCallbackWithoutResult() {
+                @Override
+                protected void doInTransactionWithoutResult(TransactionStatus status) {
+                    v2Dao.doInsertCommonLog(strMemo);
+                }
+            });
+        }catch (Exception e){
+
+        }
+        return intI;
     }
 
     /* 가격 일괄 변경 처리
@@ -112,63 +122,41 @@ public class CoffeeV2Service {
     * https://goddaehee.tistory.com/m/167
     * */
     //@Transactional(rollbackFor = Exception.class)
-    @Transactional
-    public int doUpdatePriceService(String strPrice, List<String> chkList) throws MyExceptionRuntime{
-        log.info("@Transactional 사용 ...=================== 스프링부트 니가 하고자 하는대로 할거야");
+    public int doUpdatePriceService(String strPrice, List<String> chkList){
+
+        log.info("transactionManager 사용 ...=================== 직접 Commit Rollback 처리 할거야");
         log.info("strPrice:"+strPrice);
         log.info("chkList:"+chkList);
-
-         int intI=0;
+        int intI=0;
 
          try {
              if (chkList != null) {
-                 // 로그기록
-                 intI = doInsertLog(strPrice, chkList);
-                 // 가격 일괄변경
-                 intI = doUpdatePrice(strPrice, chkList);
+                 transactionTemplate.execute(new TransactionCallbackWithoutResult() {
+                     @Override
+                     protected void doInTransactionWithoutResult(TransactionStatus status) {
+                         int intI=0;
+                         intI = doInsertLog(strPrice, chkList);
+
+                         // 가격 일괄변경
+                         intI = doUpdatePrice(strPrice, chkList);
+                     }
+                 });
              }
-         }catch (Exception e){
-             throw new MyExceptionRuntime("처리중 오류 발생 =>"+e);
+         }catch (Exception e) {
+
+             log.info("Exception --- 오류 Line 107");
          }finally {
-             log.info("====== Line 129 =========");
-             // Excepton 처리를 하지 않을 경우 부모 트랜잭션이 영향을 받는다.
-             //
-             //try {
-                 //intI = commonLogService.doInsertCommonLog("CoffeeV2Service.doUpdatePriceService");
+             //intI = commonLogService.doInsertCommonLogtransactionManager("CoffeeV2Service.doUpdatePriceService");
+              intI = doInsertCommonLog("CoffeeV2Service_TransactionTemplate.doUpdatePriceService");
 
-                intI = commonLogService.doInsertCommonLogtransactionManager("CoffeeV2Service.doUpdatePriceService");
-                //intI = commonLogService.doInsertCommonLog("CoffeeV2Service.doUpdatePriceService");
-             //}catch(Exception e){}
-             log.info("====== Line 130 =========");
-         }
-
-
-
-             /* Ver1.
-             if (chkList != null) {
-                 // 로그기록
-                 intI = doInsertLog(strPrice, chkList);
-                 // 가격 일괄변경
-                 intI = doUpdatePrice(strPrice, chkList);
-                 if(intI>0){
-                    throw new MyExceptionRuntime("에러가 났어요.", "CoffeeV2Service.doUpdatePriceService");
-                 }
-                 log.info("============== 131 ================");
-             }
-            */
-
-             //intI = doInsertCommonLog("CoffeeV2Service.doUpdatePriceService");
              //transactionManager.commit(status);
              /* 오류 발생
                 이미 커밋이나 롤백을 실행했으니 더이상 커밋과 롤백을 하지 말라는 오류.같은 메서드 공간안에서 두번이나 수동으로 커밋과 롤백을 불러들였더니 이런 에러가 발생했다.
                 transactionManager 매니저를 계속 사용해서는 안된다.
               */
-
+         }
 
        return intI;
     }
-
-
-
 
 }

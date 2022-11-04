@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Home - Coffe Factory</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" type="text/css" href="/css/comm.css">
+
+</head>
+<body>
+
+<!-- 헤더 위치 -->
+<th:block th:include="~{/comm/header}"></th:block>
+
+
+<div id="main" style="font-size:large; alignment: center; padding: 10px 50px ">
+  <img src="/img/Error.PNG">
+  <p>
+    오류 메세지 : <th:block th:text="${em}"></th:block>
+  </p>
+
+</div>
+</main>
+
+<!-- 푸터 위치 -->
+<th:block th:replace="~{/comm/footer}"></th:block>
+
+</body>
+</html>
+
+
