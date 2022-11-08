@@ -3,18 +3,24 @@ package com.example.coffee.v2.service;
 import com.example.coffee.comm.MyExceptionRuntime;
 import com.example.coffee.v2.dao.CoffeeV2Dao;
 import com.example.coffee.v2.vo.VoCoffeeV2;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
 
 @Service
+@Log4j2
 public class CoffeeV2Service {
 
     @Autowired
     CoffeeV2Dao v2Dao;
+
+    @Autowired
+    CommonLogService commonLogService;
 
     /* 전체리스트 조회 */
     public List<Map<String, String>> doCoffeeList() {
@@ -79,19 +85,37 @@ public class CoffeeV2Service {
         return int2;
     }
 
+    /* 로그 넣는 부분 */
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public int doInsertCommonLog(String strMemo) {
+        log.info("우린 같은 클래스...=================== 같은 클래스. doInsertCommonLog");
+        int int1 = v2Dao.doInsertCommonLog(strMemo);
+        return int1;
+    }
+
     //@Transactional(rollbackFor = Exception.class)
     @Transactional
     public int doUpdatePriceService(String strPrice, List<String> chkList) throws MyExceptionRuntime {
         int intI=0;
 
-        if(chkList != null) {
-            intI = doInsertLog(strPrice, chkList);
-            intI = doUpdatePrice(strPrice, chkList);
+        try {
+            if (chkList != null) {
+                intI = doInsertLog(strPrice, chkList);
+                intI = doUpdatePrice(strPrice, chkList);
 
-            if(intI>0){
-                throw new MyExceptionRuntime("Update 1개 이상이여서 오류발생", "CoffeeV2Service.doUpdatePriceService");
+                /*if (intI > 0) {
+                    throw new MyExceptionRuntime("Update 1개 이상이여서 오류발생", "CoffeeV2Service.doUpdatePriceService");
+                }*/
             }
+        }catch (Exception e){
+            throw new MyExceptionRuntime("예상치 못한 오류 발생 : "+e.getMessage(), "CoffeeV2Service.doUpdatePriceService");
+        }finally {
+            // 로그를 넣자.
+            //intI = doInsertCommonLog("CoffeeV2Service.doUpdatePriceService");
+            intI = commonLogService.doInsertCommonLog("CoffeeV2Service.doUpdatePriceService");
         }
         return intI;
     }
+
+
 }

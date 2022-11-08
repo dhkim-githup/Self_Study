@@ -39,4 +39,7 @@ public interface CoffeeV2Dao {
 
     /* 가격 일괄 수정 처리 v2 */
     int doUpdatePrice(String strPrice, List<String> chkList);
+
+    /* 로그 넣는 부분 */
+    int doInsertCommonLog(String strMemo);
 }

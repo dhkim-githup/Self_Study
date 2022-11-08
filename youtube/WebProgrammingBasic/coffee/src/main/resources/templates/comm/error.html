@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko"  xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Home</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" type="text/css" href="/css/comm.css">
+
+</head>
+<body>
+
+<!-- 헤더 위치 -->
+<th:block th:include="~{/comm/header}"></th:block>
+
+
+<div id="main" style="font-size:large; alignment: center; padding: 10px 50px ">
+  <img src="/img/Error.PNG" width="600" height="300">
+  <p>
+    오류메세지 : <label th:text="${em}"></label>
+  </p>
+
+</div>
+
+
+<!-- 푸터 위치 -->
+<th:block th:replace="~{/comm/footer}"></th:block>
+
+</body>
+</html>

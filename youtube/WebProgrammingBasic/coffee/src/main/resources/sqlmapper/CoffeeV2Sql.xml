@@ -87,7 +87,7 @@
 
     <!--- 일괄처리 한개값 수정 -->
     <update id="doUpdatePrice" >
-        UPDATE coffee
+        UPDATEcoffee
         SET  price=CAST(#{strPrice} as INTEGER)
         WHERE 1=1
             AND coffee_id IN
@@ -95,4 +95,10 @@
                     CAST(#{coffee_id} as INTEGER)
                 </foreach>
     </update>
+
+    <!--  Commonlog 기록 -->
+    <insert id="doInsertCommonLog">
+        Insert into log(memo)
+        Values ( #{strMemo})
+    </insert>
 </mapper>

@@ -145,11 +145,19 @@ public class CoffeeV2 {
     /* 가격을 한번에 수정 */
     @PostMapping("/updatePrice")
     public String doUpdatePrice(@RequestParam(value = "hidden_price") String strPrice,
-                                @RequestParam(value = "chkCoffee_id", required = false) List<String> chkList) throws Exception {
+                                @RequestParam(value = "chkCoffee_id", required = false) List<String> chkList,
+                                Model model){
         log.info("strPrice:"+strPrice);
         log.info("chkList:"+chkList);
 
-        int int1 = v2Service.doUpdatePriceService(strPrice, chkList);
+        String strReturn = "redirect:/v2/coffee";
+
+        try {
+            int int1 = v2Service.doUpdatePriceService(strPrice, chkList);
+        }catch (Exception e){
+            model.addAttribute("em", e.getMessage());
+            strReturn = "/comm/error";
+        }
         /*
         //if(chkList != null) {
            // int int1 = v2Service.doInsertLog(strPrice, chkList);
@@ -163,7 +171,8 @@ public class CoffeeV2 {
         }
         */
 
-        return "redirect:/v2/coffee";
+        //return "redirect:/v2/coffee";
+        return strReturn;
     }
 
 }
