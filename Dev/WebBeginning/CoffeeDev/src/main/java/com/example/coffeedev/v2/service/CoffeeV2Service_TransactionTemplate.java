@@ -23,6 +23,7 @@ import java.util.Map;
 @Log4j2
 public class CoffeeV2Service_TransactionTemplate {
 
+    static int intI=0;
     @Autowired
     CommonLogService commonLogService;
 
@@ -103,7 +104,7 @@ public class CoffeeV2Service_TransactionTemplate {
     public int doInsertCommonLog(String strMemo) {
         log.info("우린 같은 클래스...=================== 같은 클래스. doInsertCommonLog");
         int intI=0;
-        try{
+       /* try{
             transactionTemplate.execute(new TransactionCallbackWithoutResult() {
                 @Override
                 protected void doInTransactionWithoutResult(TransactionStatus status) {
@@ -112,7 +113,8 @@ public class CoffeeV2Service_TransactionTemplate {
             });
         }catch (Exception e){
 
-        }
+        }*/
+        v2Dao.doInsertCommonLog(strMemo);
         return intI;
     }
 
@@ -124,17 +126,17 @@ public class CoffeeV2Service_TransactionTemplate {
     //@Transactional(rollbackFor = Exception.class)
     public int doUpdatePriceService(String strPrice, List<String> chkList){
 
+
         log.info("transactionManager 사용 ...=================== 직접 Commit Rollback 처리 할거야");
         log.info("strPrice:"+strPrice);
         log.info("chkList:"+chkList);
-        int intI=0;
+
 
          try {
              if (chkList != null) {
                  transactionTemplate.execute(new TransactionCallbackWithoutResult() {
                      @Override
                      protected void doInTransactionWithoutResult(TransactionStatus status) {
-                         int intI=0;
                          intI = doInsertLog(strPrice, chkList);
 
                          // 가격 일괄변경
@@ -143,12 +145,14 @@ public class CoffeeV2Service_TransactionTemplate {
                  });
              }
          }catch (Exception e) {
-
              log.info("Exception --- 오류 Line 107");
          }finally {
-             //intI = commonLogService.doInsertCommonLogtransactionManager("CoffeeV2Service.doUpdatePriceService");
-              intI = doInsertCommonLog("CoffeeV2Service_TransactionTemplate.doUpdatePriceService");
-
+             transactionTemplate.execute(new TransactionCallbackWithoutResult() {
+                 @Override
+                 protected void doInTransactionWithoutResult(TransactionStatus status) {
+                     intI = doInsertCommonLog("CoffeeV2Service_TransactionTemplate.doUpdatePriceService");
+                 }
+                });
              //transactionManager.commit(status);
              /* 오류 발생
                 이미 커밋이나 롤백을 실행했으니 더이상 커밋과 롤백을 하지 말라는 오류.같은 메서드 공간안에서 두번이나 수동으로 커밋과 롤백을 불러들였더니 이런 에러가 발생했다.

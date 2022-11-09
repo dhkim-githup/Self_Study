@@ -95,12 +95,12 @@ public class CoffeeV2Service_PlatformTransactionManager {
     }
 
     //@Transactional(propagation = Propagation.REQUIRED)
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    //@Transactional(propagation = Propagation.REQUIRES_NEW)
     public int doInsertCommonLog(String strMemo) {
         log.info("우린 같은 클래스...=================== 같은 클래스. doInsertCommonLog");
-        TransactionStatus status = transactionManager.getTransaction(definition);
+        //TransactionStatus status = transactionManager.getTransaction(definition);
             int int1 = v2Dao.doInsertCommonLog(strMemo);
-        transactionManager.commit(status);
+        //transactionManager.rollback(status);
         return int1;
     }
 
@@ -113,35 +113,42 @@ public class CoffeeV2Service_PlatformTransactionManager {
     public int doUpdatePriceService(String strPrice, List<String> chkList){
 
         log.info("transactionManager 사용 ...=================== 직접 Commit Rollback 처리 할거야");
-        TransactionStatus status = transactionManager.getTransaction(definition);
 
         log.info("strPrice:"+strPrice);
         log.info("chkList:"+chkList);
 
          int intI=0;
 
+        TransactionStatus status = transactionManager.getTransaction(definition);
          try {
              if (chkList != null) {
+
                  // 로그기록
                  intI = doInsertLog(strPrice, chkList);
+                 log.info("commit --- 1");
 
                  // 가격 일괄변경
                  intI = doUpdatePrice(strPrice, chkList);
+                 log.info("commit --- 2");
+                 transactionManager.commit(status);
              }
-             transactionManager.commit(status);
+
          }catch (Exception e) {
              transactionManager.rollback(status);
              log.info("Exception --- 오류 Line 107");
          }finally {
              //intI = commonLogService.doInsertCommonLogtransactionManager("CoffeeV2Service.doUpdatePriceService");
-             intI = doInsertCommonLog("CoffeeV2Service.doUpdatePriceService");
-
+             TransactionStatus status2 = transactionManager.getTransaction(definition);
+                intI = doInsertCommonLog("CoffeeV2Service.doUpdatePriceService");
+             transactionManager.commit(status2);
+             //transactionManager.commit(status);
              //transactionManager.commit(status);
              /* 오류 발생
                 이미 커밋이나 롤백을 실행했으니 더이상 커밋과 롤백을 하지 말라는 오류.같은 메서드 공간안에서 두번이나 수동으로 커밋과 롤백을 불러들였더니 이런 에러가 발생했다.
                 transactionManager 매니저를 계속 사용해서는 안된다.
               */
          }
+
 
        return intI;
     }
