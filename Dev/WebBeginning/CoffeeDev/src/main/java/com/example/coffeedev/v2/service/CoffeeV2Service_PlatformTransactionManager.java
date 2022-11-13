@@ -122,15 +122,21 @@ public class CoffeeV2Service_PlatformTransactionManager {
         TransactionStatus status = transactionManager.getTransaction(definition);
          try {
              if (chkList != null) {
-
+                 log.info("============ status.toString() ==============="+ status.isCompleted());
                  // 로그기록
                  intI = doInsertLog(strPrice, chkList);
+                 log.info("============ status.toString() ==============="+ status.isCompleted());
+                 transactionManager.commit(status);
                  log.info("commit --- 1");
+
 
                  // 가격 일괄변경
                  intI = doUpdatePrice(strPrice, chkList);
+                 log.info("============ status.toString() ==============="+ status.isCompleted());
                  log.info("commit --- 2");
-                 transactionManager.commit(status);
+
+                 transactionManager.rollback(status);
+
              }
 
          }catch (Exception e) {

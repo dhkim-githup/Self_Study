@@ -1,6 +1,7 @@
 package com.example.coffee.v2.controller;
 
 import com.example.coffee.v2.service.CoffeeV2Service;
+import com.example.coffee.v2.service.CoffeeV2Service_PlatformTransactionManager;
 import com.example.coffee.v2.vo.VoCoffeeV2;
 import lombok.extern.log4j.Log4j2;
 import org.json.JSONArray;
@@ -20,7 +21,8 @@ import java.util.Map;
 public class CoffeeV2 {
 
     @Autowired
-    CoffeeV2Service v2Service;
+    CoffeeV2Service_PlatformTransactionManager v2Service;
+    //CoffeeV2Service v2Service;
 
     @GetMapping("/coffee")
     public String doCoffee(Model model){

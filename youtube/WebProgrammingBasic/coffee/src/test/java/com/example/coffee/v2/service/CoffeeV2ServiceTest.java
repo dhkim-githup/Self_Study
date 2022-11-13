@@ -15,18 +15,36 @@ class CoffeeV2ServiceTest {
     @Autowired
     CoffeeV2Service v2Service;
 
+    @Autowired
+    CoffeeV2Service_PlatformTransactionManager coffeeV2Service_platformTransactionManager;
+
+    @Autowired
+    CoffeeV2Service_TransactionTemplate coffeeV2Service_transactionTemplate;
+
     @Test
     void doUpdatePriceService() {
 
-        String strPrice = "3330";
+        String strPrice = "4567";
         List<String> chkList = new ArrayList<>();
         chkList.add("40");
 
-        try {
-            v2Service.doUpdatePriceService(strPrice, chkList);
+         try {
+             coffeeV2Service_transactionTemplate.doUpdatePriceService(strPrice, chkList);
         }catch (Exception e){
             System.out.println("에러발생 ="+e);
         }
+
+       /* try {
+            coffeeV2Service_platformTransactionManager.doUpdatePriceService(strPrice, chkList);
+        }catch (Exception e){
+            System.out.println("에러발생 ="+e);
+        }*/
+
+      /*  try {
+            v2Service.doUpdatePriceService(strPrice, chkList);
+        }catch (Exception e){
+            System.out.println("에러발생 ="+e);
+        }*/
 
     }
 }

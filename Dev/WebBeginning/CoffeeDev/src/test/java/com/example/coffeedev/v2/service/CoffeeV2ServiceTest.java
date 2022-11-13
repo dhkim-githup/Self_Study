@@ -25,6 +25,9 @@ class CoffeeV2ServiceTest {
     CoffeeV2Service v2Service;
 
     @Autowired
+    CoffeeV2Service_Default serviceDefault;
+
+    @Autowired
     CoffeeV2Service_PlatformTransactionManager coffeeV2Service_platformTransactionManager;
 
     @Autowired
@@ -34,22 +37,19 @@ class CoffeeV2ServiceTest {
     //@Transactional // Test 에서 Transactional 은 기본적으로 rollback 처리를 한다.
     public void doTransactionServiceTest(){
         int intI=0;
-        String strPrice="7777";
+        String strPrice="2222";
         List<String> chkList = new ArrayList<>();
         chkList.add("30");
         chkList.add("40");
 
-         try {
+
+       /* try {
             intI = transactionTemplate.doUpdatePriceService(strPrice, chkList);
         }catch (Exception e){
             System.out.println("처리중 오류 발생 ---"+e.getMessage());
-        }
-
-       /* try {
-            intI = coffeeV2Service_platformTransactionManager.doUpdatePriceService(strPrice, chkList);
-        }catch (Exception e){
-            System.out.println("처리중 오류 발생 ---"+e.getMessage());
         }*/
+
+
         // 서비스에서 DB 처리
        /* try {
             intI = coffeeV2Service_platformTransactionManager.doUpdatePriceService(strPrice, chkList);
@@ -62,6 +62,11 @@ class CoffeeV2ServiceTest {
         }catch (Exception e){
             System.out.println("처리중 오류 발생 ---"+e.getMessage());
         }*/
+        try {
+            intI = serviceDefault.doUpdatePriceService(strPrice, chkList);
+        }catch (Exception e) {
+            System.out.println("처리중 오류 발생 ---" + e.getMessage());
+        }
 
     }
 

@@ -23,18 +23,18 @@ import java.util.Map;
 @Log4j2
 public class CoffeeV2Service_TransactionTemplate {
 
-    static int intI=0;
+
     @Autowired
     CommonLogService commonLogService;
 
     @Autowired
     CoffeeV2Dao v2Dao;
 
-//    @Autowired
-//    PlatformTransactionManager transactionManager;
-//    @Autowired
-//    TransactionDefinition definition;
-      @Autowired
+   @Autowired
+    PlatformTransactionManager transactionManager;
+    @Autowired
+    TransactionDefinition definition;
+    @Autowired
     TransactionTemplate  transactionTemplate;
 
 
@@ -131,16 +131,29 @@ public class CoffeeV2Service_TransactionTemplate {
         log.info("strPrice:"+strPrice);
         log.info("chkList:"+chkList);
 
+        int intI=0;
 
          try {
              if (chkList != null) {
+
+                 log.info("================== 첫번째 ===========================");
+                 int rI = transactionTemplate.execute(status -> {
+                     int  intI2 = doInsertLog(strPrice, chkList);
+                     // 가격 일괄변경
+                     intI2 = doUpdatePrice(strPrice, chkList);
+                     return intI2;
+                 });
+                 log.info("================ return rI => " + rI);
+
+                 log.info("================== 두번째 ===========================");
                  transactionTemplate.execute(new TransactionCallbackWithoutResult() {
                      @Override
                      protected void doInTransactionWithoutResult(TransactionStatus status) {
-                         intI = doInsertLog(strPrice, chkList);
-
+                         int intI3 = doInsertLog(strPrice, chkList);
                          // 가격 일괄변경
-                         intI = doUpdatePrice(strPrice, chkList);
+                         intI3 = doUpdatePrice(strPrice, chkList);
+                         // 강제로 rollback 처리를 한다.
+                         status.setRollbackOnly();
                      }
                  });
              }
@@ -150,9 +163,11 @@ public class CoffeeV2Service_TransactionTemplate {
              transactionTemplate.execute(new TransactionCallbackWithoutResult() {
                  @Override
                  protected void doInTransactionWithoutResult(TransactionStatus status) {
-                     intI = doInsertCommonLog("CoffeeV2Service_TransactionTemplate.doUpdatePriceService");
+                     int intI4 = doInsertCommonLog("CoffeeV2Service_TransactionTemplate.doUpdatePriceService");
+                     // 가격 일괄변경
                  }
-                });
+             });
+
              //transactionManager.commit(status);
              /* 오류 발생
                 이미 커밋이나 롤백을 실행했으니 더이상 커밋과 롤백을 하지 말라는 오류.같은 메서드 공간안에서 두번이나 수동으로 커밋과 롤백을 불러들였더니 이런 에러가 발생했다.

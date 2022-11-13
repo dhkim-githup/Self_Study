@@ -87,7 +87,7 @@
 
     <!--- 일괄처리 한개값 수정 -->
     <update id="doUpdatePrice" >
-        UPDATEcoffee
+        UPDATE coffee
         SET  price=CAST(#{strPrice} as INTEGER)
         WHERE 1=1
             AND coffee_id IN
