@@ -43,11 +43,11 @@ class CoffeeV2ServiceTest {
         chkList.add("40");
 
 
-       /* try {
+        try {
             intI = transactionTemplate.doUpdatePriceService(strPrice, chkList);
         }catch (Exception e){
             System.out.println("처리중 오류 발생 ---"+e.getMessage());
-        }*/
+        }
 
 
         // 서비스에서 DB 처리
@@ -62,11 +62,12 @@ class CoffeeV2ServiceTest {
         }catch (Exception e){
             System.out.println("처리중 오류 발생 ---"+e.getMessage());
         }*/
-        try {
+
+        /*try {
             intI = serviceDefault.doUpdatePriceService(strPrice, chkList);
         }catch (Exception e) {
             System.out.println("처리중 오류 발생 ---" + e.getMessage());
-        }
+        }*/
 
     }
 

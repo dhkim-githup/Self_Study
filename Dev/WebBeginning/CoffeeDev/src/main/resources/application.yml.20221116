@@ -23,14 +23,15 @@ spring:
 
 --- # MariaDb
 spring:
-  maindb:
-    datasource:
-      driver-class-name: org.mariadb.jdbc.Driver
-      jdbc-url: jdbc:mariadb://localhost:3307/boot_study
-      username: boot
-      password: boot
-      hikari:
-        maximum-pool-size: 10
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://localhost:3307/boot_study
+    username: boot
+    password: boot
+     #hikari:
+       #auto-commit: false
+    hikari:
+      maximum-pool-size: 10
 
 --- #mybatis mapper xml
 mybatis:
