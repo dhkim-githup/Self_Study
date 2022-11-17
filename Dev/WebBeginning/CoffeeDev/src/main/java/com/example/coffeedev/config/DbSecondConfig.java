@@ -12,11 +12,13 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
+import javax.naming.NamingException;
 import javax.sql.DataSource;
+import java.sql.SQLException;
 
 @Configuration
-@MapperScan(value = {"com.example.coffeedev.v1","com.example.coffeedev.v2"}, sqlSessionFactoryRef = "sqlSessionFactoryMainDB")
-public class DbMainConfig {
+@MapperScan(value = {"com.example.coffeedev.seconddb"}, sqlSessionFactoryRef = "sqlSessionFactorySecondDB")
+public class DbSecondConfig {
 
     /*
      * DataSource : DB와 관계된 커넥션 정보를 담고있으며 빈으로 등록하여 인자로 넘겨준다. → 이 과정을 통해 Spring은 DataSource로 DB와의 연결을 획득한다.
@@ -26,26 +28,31 @@ public class DbMainConfig {
      *
      */
 
-    @Primary
-    @Bean(name = "datasourceMainDb")
-    @ConfigurationProperties(prefix = "spring.maindb.datasource")
-    public DataSource datasourceMainDb() {
-        return DataSourceBuilder.create().build();
+    /**
+     * DB 커넥션 정보 가져오는 부분
+     * @return
+     */
+
+    @Bean(name = "datasourceSecondDB")
+    @ConfigurationProperties(prefix = "spring.seconddb.datasource")
+    public DataSource datasourceSecondDB() throws SQLException, NamingException {
+
+        DataSource dataSource = DataSourceBuilder.create().build();
+        return dataSource;
+        // return DataSourceBuilder.create().build();
     }
 
-    @Primary
-    @Bean(name = "sqlSessionFactoryMainDB")
-    public SqlSessionFactory sqlSessionFactoryMainDB(@Qualifier("datasourceMainDb") DataSource dataSource) throws Exception {
+    @Bean(name = "sqlSessionFactorySecondDB")
+    public SqlSessionFactory sqlSessionFactorySecondDB(@Qualifier("datasourceSecondDB") DataSource dataSource) throws Exception {
         SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
         sqlSessionFactoryBean.setDataSource(dataSource);
         //sqlSessionFactoryBean.setTypeAliasesPackage("com.example.demo.test1");
-        sqlSessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:sqlmapper/*.xml"));
+        sqlSessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:sqlmapper/seconddb/*.xml"));
         return sqlSessionFactoryBean.getObject();
     }
 
-    @Primary
-    @Bean(name = "SqlSessionTemplateMainDb")
-    public SqlSessionTemplate SqlSessionTemplateMainDb(@Qualifier("sqlSessionFactoryMainDB") SqlSessionFactory sqlSessionFactory) {
+    @Bean(name = "SqlSessionTemplateSecondDB")
+    public SqlSessionTemplate SqlSessionTemplateSecondDB(@Qualifier("sqlSessionFactorySecondDB") SqlSessionFactory sqlSessionFactory) {
         return new SqlSessionTemplate(sqlSessionFactory);
     }
 
