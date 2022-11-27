@@ -1,4 +1,4 @@
-package com.example.coffeedev.config;
+package com.example.coffee.config;
 
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
@@ -10,13 +10,14 @@ import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 import java.sql.SQLException;
 
 @Configuration
-@MapperScan(value = {"com.example.coffeedev.oracledb"}, sqlSessionFactoryRef = "sqlSessionFactoryOracleDB")
+@MapperScan(value = {"com.example.coffee.oracledb"}, sqlSessionFactoryRef = "sqlSessionFactoryOracleDB")
 public class DbOracleConfig {
 
     /*
@@ -33,11 +34,19 @@ public class DbOracleConfig {
      */
 
     @Bean(name = "datasourceOracleDB")
-    @ConfigurationProperties(prefix = "spring.oracledb.datasource")
+    //@ConfigurationProperties(prefix = "spring.oracle-db.datasource")
     public DataSource datasourceOracleDB() throws SQLException, NamingException {
-        DataSource dataSource = DataSourceBuilder.create().build();
+
+        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        dataSource.setDriverClassName("oracle.jdbc.OracleDriver");
+        dataSource.setUrl("jdbc:oracle:thin:@localhost:1521/xe");
+        dataSource.setUsername("scott");
+        dataSource.setPassword("tiger");
         return dataSource;
-        // return DataSourceBuilder.create().build();
+
+        /*DataSource dataSource = DataSourceBuilder.create().build();
+        return dataSource;
+        // return DataSourceBuilder.create().build();*/
     }
 
     @Bean(name = "sqlSessionFactoryOracleDB")

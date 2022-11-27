@@ -1,6 +1,8 @@
 package com.example.coffee.v2.service;
 
 import com.example.coffee.comm.MyExceptionRuntime;
+import com.example.coffee.oracledb.CoffeeV2ServiceOracle;
+import com.example.coffee.seconddb.CoffeeV2ServiceSecond;
 import com.example.coffee.v2.dao.CoffeeV2Dao;
 import com.example.coffee.v2.vo.VoCoffeeV2;
 import lombok.extern.log4j.Log4j2;
@@ -21,6 +23,11 @@ public class CoffeeV2Service {
 
     @Autowired
     CommonLogService commonLogService;
+
+    @Autowired
+    CoffeeV2ServiceSecond v2ServiceSecond;
+    @Autowired
+    CoffeeV2ServiceOracle v2ServiceOracle;
 
     /* 전체리스트 조회 */
     public List<Map<String, String>> doCoffeeList() {
@@ -112,7 +119,11 @@ public class CoffeeV2Service {
         }finally {
             // 로그를 넣자.
             //intI = doInsertCommonLog("CoffeeV2Service.doUpdatePriceService");
-            intI = commonLogService.doInsertCommonLog("CoffeeV2Service.doUpdatePriceService");
+            //intI = commonLogService.doInsertCommonLog("CoffeeV2Service.doUpdatePriceService");
+            // Second - bootEx
+            v2ServiceSecond.doInsertCommonLog();
+            // Oracle -
+            v2ServiceOracle.doInsertCommonLog();
         }
         return intI;
     }

@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import javax.naming.NamingException;
 import javax.sql.DataSource;
@@ -38,7 +39,6 @@ public class DbFirstConfig {
     @Bean(name = "datasourceFirstDB")
     @ConfigurationProperties(prefix = "spring.firstdb.datasource")
     public DataSource datasourceFirstDB() throws SQLException, NamingException {
-
         DataSource dataSource = DataSourceBuilder.create().build();
         return dataSource;
         // return DataSourceBuilder.create().build();

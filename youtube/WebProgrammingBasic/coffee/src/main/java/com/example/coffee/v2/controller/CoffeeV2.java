@@ -21,8 +21,8 @@ import java.util.Map;
 public class CoffeeV2 {
 
     @Autowired
-    CoffeeV2Service_PlatformTransactionManager v2Service;
-    //CoffeeV2Service v2Service;
+    //CoffeeV2Service_PlatformTransactionManager v2Service;
+    CoffeeV2Service v2Service;
 
     @GetMapping("/coffee")
     public String doCoffee(Model model){

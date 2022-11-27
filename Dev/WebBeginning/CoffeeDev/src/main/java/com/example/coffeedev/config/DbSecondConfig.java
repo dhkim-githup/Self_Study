@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import javax.naming.NamingException;
 import javax.sql.DataSource;
@@ -34,12 +35,19 @@ public class DbSecondConfig {
      */
 
     @Bean(name = "datasourceSecondDB")
-    @ConfigurationProperties(prefix = "spring.seconddb.datasource")
-    public DataSource datasourceSecondDB() throws SQLException, NamingException {
+    //@ConfigurationProperties(prefix = "spring.seconddb.datasource")
+    public DataSource datasourceSecondDB(){
 
-        DataSource dataSource = DataSourceBuilder.create().build();
+        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        dataSource.setDriverClassName("org.mariadb.jdbc.Driver");
+        dataSource.setUrl("jdbc:mariadb://localhost:3307/bootex");
+        dataSource.setUsername("bootex");
+        dataSource.setPassword("bootex");
         return dataSource;
-        // return DataSourceBuilder.create().build();
+
+        /*        DataSource dataSource = DataSourceBuilder.create().build();
+        return dataSource;
+        // return DataSourceBuilder.create().build();*/
     }
 
     @Bean(name = "sqlSessionFactorySecondDB")

@@ -1,0 +1,8 @@
+ ,-----.          ,---.  ,---.
+'  .--./  ,---.  /  .-' /  .-'  ,---.   ,---.
+|  |     | .-. | |  `-, |  `-, | .-. : | .-. :
+'  '--'\ ' '-' ' |  .-' |  .-' \   --. \   --.
+ `-----'  `---'  `--'   `--'    `----'  `----'  IT 늦공 김부장 | Default
+Generate
+- https://devops.datenkollektiv.de/banner.txt/index.html
+- http://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type%20Something%20

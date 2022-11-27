@@ -30,3 +30,22 @@ dependencies {
 tasks.named('test') {
     useJUnitPlatform()
 }
+
+// Default는 local 로 지정
+ext.profile = (!project.hasProperty('profile') || !profile) ? 'local' : profile
+
+// 리소스 폴더 지정
+sourceSets {
+    main {
+        resources {
+            srcDirs "src/main/resources", "src/main/resources-${profile}"
+        }
+    }
+}
+
+//https://derveljunit.tistory.com/336
+tasks {
+    processResources {
+        duplicatesStrategy = org.gradle.api.file.DuplicatesStrategy.INCLUDE
+    }
+}

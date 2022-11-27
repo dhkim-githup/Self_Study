@@ -19,7 +19,7 @@ import javax.sql.DataSource;
 * ======================================
 * 변경자/변경일 :  jihun7core / 2020.01.22
 * 변경사유/내역 :  multi datasource 처리를 위해 미사용 어노테이션 주석으로 처리됨
-*               향 후 로컬개발은 application.yml (/main/resource)
+*               향 후 로컬개발은 application.yml.20221125 (/main/resource)
 *               개발,운영,로컬빌드는 configuration/database/dev|local|prod 에서 담당
 * ======================================
 * 
