@@ -1,0 +1,7 @@
+--- # 문서의 시작
+
+spring:
+  profiles:
+    active: local
+
+... # 문서의 끝

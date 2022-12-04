@@ -4,3 +4,7 @@
 |   | |    |     늦공 김부장 [Dev]    \     \___(  <_> )  |   |  | \  ___/\  ___/
 |___| |____|     __________________  \______  /\____/|__|   |__|  \___  >\___  >
                 /_____/_____/_____/         \/                        \/     \/
+
+                Generate
+                - https://devops.datenkollektiv.de/banner.txt/index.html
+                - http://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type%20Something%20

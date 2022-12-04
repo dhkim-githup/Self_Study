@@ -1,0 +1,64 @@
+--- # 문서의 시작
+spring:
+  banner:
+    location: classpath:/banner-dev.txt
+
+--- # Port
+server:
+  port: 8082
+
+--- # Thymeleaf
+spring:
+  thymeleaf:
+    cache: false
+
+--- #spring.thymeleaf.prefix=classpath:/templates
+spring:
+  thymeleaf:
+    prefix: file:src/main/resources/templates
+    suffix: .html
+
+--- # Dev Configuration
+spring:
+  devtools:
+    livereload:
+      enabled: true
+
+--- # MariaDb
+spring:
+  firstdb:
+    datasource:
+      driver-class-name: org.mariadb.jdbc.Driver
+      jdbc-url: jdbc:mariadb://localhost:3307/boot_study
+      username: boot
+      password: boot
+      maximum-pool-size: 5
+
+  seconddb:
+    datasource:
+      driver-class-name: org.mariadb.jdbc.Driver
+      jdbc-url: jdbc:mariadb://localhost:3307/bootex
+      username: bootex
+      password: bootex
+      maximum-pool-size: 1
+#      hikari:
+#        maximum-pool-size: 10
+
+  oracledb:
+    datasource:
+      driver-class-name: oracle.jdbc.OracleDriver
+      jdbc-url: jdbc:oracle:thin:@localhost:1521/xe
+      username: SCOTT_DEV
+      password: TIGER_DEV
+
+#      jdbc-url: jdbc:oracle:thin:@172.16.3.24:1521/TESTDB
+#      username: SCOTT
+#      password: TIGER
+
+--- #mybatis mapper xml
+#mybatis:
+#  mapper-locations: classpath:sqlmapper/*.xml
+#  configuration:
+#    map-underscore-to-camel-case: false
+
+... # 문서의 끝
