@@ -9,10 +9,11 @@ spring.datasource.password=boot
 
 # Thymeleaf
 spring.thymeleaf.cache=false
-spring.thymeleaf.prefix=classpath:templates
+spring.thymeleaf.prefix=classpath:/templates/
 spring.thymeleaf.suffix=.html
 
 # Dev
+spring.thymeleaf.cashe=false
 spring.devtools.livereload.enabled=true
 
 #mybatis mapper xml

@@ -10,6 +10,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%
+    String strParam = request.getParameter("param");
     String strWellcome = (String) request.getAttribute("welcome");
     List<Map<String, Objects>> list = (List) request.getAttribute("list");
 %>
@@ -22,7 +23,7 @@
 </head>
 <body>
 <div id="hello">
-
+    파라메터 : <label> - <%=strParam%></label><p>
     Welcome : <label>Hello World - <%=strWellcome%></label>
 
 </div>

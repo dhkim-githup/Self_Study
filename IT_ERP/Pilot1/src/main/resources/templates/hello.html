@@ -7,6 +7,9 @@
 <body>
     <div id="hello">
         Welcome : <label th:text="${welcome}">Hello World</label>
+
+        &nbsp;&nbsp;<button type="button" onclick="location.href='/insert_form'">등록</button>
+
     </div>
 
     <hr>
@@ -18,14 +21,9 @@
                 <th>이름</th>
                 <th>나이</th>
                 <th>등록일</th>
+                <th>수정</th>
             </tr>
 
-            <tr>
-                <td>No</td>
-                <td>이름</td>
-                <td>나이</td>
-                <td>등록일</td>
-            </tr>
 
             <th:block th:each="list : ${list}">
                 <tr>
@@ -33,6 +31,8 @@
                     <td th:text="${list.get('name')}">이름</td>
                     <td th:text="${list.get('age')}">나이</td>
                     <td th:text="${list.get('reg_day')}">등록일</td>
+                    <td><a th:href="@{/update_exe(no=${list.get('no')})}">수정</a></td>
+                    <td><a th:href="@{/delete(no=${list.get('no')})}">삭제</a></td>
                 </tr>
             </th:block>
         </table>

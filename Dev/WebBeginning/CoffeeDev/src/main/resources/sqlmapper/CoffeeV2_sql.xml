@@ -64,7 +64,6 @@
     </insert>
 
 
-
     <!-- 커피메뉴 수정하기 , 파라메터는 자동으로 인식됨 , 가격은 숫자로 변환 -->
     <insert id="doUpdate" >
         UPDATE coffee

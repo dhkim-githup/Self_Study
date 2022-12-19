@@ -18,4 +18,18 @@ public class HelloSvc {
 
         return list;
     }
+
+    public int doInsertCst(String strName, String strAge) {
+
+        int intReturn = helloDao.doInsertCst(strName,strAge);
+
+        return intReturn;
+    }
+
+    public int doDelete(String strNo) {
+
+        int intReturn = helloDao.doDelete(strNo);
+
+        return intReturn;
+    }
 }

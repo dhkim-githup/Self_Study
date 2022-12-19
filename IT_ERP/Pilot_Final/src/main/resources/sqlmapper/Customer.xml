@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.iterp.pilot_final.dao.HelloDao">
+
+
+    <!-- 1 row 조회  -->
+    <select id="getCustomer" resultType="map">
+        SELECT no, name, age,  DATE_FORMAT(reg_day,'%Y.%m.%d') AS reg_day
+        FROM customer
+    </select>
+
+    <!-- insert -->
+    <insert id="doInsertCst">
+        Insert into customer(name, age)
+        Values (#{strName}, CAST(#{strAge} as INTEGER))
+    </insert>
+
+    <!-- delete -->
+    <delete id="doDelete">
+        Delete from customer
+        WHERE no = CAST(#{strNo} as INTEGER)
+    </delete>
+
+</mapper>

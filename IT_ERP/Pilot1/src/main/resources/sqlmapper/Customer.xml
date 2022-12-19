@@ -11,5 +11,16 @@
         FROM customer
     </select>
 
+    <!-- insert -->
+    <insert id="doInsertCst">
+        Insert into customer(name, age)
+        Values (#{strName}, CAST(#{strAge} as INTEGER))
+    </insert>
+
+    <!-- delete -->
+    <delete id="doDelete">
+        Delete from customer
+        WHERE no = CAST(#{strNo} as INTEGER)
+    </delete>
 
 </mapper>
