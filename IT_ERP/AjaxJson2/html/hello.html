@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello</title>
+</head>
+<body>
+    <div id="hello">
+        Welcome : <label>Hello World</label>
+    </div>
+
+    <!-- 순수 자바 스크립트 -->
+    <a href="javascript:onJs()" id="js"><h2>Java Script</h2></a>
+    <a href="javascript:onAjax()" id="Ajax"><h2>Ajax</h2></a>
+    <a href="javascript:onJson()" id="Json"><h2>Ajax Json</h2></a>
+    <a href="javascript:onJquery()" id="jQuery"><h2>Ajax Json jQuery</h2></a>
+
+    <hr>
+
+    <div id="list">
+        <table>
+            <thead>
+            <tr>
+                <th>No</th>
+                <th>이름</th>
+                <th>나이</th>
+                <th>등록일</th>
+            </tr>
+            </thead>
+
+            <tbody id="_IDTbody">
+            <tr>
+                <td>No</td>
+                <td>이름</td>
+                <td>나이</td>
+                <td>등록일</td>
+            </tr>
+
+            <tr>
+                <td>No</td>
+                <td>이름</td>
+                <td>나이</td>
+                <td>등록일</td>
+            </tr>
+            </tbody>
+
+        </table>
+    </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script>
+    function onJs(){
+        let _tobyd="<tr>\n" +
+            "                <td>No</td>\n" +
+            "                <td>이성계</td>\n" +
+            "                <td>나이</td>\n" +
+            "                <td>등록일</td>\n" +
+            "            </tr>\n" +
+            "\n" +
+            "            <tr>\n" +
+            "                <td>No</td>\n" +
+            "                <td>이방원</td>\n" +
+            "                <td>나이</td>\n" +
+            "                <td>등록일</td>\n" +
+            "            </tr>"
+       // document.write(_tobyd);
+        document.getElementById("_IDTbody").innerHTML=_tobyd;
+    }
+
+    /* Ajax */
+    function onAjax() {
+        const xhttp = new XMLHttpRequest();
+        xhttp.onload = function() {
+            //document.getElementById("demo").innerHTML = this.responseText;
+            document.getElementById("_IDTbody").innerHTML=this.responseText;
+        }
+        xhttp.open("GET", "/txt/ajax_info.txt", true);
+        xhttp.send();
+    }
+
+    /* Ajax, Json */
+    function onJson() {
+        const xhttp = new XMLHttpRequest();
+        xhttp.onload = function() {
+            //document.getElementById("demo").innerHTML = this.responseText;
+            //document.getElementById("_IDTbody").innerHTML=this.responseText;
+            const obj = JSON.parse(this.responseText)
+
+            let _tbody="<tr>\n" +
+                "                <td>No</td>\n" +
+                "                <td>"+obj.name+"</td>\n" +
+                "                <td>"+obj.age+"</td>\n" +
+                "                <td>등록일</td>\n" +
+                "            </tr>\n" +
+                "\n" +
+                "            <tr>\n" +
+                "                <td>No</td>\n" +
+                "                <td>"+obj.name+"</td>\n" +
+                "                <td>나이</td>\n" +
+                "                <td>등록일</td>\n" +
+                "            </tr>"
+            //document.getElementById("_IDTbody").innerHTML=_tbody;
+            $("#_IDTbody").html(_tbody);
+
+        }
+        xhttp.open("GET", "/txt/ajax_json.txt", true);
+        xhttp.send();
+    }
+
+    /* Ajax, Json, jQuery */
+
+    /**
+     * 배열값 처리하기
+     * https://www.w3schools.com/js/js_ajax_http.asp
+     */
+    function onJquery(myCallBack) {
+
+             $.ajax({
+            url : "/txt/ajax_json.txt",
+            method : "GET",
+            //contentType : "application/x-www-form-urlencoded",
+            //data : _dataJson,  // 서버에 전달할 Parameter
+            dataType: "json", // 서버에서 전달받을 Data 형식
+            async: false,
+            success : function(myAjax) { // 성공시 실행 (java try) , JSON.parse 자동적용 RespData
+                let _tbody="<tr>\n" +
+                    "                <td>No</td>\n" +
+                    "                <td>"+myAjax.name+"</td>\n" +
+                    "                <td>"+myAjax.age+"</td>\n" +
+                    "                <td>등록일</td>\n" +
+                    "            </tr>\n" +
+                    "\n" +
+                    "            <tr>\n" +
+                    "                <td>No</td>\n" +
+                    "                <td>"+myAjax.name+"</td>\n" +
+                    "                <td>나이</td>\n" +
+                    "                <td>등록일</td>\n" +
+                    "            </tr>"
+                //document.getElementById("_IDTbody").innerHTML=_tbody;
+                $("#_IDTbody").html(_tbody);
+            },
+            error:function(request,status,error){  // 오류시 실행 (java catch)
+                alert("데이타 조회중 오류가 발생했습니다.");
+            },
+            complete : function (){  // 성공/실패와 상관없이 실행 (java finally)
+                console.log("Finish")
+            }
+
+        });
+
+    }
+
+</script>
+
+</body>
+</html>

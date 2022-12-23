@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello</title>
+</head>
+<body>
+    <div id="hello">
+        Welcome : <label>Hello World</label>
+    </div>
+
+    <hr>
+    <!-- 순수 자바 스크립트 -->
+    <a href="javascript:onJs()" id="js"><h2>Java Script</h2></a>
+    <a href="javascript:onAjax()" id="_Ajax"><h2>Ajax</h2></a>
+    <a href="javascript:onAjaxJson()" id="_AjaxJson"><h2>Ajax Json</h2></a>
+
+
+    <div id="list">
+        <table>
+            <thead>
+            <tr>
+                <th>No</th>
+                <th>이름</th>
+                <th>나이</th>
+                <th>등록일</th>
+            </tr>
+            </thead>
+
+            <tbody id="_IdTbody">
+
+            <tr>
+                <td>No</td>
+                <td>이름</td>
+                <td>나이</td>
+                <td>등록일</td>
+            </tr>
+
+            <tr>
+                <td>No</td>
+                <td>이름</td>
+                <td>나이</td>
+                <td>등록일</td>
+            </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+<script>
+    // Step 1
+    function onJs(){
+        let _tbody = "<tr>\n" +
+            "                <td>No</td>\n" +
+            "                <td>이성계</td>\n" +
+            "                <td>500</td>\n" +
+            "                <td>1700</td>\n" +
+            "            </tr>";
+        //document.write(_tbody);
+        document.getElementById("_IdTbody").innerHTML=_tbody;
+    }
+
+    // Step 2, Ajax
+    function onJs(){
+        let _tbody = "<tr>\n" +
+            "                <td>No</td>\n" +
+            "                <td>이성계</td>\n" +
+            "                <td>500</td>\n" +
+            "                <td>1700</td>\n" +
+            "            </tr>";
+        //document.write(_tbody);
+        document.getElementById("_IdTbody").innerHTML=_tbody;
+    }
+
+    // Step 2, Ajax + Json
+    function onAjax() {
+        const xhttp = new XMLHttpRequest();
+        xhttp.onload = function() {
+            //document.getElementById("demo").innerHTML = this.responseText;
+            document.getElementById("_IdTbody").innerHTML=this.responseText;
+        }
+        xhttp.open("GET", "./txt/ajax_info.txt", true);
+        xhttp.send();
+    }
+
+    // Step 3, Ajax + Json
+    function onAjaxJson() {
+        const xhttp = new XMLHttpRequest();
+        xhttp.onload = function() {
+            //document.getElementById("demo").innerHTML = this.responseText;
+            //document.getElementById("_IdTbody").innerHTML=this.responseText;
+         const myAjax = JSON.parse(this.responseText);
+
+         const _body = " <tr>\n" +
+             "                <td>No</td>\n" +
+             "                <td>"+myAjax.name+"</td>\n" +
+             "                <td>나이</td>\n" +
+             "                <td>등록일</td>\n" +
+             "            </tr>\n" +
+             "\n" +
+             "            <tr>\n" +
+             "                <td>No</td>\n" +
+             "                <td>태종</td>\n" +
+             "                <td>나이</td>\n" +
+             "                <td>등록일</td>\n" +
+             "            </tr>";
+            document.getElementById("_IdTbody").innerHTML=_body;
+
+
+        }
+        xhttp.open("GET", "./txt/ajax_info_json.txt", true);
+        xhttp.send();
+    }
+
+</script>
+
+</body>
+</html>
