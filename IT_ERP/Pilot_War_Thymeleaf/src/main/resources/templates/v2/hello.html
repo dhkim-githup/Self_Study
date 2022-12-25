@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello Template</title>
+</head>
+<body>
+    <div id="hello">
+        Welcome : <label th:text="${welcome}">Hello World</label>
+
+        &nbsp;&nbsp;<button type="button" onclick="location.href='/v2/insert_form'">등록</button>
+
+    </div>
+
+    <hr>
+
+    <div id="list">
+        <table>
+            <tr>
+                <th>No</th>
+                <th>이름</th>
+                <th>나이</th>
+                <th>등록일</th>
+                <th>수정</th>
+            </tr>
+
+
+            <th:block th:each="list : ${list}">
+                <tr>
+                    <td th:text="${list.getNo()}">No</td>
+                    <td th:text="${list.getName()}">이름</td>
+                    <td th:text="${list.getAge()}">나이</td>
+                    <td th:text="${list.getReg_day()}">등록일</td>
+                    <td><a th:href="@{/update_exe(no=${list.getNo()})}">수정</a></td>
+                    <td><a th:href="@{/delete(no=${list.getNo()})}">삭제</a></td>
+                </tr>
+            </th:block>
+        </table>
+
+    </div>
+</body>
+</html>

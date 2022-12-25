@@ -24,7 +24,7 @@
 <body>
 <div id="hello">
     파라메터 : <label> - <%=strParam%></label><p>
-    Welcome : <label>Hello World - <%=strWellcome%></label>
+    Welcome - JSP : <label>Hello World - <%=strWellcome%></label>
 
 </div>
 
