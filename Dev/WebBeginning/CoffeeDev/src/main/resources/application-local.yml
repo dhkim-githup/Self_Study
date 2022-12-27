@@ -44,16 +44,17 @@ spring:
 #      hikari:
 #        maximum-pool-size: 10
 
+#  oracledb:
+#    datasource:
+#      driver-class-name: oracle.jdbc.OracleDriver
+#      jdbc-url: jdbc:oracle:thin:@localhost:1521/xe
+#      username: SCOTT_DEV
+#      password: TIGER_DEV
   oracledb:
     datasource:
-      driver-class-name: oracle.jdbc.OracleDriver
-      jdbc-url: jdbc:oracle:thin:@localhost:1521/xe
-      username: SCOTT_DEV
-      password: TIGER_DEV
-
-#      jdbc-url: jdbc:oracle:thin:@172.16.3.24:1521/TESTDB
-#      username: SCOTT
-#      password: TIGER
+      jdbc-url: jdbc:oracle:thin:@172.16.3.24:1521/TESTDB
+      username: SCOTT
+      password: TIGER
 
 --- #mybatis mapper xml
 #mybatis:
