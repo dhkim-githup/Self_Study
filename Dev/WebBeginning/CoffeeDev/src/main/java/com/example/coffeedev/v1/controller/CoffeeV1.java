@@ -248,7 +248,7 @@ public class CoffeeV1 {
     /* 수정하기 Post , @RequestParam 사용 */
     @PostMapping("/update")
     public String doUpdatePost(
-                               @RequestParam(value="coffee_id") String strCoffee_id,
+                               @RequestParam(value="coffee_id" ) String strCoffee_id,
                                @RequestParam(value="name") String strName,
                                @RequestParam(value="kind") String strKind,
                                @RequestParam(value="price") String strPrice
