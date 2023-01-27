@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>JavaScript Functions</h1>
+<h2>setTimeout() with a Callback</h2>
+
+<p>Wait 3 seconds (3000 milliseconds) for this page to change.</p>
+
+<h1 id="func1"></h1>
+
+<h1 id="func2"></h1>
+
+<h1 id="demo"></h1>
+
+<h1 id="func3"></h1>
+
+<script>
+
+myFunc1();
+//myFunc2();
+setTimeout(myFunction, 3000);
+myFunc3();
+
+function myFunction() {
+  document.getElementById("demo").innerHTML = "I love setTimeout !!";
+  console.log("setTimeout");
+}
+
+function myFunc1() {  
+  document.getElementById("func1").innerHTML = "I love myFunc1 !!";
+  console.log("myFunc1");
+}
+
+function myFunc2() {
+    var step;
+    for (step = 0; step < 1000000; step++) {
+        // Runs 5 times, with values of step 0 through 4.
+        //console.log('Walking east one step');
+        document.getElementById("func2").innerHTML = step+"-I love You !!";
+    }    
+  console.log("myFunc2");
+}
+
+function myFunc3() {
+  document.getElementById("func3").innerHTML = "I love myFunc3 !!";
+  console.log("myFunc3");
+}
+
+function fLoop(){
+    var step;
+    for (step = 0; step < 1000000; step++) {
+        // Runs 5 times, with values of step 0 through 4.
+        //console.log('Walking east one step');
+        document.getElementById("demo").innerHTML = step+"-I love You !!";
+    }   
+}
+
+</script>
+
+</body>
+</html>

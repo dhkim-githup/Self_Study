@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>JavaScript Functions</h1>
+<h2>setTimeout() with a Callback</h2>
+
+<p>Wait 3 seconds (3000 milliseconds) for this page to change.</p>
+
+<h1 id="myfunc1">myfunc1</h1>
+
+<h1 id="myfunc2">Loading ~~</h1>
+
+<h1 id="myfunc3">myfunc3</h1>
+
+
+
+<script>
+//setTimeout(myfunc2, 3000);
+
+myfunc1();
+myfunc2();
+setTimeout(() => { console.log("setTimeout"); }, 0);
+myfunc3();
+
+
+function myfunc1(){
+   document.getElementById("myfunc1").innerHTML = "myfunc1 !!";
+   console.log("myFunc1");
+}
+
+function myfunc2(){
+    var step;
+    for (step = 0; step < 500000; step++) {
+        // Runs 5 times, with values of step 0 through 4.
+        //console.log('Walking east one step');
+        document.getElementById("myfunc2").innerHTML = step+"-myfunc2!!";
+    }   
+   
+   console.log("myFunc2");
+
+}
+
+function myfunc3(){
+   document.getElementById("myfunc3").innerHTML = "myfunc3 !!";
+   console.log("myFunc3");
+}
+
+</script>
+
+</body>
+</html>

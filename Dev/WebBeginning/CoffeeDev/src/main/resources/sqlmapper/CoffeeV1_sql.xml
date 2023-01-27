@@ -21,7 +21,7 @@
               </when>
               <otherwise>
                       AND reg_day >= DATE_FORMAT( #{strStart_date},'%Y%m%d')
-                      AND reg_day &lt;  date_add(DATE_FORMAT(#{strEnd_date},'%Y%m%d'), INTERVAL +1 DAY)
+                      AND reg_day &lt; date_add(DATE_FORMAT(#{strEnd_date},'%Y%m%d'), INTERVAL +1 DAY)
               </otherwise>
           </choose>
 

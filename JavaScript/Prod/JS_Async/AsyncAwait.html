@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript async / await</h2>
+
+<p>Wait 3 seconds (3000 milliseconds) for this page to change.</p>
+
+<h1 id="demo">123</h1>
+  
+<h1 id="demo2">456</h1>  
+
+<script>
+
+  function myFunc(){
+   document.getElementById("demo2").innerHTML 
+       = document.getElementById("demo").innerText;
+  }  
+  
+  async function myDisplay(myCallback) {
+    let myPromise = new Promise(function(resolve) {
+      setTimeout(function() {resolve("I love You !!");}, 3000);
+    });
+  
+    console.log("=myDisplay 1 =");  
+    
+    document.getElementById("demo").innerHTML = await myPromise;
+    
+    console.log("=myDisplay 2 =");  
+      
+    myCallback();
+    console.log("=myDisplay 3 =");  
+    
+  }
+
+  console.log("= 1 =");  
+  
+  myDisplay(myFunc);
+
+  console.log("= 2 =");  
+
+</script>
+
+</body>
+</html>

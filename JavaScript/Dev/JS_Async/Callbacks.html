@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>JavaScript Functions</h1>
+<h2>Function Sequence</h2>
+<p>JavaScript functions are executed in the sequence they are called.</p>
+
+<p>The result of the calculation is:</p>
+<p id="demo"></p>
+
+<p id="demo2"></p>
+
+<script>
+  function myDisplayer(something) {
+    document.getElementById("demo").innerHTML = something;
+  }
+
+  function myDemo2(something) {
+    let lValue = something +100;
+    document.getElementById("demo2").innerHTML = lValue;
+  }
+
+  function myCalculator(num1, num2, myCallback) {
+    let sum = num1 + num2;
+    myCallback(sum);
+  }
+
+  myCalculator(5, 5, myDisplayer);
+
+  myCalculator(5, 5, myDemo2);
+
+</script>
+
+</body>
+</html>
+z
