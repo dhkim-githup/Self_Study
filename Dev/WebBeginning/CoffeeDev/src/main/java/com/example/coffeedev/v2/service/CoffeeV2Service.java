@@ -23,8 +23,6 @@ import java.util.Map;
 @Log4j2
 public class CoffeeV2Service {
 
-
-
     @Autowired
     CoffeeV2Dao v2Dao;
 
