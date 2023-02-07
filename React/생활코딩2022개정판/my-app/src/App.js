@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
 
 function Header(props){
   
@@ -40,19 +41,30 @@ function Article(props){
 }
 
 function App() {
+  // const _mode = useState('Welcome');
+  // const mode = _mode[0];
+  // const setMode = _mode[1];
+  const [mode, setMode] = useState('Welcome');
   const topics = [
     {id:1, title:'html', body:'html is'},
     {id:2, title:'css', body:'css is'},
-    {id:3, title:'js', body:'Javascript is'},
+    {id:3, title:'JavaScript', body:'Javascript is'},
     ]
+
+    let content = null;
+    if(mode === 'Welcome'){
+      content = <Article title="welcome Title" body="Hello Web"></Article>
+    }else if(mode ==='Read'){
+      content = <Article title="Read Title" body="Hello Read"></Article>
+    }
+
   return (
     <div>
-      <Header title="ReactTitle" onChangeMode= { ()=>{alert('Hi'); }} ></Header>
-      <Nav topics={topics} onChangeMode={(id)=>{
-        alert(id);
-      }}></Nav>
-      <Article title="Article Title" body="Hello Article"></Article> 
-      <Article title="Title" body="Hello Article"></Article> 
+      <Header title="ReactTitle" onChangeMode= { 
+        ()=>{ setMode('Welcome'); }} ></Header>
+      <Nav topics={topics} onChangeMode={
+        ()=>{   setMode('Read'); }} ></Nav>
+      {content}
     </div>
   );
 }
