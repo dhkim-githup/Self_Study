@@ -20,7 +20,7 @@ function Nav(props){
     list.push(<li key={t.id}>
         <a id={t.id} href={'/read/'+t.id} onClick={(event)=>{
            event.preventDefault();
-           props.onChangeMode(event.target.id);
+           props.onChangeMode(Number(event.target.id));
         }}>{t.title}</a>
         </li>);
   }
@@ -28,11 +28,11 @@ function Nav(props){
           <ol>
             {list}
           </ol> 
-        </nav>
+          </nav>
 }
 
 function Article(props){
-  console.log(props);
+  //console.log(props);
 
   return  <article>
             <h2>{props.title}</h2>
@@ -45,6 +45,7 @@ function App() {
   // const mode = _mode[0];
   // const setMode = _mode[1];
   const [mode, setMode] = useState('Welcome');
+  const [id, setId] = useState(null);
   const topics = [
     {id:1, title:'html', body:'html is'},
     {id:2, title:'css', body:'css is'},
@@ -55,7 +56,19 @@ function App() {
     if(mode === 'Welcome'){
       content = <Article title="welcome Title" body="Hello Web"></Article>
     }else if(mode ==='Read'){
-      content = <Article title="Read Title" body="Hello Read"></Article>
+
+      let title, body =null;
+    for(let i=0; i<topics.length; i++){
+      console.log('Here=>'+topics[i].id);
+      console.log('Here=>'+id);
+      if(topics[i].id === id){
+          title = topics[i].title;
+          body  = topics[i].body;
+          console.log('title=>'+title);
+      }
+    }
+
+      content = <Article title={title} body={body}></Article>
     }
 
   return (
@@ -63,7 +76,11 @@ function App() {
       <Header title="ReactTitle" onChangeMode= { 
         ()=>{ setMode('Welcome'); }} ></Header>
       <Nav topics={topics} onChangeMode={
-        ()=>{   setMode('Read'); }} ></Nav>
+        (_id)=>{   setMode('Read'); 
+                   setId(_id);
+        }} >
+                
+        </Nav>
       {content}
     </div>
   );
