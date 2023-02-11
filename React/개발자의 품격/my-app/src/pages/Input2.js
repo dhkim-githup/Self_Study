@@ -2,31 +2,47 @@ import React, {useState} from "react";
 
 const Input2 = () => {
 
-    const [txt, setTxt] = useState("");
+    const [inputs, setInputs] = useState({
+        name: "",
+        email : "",
+        tel: ""
+    });
+
+    const {name, email, tel} = inputs;
 
     const onChange = (e) =>{
-        setTxt(e.target.value)
+        const value = e.target.value;
+        const id = e.target.id;
+
+        inputs[id] = value;
+        setInputs({
+            ...inputs,
+            [id]: value,
+        });
     };
     
     return (
         <div>
             <div>
                 <label>이름</label>
-                <input type="text" />
+                <input type="text" id="name" value={name} onChange={onChange} />
             </div>
 
             <div>
                 <label>이메일</label>
-                <input type="email" />
+                <input type="email" id="email" value={email} onChange={onChange} />
             </div>
 
             <div>
                 <label>전화번호</label>
-                <input type="tel" />
+                <input type="tel" id="tel" value={tel} onChange={onChange} />
             </div>
 
             <br />
-            <p>{txt}</p>
+            <p>이름 : {name}</p>
+            <p>이메일 : {email}</p>
+            <p>전화 : {tel}</p>
+       
         </div>
     );
 }
