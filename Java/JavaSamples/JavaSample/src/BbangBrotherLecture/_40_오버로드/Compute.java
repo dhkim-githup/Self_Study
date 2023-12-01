@@ -1,4 +1,4 @@
-package BbangBrotherLecture._40;
+package BbangBrotherLecture._40_오버로드;
 
 public class Compute {
     int result;

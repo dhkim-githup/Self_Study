@@ -1,4 +1,4 @@
-package BbangBrotherLecture._38;
+package BbangBrotherLecture._38_멤버변수;
 
 public class Vo {
     String name;

@@ -1,4 +1,4 @@
-package BbangBrotherLecture._38;
+package BbangBrotherLecture._38_멤버변수;
 
 /**
  * https://www.youtube.com/watch?v=SlZepEBIrvg&list=PL2lVRutSfJd_84EoQ_4YrXDZFTZ-nfbxy&index=39

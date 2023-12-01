@@ -1,4 +1,4 @@
-package BbangBrotherLecture._39;
+package BbangBrotherLecture._39_메서드;
 
 /**
  * - 메서드
