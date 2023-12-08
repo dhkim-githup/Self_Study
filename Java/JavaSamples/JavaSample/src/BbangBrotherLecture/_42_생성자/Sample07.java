@@ -1,7 +1,7 @@
 package BbangBrotherLecture._42_생성자;
 
 /**
- * 빵형 - 생성자
+ * 빵형의 실전 Java #042 - 생성자
  * https://www.youtube.com/watch?v=35zSG_JtmzI&list=PL2lVRutSfJd_84EoQ_4YrXDZFTZ-nfbxy&index=44
  */
 
