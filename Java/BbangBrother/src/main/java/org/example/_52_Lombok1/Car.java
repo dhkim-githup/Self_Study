@@ -1,8 +1,10 @@
 package org.example._52_Lombok1;
 
-import lombok.Getter;
+import lombok.*;
 
-@Getter
+import java.util.Objects;
+
+@Data
 public class Car {
 
     private String color;
