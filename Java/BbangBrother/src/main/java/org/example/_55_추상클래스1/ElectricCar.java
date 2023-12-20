@@ -12,4 +12,8 @@ public class ElectricCar extends Car {
     public String fillup() {
         return "전기를 충전!!";
     }
+
+    public void setColor2(String color){
+        this.color = color;
+    }
 }
