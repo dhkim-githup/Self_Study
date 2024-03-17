@@ -7,6 +7,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -38,12 +41,34 @@ public class WebSecurityConfig {
                 .sessionManagement((session) -> session
                         .maximumSessions(1)
                         .maxSessionsPreventsLogin(true)
-                )
-                ;
+                );
+
+        http
+                .csrf(csrf -> csrf.disable()
+                );
 
         return http.build();
     }
 
+    /*
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+
+        return   User.builder()
+                .username("user")
+                .password(passwordEncoder().encode("1111"))
+                .roles("MEMBER")
+                .build()
+                ;
+    }
+    */
+
+    @Bean
+    public PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
+    }
+
+    /*
     @Bean
     public UserDetailsService userDetailsService() {
         UserDetails user =
@@ -62,4 +87,5 @@ public class WebSecurityConfig {
 
         return new InMemoryUserDetailsManager(user,user2);
     }
+     */
 }
